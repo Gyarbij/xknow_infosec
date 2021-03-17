@@ -9,7 +9,7 @@
 | **MCAS** | Microsoft Cloud App Security | Cloud App Security
 | **M365D** | Microsoft 365 Defender | all
 
-For examples and detections go to Microsoft Community repository for [Advanced hunting queries for Microsoft 365 Defender](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries)
+For examples and detections visit Microsoft [Advanced hunting queries for Microsoft 365 Defender](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries)
 
 Schema Overview
 =================
