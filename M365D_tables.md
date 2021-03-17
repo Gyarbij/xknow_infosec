@@ -514,14 +514,14 @@ IdentityDirectoryEvents
 | **FileAccessed** | A file in a cloud app or service was accessed.
 | **FileMoved** | A file in a cloud app or service was moved.
 | **SmbFileCopy** | User copied files using SMB.
-| **FileDeleted** | -
-| **FileRenamed** | -
-| **FileCopied** | -
-| **FileCheckedOut** | -
-| **FileCheckedIn** | -
-| **FolderCreated** | -
-| **FolderDeleted** | -
-| **AccessRequestCreated** | -
+| **FileDeleted** | not documented
+| **FileRenamed** |  not documented
+| **FileCopied** |  not documented
+| **FileCheckedOut** | not documented
+| **FileCheckedIn** | not documented
+| **FolderCreated** | not documented
+| **FolderDeleted** | not documented
+| **AccessRequestCreated** | not documented
 
 ### Examples:
 
@@ -582,23 +582,42 @@ DeviceFileEvents
 | **AdditionalFields** | Additional information about the entity or event
 
 ### CloudAppEvents ActionTypes:
+
+Currently all ActionTypes are not documented. Probably Microsoft is still working on finalizing these.
+There are about 596 distinct ActionTypes available. The list would be way to large.
+Some examples:
+
 | Field | Description |
 | ---: | :--- |
-| **SearchDataInsightsSubscription** | -
-| **SearchMtpStatus** | -
-| **SearchAlert** | -
-| **SearchTIKustoClusterInformation** | -
-| **ValidaterbacAccessCheck** | -
-| **MailItemsAccessed** | -
-| **SearchCustomTag** | -
-| **Get-PolicyConfig** | -
-| **SearchCustomerInsight** | -
-| **Get-RoleGroup** | -
-| **SearchAlertAggregate** | -
-| **SearchAggTPSReportData** | -
-| **Get-Label** | -
-| **SearchAggSafeLinksReport** | -
-| **Get-SupervisoryReviewReport** | -
+| **MailItemsAccessed** | 
+| **FileSyncUploadedFull** | 
+| **FileModifiedExtended** | 
+| **FileAccessed** | 
+| **FilePreviewed** | 
+| **FileModified** | 
+| **FileDeleted** | 
+| **FolderCreated** | 
+| **ListViewed** | 
+| **FileDownloaded** | 
+| **FileMoved** | 
+| **PageViewed** | 
+| **UpdateInboxRules** | 
+| **FileUploaded** | 
+| **FolderDeleted** | 
+| **SendOnBehalf** | 
+| **FolderCopied** | 
+| **Change user password.** | 
+| **Add registered users to device.** | 
+| **Add registered owner to device.** | 
+| **Update service principal.** | 
+| **ModifyFolderPermissions** | 
+| **Remove member from group.** | 
+| **Add owner to group.** | 
+| **Add delegated permission grant.** | 
+| **Add app role assignment grant to user.** | 
+| **Add service principal.** | 
+| **ListCreated** | 
+| **ViewDocument** | 
 
 ## AADSpnSignInEventsBeta
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
@@ -892,7 +911,9 @@ EmailEvents
 ### EmailPostDeliveryEvents ActionTypes:
 | Field | Description |
 | ---: | :--- |
-| ? | ?
+| **Manual remediation** | An administrator manually took action on an email message after it was delivered to the user mailbox. This includes actions taken manually through Threat Explorer or approvals of automated investigation and response (AIR) actions
+| **Phish ZAP** | Zero-hour auto purge (ZAP) took action on a phishing email after delivery
+| **Malware ZAP** | Zero-hour auto purge (ZAP) took action on an email message found containing malware after delivery
 
 ### Examples:
 
