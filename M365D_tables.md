@@ -584,11 +584,10 @@ DeviceFileEvents
 ### CloudAppEvents ActionTypes:
 
 Currently all ActionTypes are not documented. Probably Microsoft is still working on finalizing these.
-There are about 596 distinct ActionTypes available. The list would be way to large.
-Some examples:
+There are over 600+ ActionTypes available. The list would be way to large, some examples:
 
-| Field | Description |
-| ---: | :--- |
+| Field |
+| ---: |
 | **MailItemsAccessed** | 
 | **FileSyncUploadedFull** | 
 | **FileModifiedExtended** | 
