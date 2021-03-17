@@ -59,6 +59,7 @@ Schema Overview
     * [Table: EmailUrlInfo](#emailurlinfo)
       * [URLs in an email](#urls-in-an-email)
     * [Table: EmailPostDeliveryEvents](#emailpostdeliveryevents)
+      * [EmailPostDeliveryEvents ActionTypes](#emailpostdeliveryevents-actiontypes)
       * [Post-delivery administrator actions](#post-delivery-administrator-actions)
       * [Unremediated post-delivery phishing email detections](#unremediated-post-delivery-phishing-email-detections)
       * [Full email process details](#full-email-process-details)
@@ -879,6 +880,11 @@ EmailEvents
 | **RecipientEmailAddress** | Email address of the recipient, or email address of the recipient after distribution list expansion
 | **DeliveryLocation** | Location where the email was delivered: Inbox/Folder, On-premises/External, Junk, Quarantine, Failed, Dropped, Deleted items
 | **ReportId** | Unique identifier for the event
+
+### EmailPostDeliveryEvents ActionTypes:
+| Field | Description |
+| ---: | :--- |
+| ? | ?
 
 ### Examples:
 
