@@ -1,10 +1,5 @@
 # Microsoft Defender 365 raw data schema - Overview
 
-## Last changes:
-| Date | Description |
-| :--- | :--- |
-| **16.03.2020** | Finished 1.0
-
 ## List of possible services and detections:
 | Abbreviation  | ServiceSource | DetectionSource
 | :--- | :--- | :--- |
