@@ -1,18 +1,18 @@
-# Microsoft Defender 365 Raw Data Schema - Full Overview
+# Microsoft Defender 365 raw data schema - Overview
 
-## Service Sources:
-| Abbreviation  | Product |
-| ---: | :--- |
-| **MDE** | Microsoft Defender for Endpoint
-| **MDI** | Microsoft Defender for Identity
-| **MDO** | Microsoft Defender for Office 365
-| **MCAS** | Microsoft Cloud App Security
-| **M365D** | Microsoft 365 Defender
-
-## Last Changes:
+## Last changes:
 | Date | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **16.03.2020** | Finished 1.0
+
+## List of possible services and detections:
+| Abbreviation  | ServiceSource | DetectionSource
+| :--- | :--- | :--- |
+| **MDE** | Microsoft Defender for Endpoint | Antivirus, Automated investigation, Custom TI, EDR, SmartScreen, Microsoft Threat Experts |
+| **MDI** | Microsoft Defender for Identity | Microsoft Defender for Identity
+| **MDO** | Microsoft Defender for Office 365 | Microsoft Defender for Office 365
+| **MCAS** | Microsoft Cloud App Security | Cloud App Security
+| **M365D** | Microsoft 365 Defender | all
 
 Schema Overview
 =================
