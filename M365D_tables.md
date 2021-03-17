@@ -9,6 +9,8 @@
 | **MCAS** | Microsoft Cloud App Security | Cloud App Security
 | **M365D** | Microsoft 365 Defender | all
 
+[-> Microsoft Repo for Advanced hunting queries for Microsoft 365 Defender](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries)
+
 Schema Overview
 =================
   * [Alerts](#alerts)
