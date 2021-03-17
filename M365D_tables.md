@@ -283,7 +283,7 @@ IdentityInfo
 | **AdditionalFields** | Additional information about the entity or event
 
 ### IdentityLogonEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **LogonSuccess** | A user successfully logged on to the device.
 | **LogonFailed** | A user attempted to logon to the device but failed.
@@ -343,7 +343,7 @@ DeviceNetworkEvents
 | **AdditionalFields** | Additional information about the entity or event
 
 ### IdentityQueryEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **LDAP query** | An LDAP query was performed.
 | **DNS query** | Type of query user performed against the domain controller (AXFR, TXT, MX, NS, SRV, ANY, DNSKEY)
@@ -403,7 +403,7 @@ DeviceProcessEvents
 | **AdditionalFields** | Additional information about the entity or event
 
 ### IdentityDirectoryEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **Account Constrained Delegation State changed** | The account state is now enabled or disabled for delegation.
 | **Account Constrained Delegation SPNs changed** | Constrained delegation restricts the services to which the specified server can act on behalf of the user.
@@ -507,7 +507,7 @@ IdentityDirectoryEvents
 | **AdditionalFields** | Additional information about the entity or event
 
 ### AppFileEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **FileUploaded** | A file was uploaded to a cloud app or service.
 | **FileDownloaded** | A file in a cloud app or service was downloaded.
@@ -586,37 +586,37 @@ DeviceFileEvents
 Currently all ActionTypes are not documented. Probably Microsoft is still working on finalizing these.
 There are over 600+ ActionTypes available. The list would be way to large, some examples:
 
-| Field |
-| ---: |
-| **MailItemsAccessed** | 
-| **FileSyncUploadedFull** | 
-| **FileModifiedExtended** | 
-| **FileAccessed** | 
-| **FilePreviewed** | 
-| **FileModified** | 
-| **FileDeleted** | 
-| **FolderCreated** | 
-| **ListViewed** | 
-| **FileDownloaded** | 
-| **FileMoved** | 
-| **PageViewed** | 
-| **UpdateInboxRules** | 
-| **FileUploaded** | 
-| **FolderDeleted** | 
-| **SendOnBehalf** | 
-| **FolderCopied** | 
-| **Change user password.** | 
-| **Add registered users to device.** | 
-| **Add registered owner to device.** | 
-| **Update service principal.** | 
-| **ModifyFolderPermissions** | 
-| **Remove member from group.** | 
-| **Add owner to group.** | 
-| **Add delegated permission grant.** | 
-| **Add app role assignment grant to user.** | 
-| **Add service principal.** | 
-| **ListCreated** | 
-| **ViewDocument** | 
+| ActionType | Description |
+| ---: | :--- |
+| **MailItemsAccessed** |  not documented
+| **FileSyncUploadedFull** |  not documented
+| **FileModifiedExtended** |  not documented
+| **FileAccessed** |  not documented
+| **FilePreviewed** |  not documented
+| **FileModified** |  not documented
+| **FileDeleted** |  not documented
+| **FolderCreated** |  not documented
+| **ListViewed** |  not documented
+| **FileDownloaded** |  not documented
+| **FileMoved** |  not documented
+| **PageViewed** |  not documented
+| **UpdateInboxRules** |  not documented
+| **FileUploaded** |  not documented
+| **FolderDeleted** |  not documented
+| **SendOnBehalf** |  not documented
+| **FolderCopied** |  not documented
+| **Change user password.** |  not documented
+| **Add registered users to device.** |  not documented
+| **Add registered owner to device.** |  not documented
+| **Update service principal.** |  not documented
+| **ModifyFolderPermissions** |  not documented
+| **Remove member from group.** |  not documented
+| **Add owner to group.** |  not documented
+| **Add delegated permission grant.** |  not documented
+| **Add app role assignment grant to user.** |  not documented
+| **Add service principal.** |  not documented
+| **ListCreated** |  not documented
+| **ViewDocument** |  not documented
 
 ## AADSpnSignInEventsBeta
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
@@ -908,11 +908,11 @@ EmailEvents
 | **ReportId** | Unique identifier for the event
 
 ### EmailPostDeliveryEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
-| **Manual remediation** | An administrator manually took action on an email message after it was delivered to the user mailbox. This includes actions taken manually through Threat Explorer or approvals of automated investigation and response (AIR) actions
-| **Phish ZAP** | Zero-hour auto purge (ZAP) took action on a phishing email after delivery
-| **Malware ZAP** | Zero-hour auto purge (ZAP) took action on an email message found containing malware after delivery
+| **Manual remediation** | An administrator manually took action on an email message after it was delivered to the user mailbox. This includes actions taken manually through Threat Explorer or approvals of automated investigation and response (AIR) actions.
+| **Phish ZAP** | Zero-hour auto purge (ZAP) took action on a phishing email after delivery.
+| **Malware ZAP** | Zero-hour auto purge (ZAP) took action on an email message found containing malware after delivery.
 
 ### Examples:
 
@@ -1190,7 +1190,7 @@ DeviceNetworkInfo
 | **AdditionalFields** | Additional information about the entity or event
 
 ### DeviceProcessEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **ProcessCreated** | A process was launched on the device.
 
@@ -1272,12 +1272,14 @@ DeviceProcessEvents
 | **AdditionalFields** | Additional information about the entity or event
 
 ### DeviceNetworkEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **ConnectionFailed** | An attempt to establish a network connection from the device failed.
 | **ConnectionFound** | An active network connection was found on the device.
 | **ConnectionRequest** | The device initiated a network connection.
 | **ConnectionSuccess** | A network connection was successfully established from the device.
+| **ConnectionAcknowledged** | not documented
+| **ConnectionAttempt** | not documented
 | **InboundConnectionAccepted** | The device accepted a network connection initiated by another device.
 | **ListeningConnectionCreated** | A process has started listening for connections on a certain port.
 
@@ -1377,7 +1379,7 @@ FileName, ProcessCommandLine, RemoteIP, RemoteUrl, RemotePort, RemoteIPType
 | **AdditionalFields** | Additional information about the entity or event
 
 ### DeviceFileEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **FileCreated** | A file was created on the device.
 | **FileModified** | A file on the device was modified.
@@ -1455,7 +1457,7 @@ DeviceFileEvents
 | **AppGuardContainerId** | Identifier for the virtualized container used by Application Guard to isolate browser activity
 
 ### DeviceRegistryEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **RegistryValueDeleted** | A registry value was deleted.
 | **RegistryKeyDeleted** | A registry key was deleted.
@@ -1546,7 +1548,7 @@ DeviceRegistryEvents
 | **AdditionalFields** | Additional information about the entity or event
 
 ### DeviceLogonEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **LogonSuccess** | A user successfully logged on to the device.
 | **LogonAttempted** | A user attempted to log on to the device.
@@ -1624,7 +1626,7 @@ DeviceLogonEvents
 | **AppGuardContainerId** | Identifier for the virtualized container used by Application Guard to isolate browser activity
 
 ### DeviceImageLoadEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **ImageLoaded** | A dynamic link library (DLL) was loaded.
 
@@ -1693,7 +1695,7 @@ DeviceLogonEvents
 | **AdditionalFields** | Additional information about the entity or event
 
 ### DeviceEvents ActionTypes:
-| Field | Description |
+| ActionType | Description |
 | ---: | :--- |
 | **AccountCheckedForBlankPassword** | An account was checked for a blank password.
 | **AntivirusDefinitionsUpdated** | Security intelligence updates for Windows Defender Antivirus were applied successfully.
