@@ -63,7 +63,8 @@ Schema Overview
       * [Unremediated post-delivery phishing email detections](#unremediated-post-delivery-phishing-email-detections)
       * [Full email process details](#full-email-process-details)
   * [Threat & Vulnerability Management](#threat--vulnerability-management)
-    * [Table: DeviceTvmSoftwareInventoryVulnerabilities](#devicetvmsoftwareinventoryvulnerabilities)
+    * [Table: DeviceTvmSoftwareInventory](#devicetvmsoftwareinventory)
+    * [Table: DeviceTvmSoftwareVulnerabilities](#devicetvmsoftwarevulnerabilities)
     * [Table: DeviceTvmSoftwareVulnerabilitiesKB](#devicetvmsoftwarevulnerabilitieskb)
     * [Table: DeviceTvmSecureConfigurationAssessment](#devicetvmsecureconfigurationassessment)
     * [Table: DeviceTvmSecureConfigurationAssessmentKB](#devicetvmsecureconfigurationassessmentkb)
@@ -906,16 +907,34 @@ EmailEvents
 
 # Threat & Vulnerability Management
 
-## DeviceTvmSoftwareInventoryVulnerabilities
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsoftwareinventoryvulnerabilities-table?view=o365-worldwide)
-**Description:** Inventory of software on devices as well as any known vulnerabilities in these software products. The DeviceTvmSoftwareInventoryVulnerabilities table in the advanced hunting schema contains the Threat & Vulnerability Management inventory of software on your devices as well as any known vulnerabilities in these software products. This table also includes operating system information, CVE IDs, and vulnerability severity information. Use this reference to construct queries that return information from the table.
+## DeviceTvmSoftwareInventory
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsoftwareinventory-table?view=o365-worldwide)
+**Description:** Inventory of software installed on devices, including their version information and end-of-support status. The DeviceTvmSoftwareInventory table in the advanced hunting schema contains the Threat & Vulnerability Management inventory of software currently installed on devices in your network, including end of support information. You can, for instance, hunt for events involving devices that are installed with a currently vulnerable software version. Use this reference to construct queries that return information from the table.
 
 ### Table Schema:
 | Field | Description |
 | ---: | :--- |
-| **DeviceId** | Unique identifier for the machine in the service
-| **DeviceName** | Fully qualified domain name (FQDN) of the machine
-| **OSPlatform** | Platform of the operating system running on the machine. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7.
+| **DeviceId** | Unique identifier for the device in the service
+| **DeviceName** | Fully qualified domain name (FQDN) of the device
+| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
+| **OSVersion** | Version of the operating system running on the machine
+| **OSArchitecture** | Architecture of the operating system running on the machine
+| **SoftwareVendor** | Name of the software vendor
+| **SoftwareName** | Name of the software product
+| **SoftwareVersion** | Version number of the software product
+| **EndOfSupportStatus** | Indicates the lifecycle stage of the software product relative to its specified end-of-support (EOS) or end-of-life (EOL) date
+| **EndOfSupportDate** |  End-of-support (EOS) or end-of-life (EOL) date of the software product
+
+## DeviceTvmSoftwareVulnerabilities
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsoftwarevulnerabilities-table?view=o365-worldwide)
+**Description:** Software vulnerabilities found on devices and the list of available security updates that address each vulnerability. The DeviceTvmSoftwareVulnerabilities table in the advanced hunting schema contains the Threat & Vulnerability Management list of vulnerabilities in installed software products. This table also includes operating system information, CVE IDs, and vulnerability severity information. You can use this table, for example, to hunt for events involving devices that have severe vulnerabilities in their software. Use this reference to construct queries that return information from the table.
+
+### Table Schema:
+| Field | Description |
+| ---: | :--- |
+| **DeviceId** | Unique identifier for the device in the service
+| **DeviceName** | Fully qualified domain name (FQDN) of the device
+| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
 | **OSVersion** | Version of the operating system running on the machine
 | **OSArchitecture** | Architecture of the operating system running on the machine
 | **SoftwareVendor** | Name of the software vendor
@@ -923,6 +942,8 @@ EmailEvents
 | **SoftwareVersion** | Version number of the software product
 | **CveId** | Unique identifier assigned to the security vulnerability under the Common Vulnerabilities and Exposures (CVE) system
 | **VulnerabilitySeverityLevel** | Severity level assigned to the security vulnerability based on the CVSS score and dynamic factors influenced by the threat landscape
+| **RecommendedSecurityUpdate** | Name or description of the security update provided by the software vendor to address the vulnerability
+| **RecommendedSecurityUpdateId** | Identifier of the applicable security updates or identifier for the corresponding guidance or knowledge base (KB) articles
 
 ## DeviceTvmSoftwareVulnerabilitiesKB
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsoftwarevulnerabilitieskb-table?view=o365-worldwide)
