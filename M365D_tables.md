@@ -469,6 +469,7 @@ IdentityDirectoryEvents
 ```
 
 ## AppFileEvents
+**Retired March 7, 2021 and replaced by [Table: CloudAppEvents](#cloudappevents)**
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-appfileevents-table?view=o365-worldwide)
 **Description:** File-related activities in cloud apps and services. The AppFileEvents table in the advanced hunting schema contains information about file-related activities in cloud apps and services monitored by Microsoft Cloud App Security. Use this reference to construct queries that return information from this table.
 
