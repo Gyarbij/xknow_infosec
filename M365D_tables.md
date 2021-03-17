@@ -514,6 +514,14 @@ IdentityDirectoryEvents
 | **FileAccessed** | A file in a cloud app or service was accessed.
 | **FileMoved** | A file in a cloud app or service was moved.
 | **SmbFileCopy** | User copied files using SMB.
+| **FileDeleted** | -
+| **FileRenamed** | -
+| **FileCopied** | -
+| **FileCheckedOut** | -
+| **FileCheckedIn** | -
+| **FolderCreated** | -
+| **FolderDeleted** | -
+| **AccessRequestCreated** | -
 
 ### Examples:
 
