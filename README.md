@@ -1,8 +1,7 @@
 # @xknow_infosec
 Random Stuff for Cyber Security Incident Response
 
-## Alert management with advanced search and filters
-![Microsoft Defender 365 Raw Data Schema (Streaming Export API overview)](M365D_tables.md)
+- ![Microsoft Defender 365 Raw Data Schema (Streaming Export API overview)](M365D_tables.md)
 
 ## List of starred Githubs
 
