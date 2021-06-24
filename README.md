@@ -1,10 +1,10 @@
 # [Twitter @xknow_infosec](https://www.twitter.com/xknow_infosec)
-Random Stuff for Cyber Security Incident Response (CSIRT)
+Random Stuff for Cyber Security Incident Response (CSIRT) by xknow_infosec
 
 - [Microsoft Defender 365 Raw Data Schema (Streaming Export API overview)](M365D_tables.md)
 - [https://www.threatintel.de (InfoSec news for SOC/CSIRT employees)](https://www.threatintel.de)
 
-## List of starred Githubs
+## My list of starred Githubs related to CSIRT
 
 ![Total](https://img.shields.io/badge/Total-520-green.svg)
 ![Date](https://img.shields.io/badge/Date-2021--06--23-blue.svg)
