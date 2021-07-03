@@ -110,7 +110,7 @@ The AlertInfo table in the advanced hunting schema contains information about al
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the event was recorded |
 | **AlertId** | Unique identifier for the alert
 | **Title** | Title of the alert
@@ -144,7 +144,7 @@ AlertInfo
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the event was recorded
 | **AlertId** | Unique identifier for the alert
 | **ServiceSource** | Product or service that provided the alert information
@@ -209,7 +209,7 @@ AlertEvidence
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **AccountObjectId** | Unique identifier for the account in Azure AD
 | **AccountUpn** | User principal name (UPN) of the account
 | **OnPremSid** | On-premises security identifier (SID) of the account
@@ -251,7 +251,7 @@ IdentityInfo
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **ActionType** | Type of activity that triggered the event
 | **Application** | Application that performed the recorded action
@@ -281,7 +281,7 @@ IdentityInfo
 
 ### IdentityLogonEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **LogonSuccess** | A user successfully logged on to the device.
 | **LogonFailed** | A user attempted to logon to the device but failed.
 
@@ -312,7 +312,7 @@ DeviceNetworkEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **ActionType** | Type of activity that triggered the event
 | **Application** | Application that performed the recorded action
@@ -341,7 +341,7 @@ DeviceNetworkEvents
 
 ### IdentityQueryEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **LDAP query** | An LDAP query was performed.
 | **DNS query** | Type of query user performed against the domain controller (AXFR, TXT, MX, NS, SRV, ANY, DNSKEY)
 | **SAMR query** | A SAMR query was performed.
@@ -374,7 +374,7 @@ DeviceProcessEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **ActionType** | Type of activity that triggered the event
 | **Application** | Application that performed the recorded action
@@ -401,7 +401,7 @@ DeviceProcessEvents
 
 ### IdentityDirectoryEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Account Constrained Delegation State changed** | The account state is now enabled or disabled for delegation.
 | **Account Constrained Delegation SPNs changed** | Constrained delegation restricts the services to which the specified server can act on behalf of the user.
 | **Account Delegation changed** | The account state is now enabled or disabled for delegation.
@@ -475,7 +475,7 @@ IdentityDirectoryEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **ActionType** | Type of activity that triggered the event
 | **Application** | Application that performed the recorded action
@@ -505,7 +505,7 @@ IdentityDirectoryEvents
 
 ### AppFileEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **FileUploaded** | A file was uploaded to a cloud app or service.
 | **FileDownloaded** | A file in a cloud app or service was downloaded.
 | **FileAccessed** | A file in a cloud app or service was accessed.
@@ -553,7 +553,7 @@ DeviceFileEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **ActionType** | Type of activity that triggered the event
 | **Application** | Application that performed the recorded action
@@ -584,7 +584,7 @@ Currently all ActionTypes are not documented. Probably Microsoft is still workin
 There are over 600+ ActionTypes available. The list would be way to large, some examples:
 
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **MailItemsAccessed** |  not documented
 | **FileSyncUploadedFull** |  not documented
 | **FileModifiedExtended** |  not documented
@@ -616,12 +616,12 @@ There are over 600+ ActionTypes available. The list would be way to large, some 
 | **ViewDocument** |  not documented
 
 ## AADSpnSignInEventsBeta
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadspnsignineventsbeta-table?view=o365-worldwide)
 **Description:** Information about sign-in events initiated by Azure Active Directory (AAD) service principal or managed identities. The AADSignInEventsBeta table is currently in beta and is being offered on a short-term basis to allow you to hunt through Azure Active Directory (AAD) sign-in events. We will eventually move all sign-in schema information to the IdentityLogonEvents table. Customers who can access Microsoft 365 Defender through the Azure Security Center’s integrated Microsoft Defender for Endpoint solution, but do not have licenses for Microsoft Defender for Office, Microsoft Defender for Identity, or Microsoft Cloud App Security, will not be able to view this schema. The AADSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory interactive and non-interactive sign-ins. Learn more about sign-ins in Azure Active Directory sign-in activity reports - preview. Sse this reference to construct queries that return information from the table. For information on other tables in the advanced hunting schema, see the advanced hunting reference.
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **Application** | Application that performed the recorded action
 | **ApplicationId** | Unique identifier for the application
@@ -669,12 +669,12 @@ AADSpnSignInEventsBeta
 ```
 
 ## AADSignInEventsBeta
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
 **Description:** Information about Azure Active Directory (AAD) sign-in events either by a user (interactive) or a client on the user's behalf (non-interactive). The AADSignInEventsBeta table is currently in beta and is being offered on a short-term basis to allow you to hunt through Azure Active Directory (AAD) sign-in events. We will eventually move all sign-in schema information to the IdentityLogonEvents table. Customers who can access Microsoft 365 Defender through the Azure Security Center’s integrated Microsoft Defender for Endpoint solution, but do not have licenses for Microsoft Defender for Office, Microsoft Defender for Identity, or Microsoft Cloud App Security, will not be able to view this schema. The AADSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory interactive and non-interactive sign-ins. Learn more about sign-ins in Azure Active Directory sign-in activity reports - preview. Use this reference to construct queries that return information from the table. For information on other tables in the advanced hunting schema, see the advanced hunting reference.
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **Application** | Application that performed the recorded action
 | **ApplicationId** | Unique identifier for the application
@@ -754,7 +754,7 @@ AADSignInEventsBeta
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | date and time when the record was generated
 | **NetworkMessageId** | Unique identifier for the email, generated by Office 365
 | **InternetMessageId** | Public-facing identifier for the email that is set by the sending email system
@@ -818,7 +818,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **NetworkMessageId** | Unique identifier for the email, generated by Office 365
 | **SenderFromAddress** | Sender email address in the FROM header, which is visible to email recipients on their email clients
@@ -868,7 +868,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **NetworkMessageId** | Unique identifier for the email, generated by Office 365
 | **Url** | Full Url from email
@@ -892,7 +892,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **NetworkMessageId** | Unique identifier for the email, generated by Office 365
 | **InternetMessageId** | Public-facing identifier for the email that is set by the sending email system
@@ -906,7 +906,7 @@ EmailEvents
 
 ### EmailPostDeliveryEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Manual remediation** | An administrator manually took action on an email message after it was delivered to the user mailbox. This includes actions taken manually through Threat Explorer or approvals of automated investigation and response (AIR) actions.
 | **Phish ZAP** | Zero-hour auto purge (ZAP) took action on a phishing email after delivery.
 | **Malware ZAP** | Zero-hour auto purge (ZAP) took action on an email message found containing malware after delivery.
@@ -944,7 +944,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
 | **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
@@ -962,7 +962,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
 | **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
@@ -982,7 +982,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **CveId** | Unique identifier assigned to the security vulnerability under the Common Vulnerabilities and Exposures (CVE) system
 | **CvssScore** | Severity score assigned to the security vulnerability under th Common Vulnerability Scoring System (CVSS)
 | **IsExploitAvailable** | Indicates whether exploit code for the vulnerability is publicly available
@@ -998,7 +998,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
 | **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7.
@@ -1018,7 +1018,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **ConfigurationId** | Unique identifier for a specific configuration
 | **ConfigurationImpact** | Rated impact of the configuration to the overall configuration score (1-10)
 | **ConfigurationName** | Display name of the configuration
@@ -1038,7 +1038,7 @@ EmailEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1082,7 +1082,7 @@ DeviceInfo
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1126,7 +1126,7 @@ DeviceNetworkInfo
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1188,7 +1188,7 @@ DeviceNetworkInfo
 
 ### DeviceProcessEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **ProcessCreated** | A process was launched on the device.
 
 ### Examples:
@@ -1226,7 +1226,7 @@ DeviceProcessEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1270,7 +1270,7 @@ DeviceProcessEvents
 
 ### DeviceNetworkEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **ConnectionFailed** | An attempt to establish a network connection from the device failed.
 | **ConnectionFound** | An active network connection was found on the device.
 | **ConnectionRequest** | The device initiated a network connection.
@@ -1320,7 +1320,7 @@ FileName, ProcessCommandLine, RemoteIP, RemoteUrl, RemotePort, RemoteIPType
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1377,7 +1377,7 @@ FileName, ProcessCommandLine, RemoteIP, RemoteUrl, RemotePort, RemoteIPType
 
 ### DeviceFileEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **FileCreated** | A file was created on the device.
 | **FileModified** | A file on the device was modified.
 | **FileRenamed** | A file on the device was renamed.
@@ -1413,7 +1413,7 @@ DeviceFileEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1455,7 +1455,7 @@ DeviceFileEvents
 
 ### DeviceRegistryEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **RegistryValueDeleted** | A registry value was deleted.
 | **RegistryKeyDeleted** | A registry key was deleted.
 | **RegistryKeyCreated** | A registry key was created.
@@ -1498,7 +1498,7 @@ DeviceRegistryEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1546,7 +1546,7 @@ DeviceRegistryEvents
 
 ### DeviceLogonEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **LogonSuccess** | A user successfully logged on to the device.
 | **LogonAttempted** | A user attempted to log on to the device.
 | **LogonFailed** | A user attempted to logon to the device but failed.
@@ -1583,7 +1583,7 @@ DeviceLogonEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1624,7 +1624,7 @@ DeviceLogonEvents
 
 ### DeviceImageLoadEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **ImageLoaded** | A dynamic link library (DLL) was loaded.
 
 ## DeviceEvents
@@ -1633,7 +1633,7 @@ DeviceLogonEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
@@ -1693,7 +1693,7 @@ DeviceLogonEvents
 
 ### DeviceEvents ActionTypes:
 | ActionType | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **AccountCheckedForBlankPassword** | An account was checked for a blank password.
 | **AntivirusDefinitionsUpdated** | Security intelligence updates for Windows Defender Antivirus were applied successfully.
 | **AntivirusDefinitionsUpdateFailed** | Security intelligence updates for Windows Defender Antivirus were not applied.
@@ -1868,7 +1868,7 @@ DeviceEvents
 
 ### Table Schema:
 | Field | Description |
-| ---: | :--- |
+| :--- | :--- |
 | **Timestamp** | Date and time when the record was generated
 | **DeviceId** | Unique identifier for the device in the service
 | **DeviceName** | Fully qualified domain name (FQDN) of the device
