@@ -1,10 +1,14 @@
 # [Twitter @xknow_infosec](https://www.twitter.com/xknow_infosec)
-My cyber security incident response (CSIRT) related stuff by xknow_infosec
 
+## Github knowledge by me
 - [Microsoft Defender 365 raw data/all tables schema (streaming export API overview)](M365D_tables.md)
 - [ThreatIntel.de News (InfoSec news for SOC/CSIRT employees)](https://www.threatintel.de)
 
-## My list of starred Githubs related to CSIRT
+## Articles written by me
+- [Detecting LDAPFragger — A newly released Cobalt Strike Beacon using LDAP for C2 communication (blueteamers approach)](https://medium.com/@ivecodoe/detecting-ldapfragger-a-newly-released-cobalt-strike-beacon-using-ldap-for-c2-communication-c274a7f00961)
+- [Windows Event ID 4649 “A replay attack was detected“ — Oh really? Are we under ATTACK? Should we do Incident Response?](https://medium.com/@ivecodoe/windows-event-id-4649-a-replay-attack-was-detected-ab02968d91ee)
+
+## Starred Githubs by me
 
 ![Total](https://img.shields.io/badge/Total-551-green.svg)
 ![Date](https://img.shields.io/badge/Date-2021--07--09-blue.svg)
