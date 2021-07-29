@@ -1,5 +1,25 @@
 # Improved Field naming in Splunk_TA_microsoft-cloudservices for Azure Eventhub data containing Microsoft 365 Defender events
 
+## Using a fixing SPL macro
+```
+[fix-mde-rawdata]
+definition = | eval IngestedTime=strftime(_time,"%Y-%m-%d %H:%M:%S")\
+| spath body.records output=records\
+| mvexpand records\
+| spath input=records time output=EventHubTime\
+| spath input=records category output=category\
+| spath input=records tenantId output=tenantId\
+| eval EventHubTime=strftime(strptime(EventHubTime,"%Y-%m-%dT%H:%M:%S.%6Q"),"%Y-%m-%d %H:%M:%S")\
+| spath input=records properties output=properties\
+| mvexpand properties\
+| spath input=properties Timestamp output=DetectedTime\
+| eval DetectedTime=strftime(strptime(DetectedTime,"%Y-%m-%dT%H:%M:%S.%6Q"),"%Y-%m-%d %H:%M:%S")\
+| spath input=properties
+iseval = 0
+```
+
+## Using new field aliases
+
 When using the TA-App [**Splunk Add-on for Microsoft Cloud Services**](https://splunkbase.splunk.com/app/3110/) for ingesting Azure Eventhub data (for example Azure AuditLogs, Azure SignInLogs, Defender for Endpoint Streaming API events)
 JSON data will be correctly extracted using KV_MODE=json, but since data is nested JSON within body.records.properties the field naming will be ugly and inefficient:
 
