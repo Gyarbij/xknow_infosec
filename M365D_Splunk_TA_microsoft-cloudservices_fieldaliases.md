@@ -33,10 +33,9 @@ index=... sourcetype=mscs:azure:eventhub
 
 ## Alternative B) Using multiply field aliases to create new fields
 
-1. **Copy /apps/Splunk_TA_microsoft-cloudservices/default/props.conf to /apps/Splunk_TA_microsoft-cloudservices/local/props.conf**
-2. **Edit local/props.conf and change stanza of**
-   [mscs:azure:eventhub]
-3. **Change to**:
+1. Copy /apps/Splunk_TA_microsoft-cloudservices/default/props.conf to **/apps/Splunk_TA_microsoft-cloudservices/local/props.conf**
+2. Edit local/props.conf and **change stanza of [mscs:azure:eventhub]**
+3. Change to:
 
 ```
 [mscs:azure:eventhub]
