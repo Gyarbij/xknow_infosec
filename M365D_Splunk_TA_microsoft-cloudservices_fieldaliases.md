@@ -25,7 +25,7 @@ TRANSFORMS-sourcetype_mscs_azure_security_recommendations = mscs_azure_security_
 # https://github.com/splunk/TA-microsoft-365-defender-advanced-hunting-add-on/blob/master/default/props.conf    
 TZ = UTC
 TIME_PREFIX = \{"time": "
-# xknow : Make Eventhub MDE streaming API fields directly readable (embedded nested json elements raw.body.records & raw.body.records.properties)
+# xknow: Make Eventhub MDE streaming API fields directly readable (embedded nested json elements raw.body.records & raw.body.records.properties)
 # Fieldalias does not support wildcard and we don't want to rename 30+ fields, sadly even the known REPORT-method does not work, so we have to go manually renaming each field...
 # https://community.splunk.com/t5/Splunk-Search/Field-alias-or-batch-renaming-with-wildcard/td-p/351435
 # https://community.splunk.com/t5/Getting-Data-In/Is-there-a-way-to-use-some-sort-of-regular-expression-with-field/m-p/300067
@@ -55,7 +55,7 @@ FIELDALIAS-mscs_azure_eventhub_rawdata_additionalfields = body.records.propertie
 FIELDALIAS-mscs_azure_eventhub_rawdata_alertid = body.records.properties.AlertId as AlertId
 FIELDALIAS-mscs_azure_eventhub_rawdata_appguardcontainerid = body.records.properties.AppGuardContainerId as AppGuardContainerId
 FIELDALIAS-mscs_azure_eventhub_rawdata_attacktechniques = body.records.properties.AttackTechniques as AttackTechniques
-FIELDALIAS-mscs_azure_eventhub_rawdata_category = body.records.properties.Category as Category
+FIELDALIAS-mscs_azure_eventhub_rawdata_category_event1 = body.records.properties.Category as CategoryEvent
 FIELDALIAS-mscs_azure_eventhub_rawdata_certificatecountersignaturetime = body.records.properties.CertificateCountersignatureTime as CertificateCountersignatureTime
 FIELDALIAS-mscs_azure_eventhub_rawdata_certificatecreationtime = body.records.properties.CertificateCreationTime as CertificateCreationTime
 FIELDALIAS-mscs_azure_eventhub_rawdata_certificateexpirationtime = body.records.properties.CertificateExpirationTime as CertificateExpirationTime
@@ -76,7 +76,6 @@ FIELDALIAS-mscs_azure_eventhub_rawdata_fileoriginUrl = body.records.properties.F
 FIELDALIAS-mscs_azure_eventhub_rawdata_filesize  = body.records.properties.FileSize as FileSize
 FIELDALIAS-mscs_azure_eventhub_rawdata_folderpath = body.records.properties.FolderPath as FolderPath
 FIELDALIAS-mscs_azure_eventhub_rawdata_ipaddresses = body.records.properties.IPAddresses as IPAddresses
-FIELDALIAS-mscs_azure_eventhub_rawdata_ipv4dhcp = body.records.properties.IPv4Dhcp as IPv4Dhcp
 FIELDALIAS-mscs_azure_eventhub_rawdata_ipv4dhcp = body.records.properties.IPv4Dhcp as IPv4Dhcp
 FIELDALIAS-mscs_azure_eventhub_rawdata_ipv6dhcp = body.records.properties.IPv6Dhcp as IPv6Dhcp
 FIELDALIAS-mscs_azure_eventhub_rawdata_initiatingprocessaccountdomain = body.records.properties.InitiatingProcessAccountDomain as InitiatingProcessAccountDomain
@@ -185,7 +184,7 @@ FIELDALIAS-mscs_azure_eventhub_rawdata_activitydatetime = body.records.propertie
 FIELDALIAS-mscs_azure_eventhub_rawdata_activitydisplayname = body.records.properties.activityDisplayName as activityDisplayName
 FIELDALIAS-mscs_azure_eventhub_rawdata_additionaldetails{}.key = body.records.properties.additionalDetails{}.key as additionalDetails{}.key
 FIELDALIAS-mscs_azure_eventhub_rawdata_additionaldetails{}.value = body.records.properties.additionalDetails{}.value as additionalDetails{}.value
-FIELDALIAS-mscs_azure_eventhub_rawdata_category = body.records.properties.category as category
+FIELDALIAS-mscs_azure_eventhub_rawdata_category_event2 = body.records.properties.category as categoryEvent
 FIELDALIAS-mscs_azure_eventhub_rawdata_correlationid = body.records.properties.correlationId as correlationId
 FIELDALIAS-mscs_azure_eventhub_rawdata_initiatedby.user.displayname = body.records.properties.initiatedBy.user.displayName as initiatedBy.user.displayName
 FIELDALIAS-mscs_azure_eventhub_rawdata_initiatedby.user.ipaddress = body.records.properties.initiatedBy.user.ipAddress as initiatedBy.user.ipAddress
@@ -209,9 +208,7 @@ FIELDALIAS-mscs_azure_eventhub_rawdata_resultsignature = body.records.properties
 
 ## Test all your new field aliases
 
-Run the following Splunk SPL query to verify field aliases:
+If data exists for column, it should display now. Run the following Splunk SPL query to verify field aliases:
 
 **index=<your_search> sourcetype=mscs:azure:eventhub
 | table** _time TimeIngested TimeDetected tenantId Level category correlationId durationMs operationName operationVersion AadDeviceId AccountDomain AccountName AccountObjectId AccountSid AccountUpn ActionType AdditionalFields AlertId AppGuardContainerId AttackTechniques Category CertificateCountersignatureTime CertificateCreationTime CertificateExpirationTime CertificateSerialNumber ClientVersion ConnectedNetworks CrlDistributionPointUrls DefaultGateways DeviceId DeviceName DeviceObjectId DnsAddresses FailureReason FileName FileOriginIP FileOriginReferrerUrl FileOriginUrl as FolderPath IPAddresses IPv4Dhcp IPv4Dhcp IPv6Dhcp InitiatingProcessAccountDomain InitiatingProcessAccountName InitiatingProcessAccountObjectId InitiatingProcessAccountSid InitiatingProcessAccountUpn InitiatingProcessCommandLine InitiatingProcessCreationTime InitiatingProcessFileName InitiatingProcessFileSize InitiatingProcessFolderPath InitiatingProcessId InitiatingProcessIntegrityLevel InitiatingProcessLogonId InitiatingProcessMD5 InitiatingProcessParentCreationTime InitiatingProcessParentFileName InitiatingProcessParentId InitiatingProcessSHA1 InitiatingProcessSHA256 InitiatingProcessSignatureStatus InitiatingProcessSignerType InitiatingProcessTokenElevation InitiatingProcessVersionInfoCompanyName InitiatingProcessVersionInfoFileDescription InitiatingProcessVersionInfoInternalFileName InitiatingProcessVersionInfoOriginalFileName InitiatingProcessVersionInfoProductName InitiatingProcessVersionInfoProductVersion IsAzureADJoined IsAzureInfoProtectionApplied IsLocalAdmin IsRootSignerMicrosoft IsSigned IsTrusted Issuer IssuerHash LocalIP LocalIPType LocalPort LoggedOnUsers LogonId LogonType MD5 MacAddress MachineGroup MitreTechniques NetworkAdapterName NetworkAdapterStatus NetworkAdapterType OSArchitecture OSBuild OSPlatform OSVersion OnboardingStatus PreviousFileName PreviousFolderPath PreviousRegistryKey PreviousRegistryValueData PreviousRegistryValueName ProcessCommandLine ProcessCreationTime ProcessId ProcessIntegrityLevel ProcessTokenElevation ProcessVersionInfoCompanyName ProcessVersionInfoFileDescription ProcessVersionInfoInternalFileName ProcessVersionInfoOriginalFileName ProcessVersionInfoProductName ProcessVersionInfoProductVersion Protocol PublicIP RegistryDeviceTag RegistryKey RegistryValueData RegistryValueName RegistryValueType RemoteDeviceName RemoteIP RemoteIPType RemotePort RemoteUrl RemoteIp ReportId RequestAccountDomain RequestAccountName RequestAccountSid RequestProtocol RequestSourceIP RequestSourcePort SHA1 SHA256 SensitivityLabel SensitivitySubLabel Severity ShareName SignatureType Signer SignerHash Table Title TunnelType activityDateTime activityDisplayName additionalDetails{}.key additionalDetails{}.value category correlationId initiatedBy.user.displayName initiatedBy.user.ipAddress initiatedBy.user.userPrincipalName loggedByService operationType result resultReason targetResources{}.displayName targetResources{}.id targetResources{}.modifiedProperties{}.displayName targetResources{}.modifiedProperties{}.newValue targetResources{}.modifiedProperties{}.oldValue targetResources{}.type targetResources{}.userPrincipalName resourceId resultSignature
-
-If data exists for column, it should display now.
