@@ -4,9 +4,9 @@ When using the TA-App [**Splunk Add-on for Microsoft Cloud Services**](https://s
 JSON data will be correctly extracted using KV_MODE=json, but since data is nested JSON within body.records.properties the field naming will be ugly and inefficient:
 
 ## You want to have your fields readable again
-![SIEMFields](/M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.png)
+<img src="/M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.png" width="700" height="700" />
 
-1. **Copy Splunk_TA_microsoft-cloudservices/default/props.conf to *Splunk_TA_microsoft-cloudservices/local/props.conf**
+1. **Copy /apps/Splunk_TA_microsoft-cloudservices/default/props.conf to /apps/Splunk_TA_microsoft-cloudservices/local/props.conf**
 2. **Edit local/props.conf and change stanza of**
    [mscs:azure:eventhub]
 3. **Change to**:
