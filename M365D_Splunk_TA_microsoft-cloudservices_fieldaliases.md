@@ -6,8 +6,8 @@ JSON data will be correctly extracted using KV_MODE=json, but since data is nest
 If you want to have your fields readable again:
 ![SIEMFields](/M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.png)
 
-1. Copy Splunk_TA_microsoft-cloudservices/default/props.conf to *Splunk_TA_microsoft-cloudservices/local/props.conf*
-2. Edit local/props.conf and change stanza of
+1. **Copy Splunk_TA_microsoft-cloudservices/default/props.conf to *Splunk_TA_microsoft-cloudservices/local/props.conf**
+2. **Edit local/props.conf and change stanza of**
    [mscs:azure:eventhub]
 3. **Change to**:
 
