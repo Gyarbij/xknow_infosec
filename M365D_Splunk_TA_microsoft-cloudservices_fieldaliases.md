@@ -26,7 +26,7 @@ TRANSFORMS-sourcetype_mscs_azure_security_recommendations = mscs_azure_security_
 TZ = UTC
 TIME_PREFIX = \{"time": "
 # xknow : Make Eventhub MDE streaming API fields directly readable (embedded nested json elements raw.body.records & raw.body.records.properties)
-# Fieldalias does not support wildcard and we don't want to rename 30+ fields
+# Fieldalias does not support wildcard and we don't want to rename 30+ fields, sadly even the known REPORT-method does not work, so we have to go manually renaming each field...
 # https://community.splunk.com/t5/Splunk-Search/Field-alias-or-batch-renaming-with-wildcard/td-p/351435
 # https://community.splunk.com/t5/Getting-Data-In/Is-there-a-way-to-use-some-sort-of-regular-expression-with-field/m-p/300067
 # https://community.splunk.com/t5/Getting-Data-In/How-can-we-extract-a-json-document-within-an-event/td-p/302227 
