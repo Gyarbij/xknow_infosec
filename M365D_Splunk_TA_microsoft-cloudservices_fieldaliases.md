@@ -2,6 +2,7 @@
 
 When using the TA-App [**Splunk Add-on for Microsoft Cloud Services**](https://splunkbase.splunk.com/app/3110/) for ingesting Azure Event Hub data (for example Azure AuditLogs, Azure SignInLogs, Defender for Endpoint Streaming API events)
 JSON data will be correctly extracted using KV_MODE=json, but since data is nested JSON within body.records.properties the field naming will be ugly and inefficient.
+
 Please note: the TA-App [**Microsoft Azure Add on for Splunk**](https://splunkbase.splunk.com/app/3757/) does not have this field naming issue, but is deprecated for Azure Event Hubs collection and therefore shouldn't be used anymore.
 
 There existing another TA-App called [**TA-microsoft-365-defender-advanced-hunting-add-on**](https://github.com/splunk/TA-microsoft-365-defender-advanced-hunting-add-on/blob/master/default/props.conf) which adds CIM-support by Splunk officially for Microsoft 365 Defender for Endpoint streaming API raw data, but it's still work-in-progress. This App could later be officially used to normalize MDE raw data field names against Splunk's Common-Information-Model (CIM) - meanwhile use the temporary solution as shown here:
