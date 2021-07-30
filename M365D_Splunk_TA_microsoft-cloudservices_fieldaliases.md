@@ -253,7 +253,7 @@ DEST_KEY = MetaData:Host
 REGEX = \"DeviceName\": \"([^\"]+)
 FORMAT = host::$1
 ```
-<img src="/M365D_Splunk_TA_microsoft-cloudservices_hostname.png" width="500" height="500" />
+<img src="/M365D_Splunk_TA_microsoft-cloudservices_hostname.png" width="1050" height="224" />
 
 Run the following SPL to verify field aliases (columns should be filled out):
 ```
