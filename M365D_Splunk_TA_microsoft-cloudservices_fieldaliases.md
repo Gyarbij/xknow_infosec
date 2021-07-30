@@ -1,7 +1,8 @@
 # Improved Field naming in Splunk_TA_microsoft-cloudservices for Azure Eventhub data containing Microsoft 365 Defender events
 
 When using the TA-App [**Splunk Add-on for Microsoft Cloud Services**](https://splunkbase.splunk.com/app/3110/) for ingesting Azure Eventhub data (for example Azure AuditLogs, Azure SignInLogs, Defender for Endpoint Streaming API events)
-JSON data will be correctly extracted using KV_MODE=json, but since data is nested JSON within body.records.properties the field naming will be ugly and inefficient:
+JSON data will be correctly extracted using KV_MODE=json, but since data is nested JSON within body.records.properties the field naming will be ugly and inefficient.
+Official MDE raw-data CIM-support by Splunk is work-in-progress and could replace this temporary solution when it's done: https://github.com/splunk/TA-microsoft-365-defender-advanced-hunting-add-on/blob/master/default/props.conf (this Splunk addon will have equal functionality to get fields normalized):
 
 ## You want to have your fields readable again
 <img src="/M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.png" width="700" height="700" />
