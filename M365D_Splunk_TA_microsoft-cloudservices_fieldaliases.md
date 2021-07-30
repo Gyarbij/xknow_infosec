@@ -236,6 +236,25 @@ FIELDALIAS-mscs_azure_eventhub_rawdata_resultsignature = body.records.properties
 ############################################################################################################
 ```
 
+(Optional) If you additionally want to fix the host field and set this to the value of DeviceName field:
+1. Additionally add the following to **/apps/Splunk_TA_microsoft-cloudservices/local/props.conf**
+```
+# xknow: Change host field value based on "DeviceName": "value" from events
+# https://docs.splunk.com/Documentation/Splunk/8.2.1/Data/Overridedefaulthostassignments
+# https://community.splunk.com/t5/Getting-Data-In/How-to-set-Host-from-an-extracted-field/m-p/248797
+TRANSFORMS-mscs_azure_eventhub_rawdata_hostoverride = mscs_azure_eventhub_hostoverride
+```
+2. Copy /apps/Splunk_TA_microsoft-cloudservices/default/transforms.conf to **/apps/Splunk_TA_microsoft-cloudservices/local/transforms.conf**
+3. Add on top:
+```
+# xknow: Change host field value based on "DeviceName": "value" from events
+[mscs_azure_eventhub_hostoverride]
+DEST_KEY = MetaData:Host
+REGEX = \"DeviceName\": \"([^\"]+)
+FORMAT = host::$1
+```
+<img src="/M365D_Splunk_TA_microsoft-cloudservices_hostname.png" width="500" height="500" />
+
 Run the following SPL to verify field aliases (columns should be filled out):
 ```
 index=... sourcetype=mscs:azure:eventhub
