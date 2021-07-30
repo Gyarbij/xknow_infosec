@@ -8,7 +8,7 @@ Please note: the TA-App [**Microsoft Azure Add-on for Splunk**](https://splunkba
 There existing another TA-App called [**Splunk Add-on for Microsoft Defender for Endpoint Advanced Hunting**](https://github.com/splunk/TA-microsoft-365-defender-advanced-hunting-add-on/blob/master/default/props.conf) which adds CIM-support by Splunk officially for Microsoft 365 Defender for Endpoint streaming API raw data, but it's still work-in-progress. This App could later be officially used to normalize MDE raw data field names against Splunk's Common-Information-Model (CIM) - meanwhile use the temporary solution as shown here:
 
 ## You want to have your fields readable again
-<img src="/M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.png" width="700" height="700" />
+<img src="/screenshots/M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.png" width="700" height="700" />
 
 ## Alternative A) Using a fixing SPL macro
 
@@ -253,7 +253,7 @@ DEST_KEY = MetaData:Host
 REGEX = \"DeviceName\": \"([^\"]+)
 FORMAT = host::$1
 ```
-<img src="/M365D_Splunk_TA_microsoft-cloudservices_hostname.png" width="1050" height="224" />
+<img src="/screenshots/M365D_Splunk_TA_microsoft-cloudservices_hostname.png" width="1050" height="224" />
 
 Run the following SPL to verify field aliases (columns should be filled out):
 ```
