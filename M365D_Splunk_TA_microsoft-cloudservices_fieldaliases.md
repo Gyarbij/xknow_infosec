@@ -28,7 +28,7 @@ definition = | eval IngestedTime=strftime(_time,"%Y-%m-%d %H:%M:%S")\
 | spath input=properties
 iseval = 0
 ```
-Run your SPL with macro fixing the Eventhub data during search-time:
+### Run your SPL with macro fixing the Eventhub data during search-time:
 ```
 index=... sourcetype=mscs:azure:eventhub
 `fix-mde-rawdata`
@@ -236,7 +236,7 @@ FIELDALIAS-mscs_azure_eventhub_rawdata_resultsignature = body.records.properties
 ############################################################################################################
 ```
 
-(Optional) If you additionally want to fix the host field and set this to the value of DeviceName field:
+### (Optional) If you additionally want to fix the host field and set this to the value of DeviceName field:
 1. Additionally add the following to **/apps/Splunk_TA_microsoft-cloudservices/local/props.conf**
 ```
 # xknow: Change host field value based on "DeviceName": "value" from events
@@ -253,9 +253,9 @@ DEST_KEY = MetaData:Host
 REGEX = \"DeviceName\": \"([^\"]+)
 FORMAT = host::$1
 ```
-<img src="/screenshots/M365D_Splunk_TA_microsoft-cloudservices_hostname.png" width="1050" height="224" />
+<img src="/screenshots/M365D_Splunk_TA_microsoft-cloudservices_hostname.png" width="751" height="148" />
 
-Run the following SPL to verify field aliases (columns should be filled out):
+### Run the following SPL to verify field aliases (columns should be filled out):
 ```
 index=... sourcetype=mscs:azure:eventhub
 | table _time TimeIngested TimeDetected tenantId Level category correlationId durationMs operationName operationVersion AadDeviceId AccountDomain AccountName AccountObjectId AccountSid AccountUpn ActionType AdditionalFields AlertId AppGuardContainerId AttackTechniques Category CertificateCountersignatureTime CertificateCreationTime CertificateExpirationTime CertificateSerialNumber ClientVersion ConnectedNetworks CrlDistributionPointUrls DefaultGateways DeviceId DeviceName DeviceObjectId DnsAddresses FailureReason FileName FileOriginIP FileOriginReferrerUrl FileOriginUrl as FolderPath IPAddresses IPv4Dhcp IPv6Dhcp InitiatingProcessAccountDomain InitiatingProcessAccountName InitiatingProcessAccountObjectId InitiatingProcessAccountSid InitiatingProcessAccountUpn InitiatingProcessCommandLine InitiatingProcessCreationTime InitiatingProcessFileName InitiatingProcessFileSize InitiatingProcessFolderPath InitiatingProcessId InitiatingProcessIntegrityLevel InitiatingProcessLogonId InitiatingProcessMD5 InitiatingProcessParentCreationTime InitiatingProcessParentFileName InitiatingProcessParentId InitiatingProcessSHA1 InitiatingProcessSHA256 InitiatingProcessSignatureStatus InitiatingProcessSignerType InitiatingProcessTokenElevation InitiatingProcessVersionInfoCompanyName InitiatingProcessVersionInfoFileDescription InitiatingProcessVersionInfoInternalFileName InitiatingProcessVersionInfoOriginalFileName InitiatingProcessVersionInfoProductName InitiatingProcessVersionInfoProductVersion IsAzureADJoined IsAzureInfoProtectionApplied IsLocalAdmin IsRootSignerMicrosoft IsSigned IsTrusted Issuer IssuerHash LocalIP LocalIPType LocalPort LoggedOnUsers LogonId LogonType MD5 MacAddress MachineGroup MitreTechniques NetworkAdapterName NetworkAdapterStatus NetworkAdapterType OSArchitecture OSBuild OSPlatform OSVersion OnboardingStatus PreviousFileName PreviousFolderPath PreviousRegistryKey PreviousRegistryValueData PreviousRegistryValueName ProcessCommandLine ProcessCreationTime ProcessId ProcessIntegrityLevel ProcessTokenElevation ProcessVersionInfoCompanyName ProcessVersionInfoFileDescription ProcessVersionInfoInternalFileName ProcessVersionInfoOriginalFileName ProcessVersionInfoProductName ProcessVersionInfoProductVersion Protocol PublicIP RegistryDeviceTag RegistryKey RegistryValueData RegistryValueName RegistryValueType RemoteDeviceName RemoteIP RemoteIPType RemotePort RemoteUrl RemoteIp ReportId RequestAccountDomain RequestAccountName RequestAccountSid RequestProtocol RequestSourceIP RequestSourcePort SHA1 SHA256 SensitivityLabel SensitivitySubLabel Severity ShareName SignatureType Signer SignerHash Table Title TunnelType activityDateTime activityDisplayName additionalDetails{}.key additionalDetails{}.value categoryEvent correlationId initiatedBy.user.displayName initiatedBy.user.ipAddress initiatedBy.user.userPrincipalName loggedByService operationType result resultReason targetResources{}.displayName targetResources{}.id targetResources{}.modifiedProperties{}.displayName targetResources{}.modifiedProperties{}.newValue targetResources{}.modifiedProperties{}.oldValue targetResources{}.type targetResources{}.userPrincipalName resourceId resultSignature
