@@ -1793,6 +1793,7 @@ DeviceLogonEvents
 | **LdapSearch** | An LDAP search was performed.
 | **LogonRightsSettingEnabled** | Interactive logon rights on the machine were granted to a user.
 | **MemoryRemoteProtect** | A process has modified the protection mask for a memory region used by another process. This might allow execution of content from non-executable memory.
+| **NamedPipeEvent** | no official documentation yet (PipeName per Process) SMB named pipes create/delete
 | **NetworkProtectionUserBypassEvent** | A user has bypassed network protection and accessed a blocked IP address, domain, or URL.
 | **NetworkShareObjectAccessChecked** | A request was made to access a file or folder shared on the network and permissions to the share was evaluated.
 | **NtAllocateVirtualMemoryApiCall** | Memory was allocated for a process.
