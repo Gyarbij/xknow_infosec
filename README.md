@@ -7,6 +7,18 @@
 ## My daily security news
 - [ThreatIntel.de News (InfoSec news for SOC/CSIRT employees)](https://www.threatintel.de)
 
+## My detections
+Microsoft Defender 365
+- [Detects malicious SMB Named Pipes (used by common C2 frameworks)](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries/blob/master/Command%20and%20Control/C2-NamedPipe.md)
+
+SIGMA
+- [Cmd.exe CommandLine Path Traversal](https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/process_creation/win_commandline_path_traversal.yml)
+- [Suspicious LDAP-Attributes Used](https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/builtin/win_susp_ldap_dataexchange.yml)
+- [Suspicious PROCEXP152.sys File Created In TMP](https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/file_event/sysmon_susp_procexplorer_driver_created_in_tmp_folder.yml)
+- [Suspicious ADSI-Cache Usage By Unknown Tool](https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/file_event/sysmon_susp_adsi_cache_usage.yml)
+- [Suspicious Service Installed](https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/registry_event/sysmon_susp_service_installed.yml)
+- [Suspicious Driver Loaded By User](https://github.com/SigmaHQ/sigma/blob/08ca62cc8860f4660e945805d0dd615ce75258c1/rules/windows/builtin/win_user_driver_loaded.yml)
+
 ## My blog posts/articles
 - [Detecting LDAPFragger — A newly released Cobalt Strike Beacon using LDAP for C2 communication (blueteamers approach)](https://medium.com/@ivecodoe/detecting-ldapfragger-a-newly-released-cobalt-strike-beacon-using-ldap-for-c2-communication-c274a7f00961)
 - [Windows Event ID 4649 “A replay attack was detected“ — Oh really? Are we under ATTACK? Should we do Incident Response?](https://medium.com/@ivecodoe/windows-event-id-4649-a-replay-attack-was-detected-ab02968d91ee)
