@@ -275,10 +275,14 @@ index=... sourcetype=mscs:azure:eventhub
 
 ### Automatically expand all collapsibles in Splunk event views
 Source: https://community.splunk.com/t5/Getting-Data-In/Expand-json-messages-by-default/m-p/67691
+
+open all '+' jQuery collapsible signs automatically
+
 manually via Javascript in Browser console
 ```
 javascript:for(i=0;i<=3;i=i+1){document.querySelectorAll('a.jsexpands').forEach(function(expander) {expander.click();});}
 ```
+
 automatically via Javascript in Searchhead (edit file: \share\splunk\search_mrsparkle\templates\pages\base.html)
 ```
     <!-- Expand all collapsibles automatically (e.g. for JSON views no need to click on the '+' signs), custom fix -->
