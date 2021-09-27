@@ -272,3 +272,51 @@ index=... sourcetype=mscs:azure:eventhub
 <YOUR SEARCH>
 | table _time host TimeIngested TimeDetected tenantId Level category correlationId durationMs operationName operationVersion AadDeviceId AccountDomain AccountName AccountObjectId AccountSid AccountUpn ActionType AdditionalFields AlertId AppGuardContainerId AttackTechniques Category CertificateCountersignatureTime CertificateCreationTime CertificateExpirationTime CertificateSerialNumber ClientVersion ConnectedNetworks CrlDistributionPointUrls DefaultGateways DeviceId DeviceName DeviceObjectId DnsAddresses FailureReason FileName FileOriginIP FileOriginReferrerUrl FileOriginUrl as FolderPath IPAddresses IPv4Dhcp IPv6Dhcp InitiatingProcessAccountDomain InitiatingProcessAccountName InitiatingProcessAccountObjectId InitiatingProcessAccountSid InitiatingProcessAccountUpn InitiatingProcessCommandLine InitiatingProcessCreationTime InitiatingProcessFileName InitiatingProcessFileSize InitiatingProcessFolderPath InitiatingProcessId InitiatingProcessIntegrityLevel InitiatingProcessLogonId InitiatingProcessMD5 InitiatingProcessParentCreationTime InitiatingProcessParentFileName InitiatingProcessParentId InitiatingProcessSHA1 InitiatingProcessSHA256 InitiatingProcessSignatureStatus InitiatingProcessSignerType InitiatingProcessTokenElevation InitiatingProcessVersionInfoCompanyName InitiatingProcessVersionInfoFileDescription InitiatingProcessVersionInfoInternalFileName InitiatingProcessVersionInfoOriginalFileName InitiatingProcessVersionInfoProductName InitiatingProcessVersionInfoProductVersion IsAzureADJoined IsAzureInfoProtectionApplied IsLocalAdmin IsRootSignerMicrosoft IsSigned IsTrusted Issuer IssuerHash LocalIP LocalIPType LocalPort LoggedOnUsers LogonId LogonType MD5 MacAddress MachineGroup MitreTechniques NetworkAdapterName NetworkAdapterStatus NetworkAdapterType OSArchitecture OSBuild OSPlatform OSVersion OnboardingStatus PreviousFileName PreviousFolderPath PreviousRegistryKey PreviousRegistryValueData PreviousRegistryValueName ProcessCommandLine ProcessCreationTime ProcessId ProcessIntegrityLevel ProcessTokenElevation ProcessVersionInfoCompanyName ProcessVersionInfoFileDescription ProcessVersionInfoInternalFileName ProcessVersionInfoOriginalFileName ProcessVersionInfoProductName ProcessVersionInfoProductVersion Protocol PublicIP RegistryDeviceTag RegistryKey RegistryValueData RegistryValueName RegistryValueType RemoteDeviceName RemoteIP RemoteIPType RemotePort RemoteUrl RemoteIp ReportId RequestAccountDomain RequestAccountName RequestAccountSid RequestProtocol RequestSourceIP RequestSourcePort SHA1 SHA256 SensitivityLabel SensitivitySubLabel Severity ShareName SignatureType Signer SignerHash Table Title TunnelType activityDateTime activityDisplayName additionalDetails{}.key additionalDetails{}.value categoryEvent correlationId initiatedBy.user.displayName initiatedBy.user.ipAddress initiatedBy.user.userPrincipalName loggedByService operationType result resultReason targetResources{}.displayName targetResources{}.id targetResources{}.modifiedProperties{}.displayName targetResources{}.modifiedProperties{}.newValue targetResources{}.modifiedProperties{}.oldValue targetResources{}.type targetResources{}.userPrincipalName resourceId resultSignature
 ```
+
+### Automatically expand all collapsibles in Splunk event views
+Source: https://community.splunk.com/t5/Getting-Data-In/Expand-json-messages-by-default/m-p/67691
+manually via Javascript in Browser console
+```
+javascript:for(i=0;i<=3;i=i+1){document.querySelectorAll('a.jsexpands').forEach(function(expander) {expander.click();});}
+```
+automatically via Javascript in Searchhead (edit file: \share\splunk\search_mrsparkle\templates\pages\base.html)
+```
+    <!-- Expand all collapsibles automatically (e.g. for JSON views no need to click on the '+' signs), custom fix -->
+    <script>
+    function autoExpand() {
+        var expandables_found = false;
+        $(document).ready(function() {
+            $(".jsexpands").each(function() {
+                if ($(this).html() == '[+]') {
+                    expandables_found = true;
+                    $(this)[0].click();
+                }
+            });
+            if (expandables_found) {
+                setTimeout(function() {
+                    $('.modalize-table-overlay').click();
+                }, 500);
+            }
+        });
+    }
+    // select the target node
+    var target = document.body;
+    
+    // create an observer instance
+    var observer = new MutationObserver(function(mutations) {
+        autoExpand();
+    });
+    
+    // configuration of the observer:
+    var config = {
+        attributes: true,
+        childList: true,
+        characterData: true,
+        subtree: true
+    };
+
+    // pass in the target node, as well as the observer options
+    observer.observe(target, config);
+    </script>
+
+```
