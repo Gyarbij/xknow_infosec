@@ -4,9 +4,6 @@
 - [Microsoft Defender 365 raw data/all tables schema (streaming export API overview)](M365D_tables.md)
 - [Splunk Add-on for Microsoft Cloud Services improved field aliases for Azure Eventhub data containing Microsoft 365 Defender events](M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.md)
 
-## My daily security news
-- [ThreatIntel.de News (InfoSec news for SOC/CSIRT employees)](https://www.threatintel.de)
-
 ## My detections
 Microsoft Defender 365
 - [Detects malicious SMB Named Pipes (used by common C2 frameworks)](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries/blob/master/Command%20and%20Control/C2-NamedPipe.md)
