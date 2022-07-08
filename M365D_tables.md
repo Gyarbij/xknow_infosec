@@ -1,112 +1,66 @@
 # Microsoft Defender 365 raw data schema - Overview
 
-## List of possible services and detections:
-| Abbreviation  | ServiceSource | DetectionSource
-| :--- | :--- | :--- |
-| **MDE** | Microsoft Defender for Endpoint | Antivirus, Automated investigation, Custom TI, EDR, SmartScreen, Microsoft Threat Experts |
-| **MDI** | Microsoft Defender for Identity | Microsoft Defender for Identity
-| **MDO** | Microsoft Defender for Office 365 | Microsoft Defender for Office 365
-| **MCAS** | Microsoft Cloud App Security | Cloud App Security
-| **M365D** | Microsoft 365 Defender | all
-
-For examples and detections visit Microsoft [Advanced hunting queries for Microsoft 365 Defender](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries)
+Microsoft 365 Defender / Azure Sentinel Detections -> [Microsoft Sentinel and Microsoft 365 Defender](https://github.com/Azure/Azure-Sentinel)
 
 Schema Overview
 =================
+  * [All ActionTypes](#all-actiontypes)
   * [Alerts](#alerts)
     * [Table: AlertInfo](#alertinfo)
-      * [Alerts by severity](#alerts-by-severity)
-      * [Alerts by MITRE ATT&CK technique](#alerts-by-mitre-attck-technique)
     * [Table: AlertEvidence](#alertevidence)
-      * [Alerts on a device](#alerts-on-a-device)
-      * [Alerts involving a user](#alerts-involving-a-user)
   * [Apps & identities](#apps--identities)
     * [Table: IdentityInfo](#identityinfo)
-      * [Users in a country](#users-in-a-country)
-      * [Users in a department](#users-in-a-department)
     * [Table: IdentityLogonEvents](#identitylogonevents)
-      * [IdentityLogonEvents ActionTypes](#identitylogonevents-actiontypes)
-      * [Cleartext passwords in LDAP authentication](#cleartext-passwords-in-ldap-authentication)
+        * [Table: IdentityLogonEvents ActionTypes](#identitylogonevents-actiontypes)
     * [Table: IdentityQueryEvents](#identityqueryevents)
-      * [IdentityQueryEvents ActionTypes](#identityqueryevents-actiontypes)
-      * [Active Directory SAMR queries using net.exe](#active-directory-samr-queries-using-netexe)
+        * [Table: IdentityQueryEvents ActionTypes](#identityqueryevents-actiontypes)
     * [Table: IdentityDirectoryEvents](#identitydirectoryevents)
-      * [IdentityDirectoryEvents ActionTypes](#identitydirectoryevents-actiontypes)
-      * [Group modifications](#group-modifications)
-      * [Last password update](#last-password-update)
-    * [Table: AppFileEvents](#appfileevents)
-      * [AppFileEvents ActionTypes](#appfileevents-actiontypes)
-      * [File activity over time](#file-activity-over-time)
-      * [File name extension change](#file-name-extension-change)
+        * [Table: IdentityDirectoryEvents ActionTypes](#identitydirectoryevents-actiontypes)
     * [Table: CloudAppEvents](#cloudappevents)
-      * [CloudAppEvents ActionTypes](#cloudappevents-actiontypes)
+        * [Table: CloudAppEvents ActionTypes](#cloudappevents-actiontypes)
     * [Table: AADSpnSignInEventsBeta](#aadspnsignineventsbeta)
-      * [Most active managed identities](#most-active-managed-identities)
-      * [Inactive service principals](#inactive-service-principals)
     * [Table: AADSignInEventsBeta](#aadsignineventsbeta)
-      * [Sign-ins to disabled accounts](#sign-ins-to-disabled-accounts)
-      * [User signing in from multiple locations](#user-signing-in-from-multiple-locations)
   * [Email](#email)
     * [Table: EmailEvents](#emailevents)
-      * [Phishing emails from the top ten sender domains](#phishing-emails-from-the-top-ten-sender-domains)
-      * [Emails with malware](#emails-with-malware)
     * [Table: EmailAttachmentInfo](#emailattachmentinfo)
-      * [Files from malicious sender](#files-from-malicious-sender)
-      * [Emails to external domains with attachments](#emails-to-external-domains-with-attachments)
     * [Table: EmailUrlInfo](#emailurlinfo)
-      * [URLs in an email](#urls-in-an-email)
     * [Table: EmailPostDeliveryEvents](#emailpostdeliveryevents)
-      * [EmailPostDeliveryEvents ActionTypes](#emailpostdeliveryevents-actiontypes)
-      * [Post-delivery administrator actions](#post-delivery-administrator-actions)
-      * [Unremediated post-delivery phishing email detections](#unremediated-post-delivery-phishing-email-detections)
-      * [Full email process details](#full-email-process-details)
+        * [Table: EmailPostDeliveryEvents ActionTypes](#emailpostdeliveryevents-actiontypes)
+    * [Table: UrlClickEvents](#urlclickevents)
+        * [Table: UrlClickEvents ActionTypes](#urlclickevents-actiontypes)
   * [Threat & Vulnerability Management](#threat--vulnerability-management)
-    * [Table: DeviceTvmSoftwareInventory](#devicetvmsoftwareinventory)
     * [Table: DeviceTvmSoftwareVulnerabilities](#devicetvmsoftwarevulnerabilities)
     * [Table: DeviceTvmSoftwareVulnerabilitiesKB](#devicetvmsoftwarevulnerabilitieskb)
     * [Table: DeviceTvmSecureConfigurationAssessment](#devicetvmsecureconfigurationassessment)
     * [Table: DeviceTvmSecureConfigurationAssessmentKB](#devicetvmsecureconfigurationassessmentkb)
+    * [Table: DeviceTvmSoftwareInventory](#devicetvmsoftwareinventory)
+    * [Table: DeviceTvmInfoGathering](#devicetvminfogathering)
+    * [Table: DeviceTvmInfoGatheringKB](#devicetvminfogatheringkb)
+    * [Table: DeviceTvmSoftwareEvidenceBeta](#devicetvmsoftwareevidencebeta)
   * [Devices](#devices)
     * [Table: DeviceInfo](#deviceinfo)
-      * [Devices with outdated operating systems](#devices-with-outdated-operating-systems)
-      * [Logged on users](#logged-on-users)
     * [Table: DeviceNetworkInfo](#devicenetworkinfo)
-      * [Devices with a specific IP address](#devices-with-a-specific-ip-address)
-    * [Table: DeviceProcessEvents](#deviceprocessEvents)
-      * [DeviceProcessEvents ActionTypes](#deviceprocessevents-actiontypes)
-      * [Clearing of event logs](#clearing-of-event-logs)
-      * [PowerShell activity triggered by malicious email](#powerShell-activity-triggered-by-malicious-email)
+    * [Table: DeviceProcessEvents](#deviceprocessevents)
+        * [Table: DeviceProcessEvents ActionTypes](#deviceprocessevents-actiontypes)
     * [Table: DeviceNetworkEvents](#devicenetworkevents)
-      * [DeviceNetworkEvents ActionTypes](#devicenetworkevents-actiontypes)
-      * [Tor client connections](#tor-client-connections)
-      * [PowerShell download activity](#powerShell-download-activity)
+        * [Table: DeviceNetworkEvents ActionTypes](#devicenetworkevents-actiontypes)
     * [Table: DeviceFileEvents](#devicefileevents)
-      * [DeviceFileEvents ActionTypes](#devicefileevents-actiontypes)
-      * [Sensitive file uploads](#sensitive-file-uploads)
-      * [Copy or move file](#copy-or-move-file)
+        * [Table: DeviceFileEvents ActionTypes](#devicefileevents-actiontypes)
     * [Table: DeviceRegistryEvents](#deviceregistryevents)
-      * [DeviceRegistryEvents ActionTypes](#deviceregistryevents-actiontypes)
-      * [Devices with security controls turned off](#devices-with-security-controls-turned-off)
-      * [Autostart services](#autostart-services)
+        * [Table: DeviceRegistryEvents ActionTypes](#deviceregistryevents-actiontypes)
     * [Table: DeviceLogonEvents](#devicelogonevents)
-      * [DeviceLogonEvents ActionTypes](#devicelogonevents-actiontypes)
-      * [Admin logons](#admin-logons)
-      * [Logons after receipt of malicious emails](#logons-after-receipt-of-malicious-emails)
+        * [Table: DeviceLogonEvents ActionTypes](#devicelogonevents-actiontypes)
     * [Table: DeviceImageLoadEvents](#deviceimageloadevents)
-      * [DeviceImageLoadEvents ActionTypes](#deviceimageloadevents-actiontypes)
+        * [Table: DeviceImageLoadEvents ActionTypes](#deviceimageloadevents-actiontypes)
     * [Table: DeviceEvents](#deviceevents)
-      * [DeviceEvents ActionTypes](#deviceevents-actiontypes)
-      * [USB devices](#usb-devices)
-      * [Antivirus scan events](#antivirus-scan-events)
+        * [Table: DeviceEvents ActionTypes](#deviceevents-actiontypes)
     * [Table: DeviceFileCertificateInfo](#devicefilecertificateinfo)
-      * [Files with spoofed Microsoft certificates](#files-with-spoofed-microsoft-certificates)
 
 # Alerts
 
 ## AlertInfo
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-alertinfo-table?view=o365-worldwide)
-**Description:** Alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Cloud App Security, and Microsoft Defender for Identity, including severity information and threat categorization.
-The AlertInfo table in the advanced hunting schema contains information about alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Cloud App Security, and Microsoft Defender for Identity. Use this reference to construct queries that return information from this table.
+**Description:** Alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Cloud App Security, and Microsoft Defender for Identity, including severity information and threat categorization. The AlertInfo table in the advanced hunting schema contains information about alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, and Microsoft Defender for Identity. Use this reference to construct queries that return information from this table.
 
 ### Table Schema:
 | Field | Description |
@@ -140,7 +94,7 @@ AlertInfo
 
 ## AlertEvidence
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-alertevidence-table?view=o365-worldwide)
-**Description:** Files, IP addresses, URLs, users, or devices associated with alerts. The AlertEvidence table in the advanced hunting schema contains information about various entities-files, IP addresses, URLs, users, or devices—associated with alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Cloud App Security, and Microsoft Defender for Identity. Use this reference to construct queries that return information from this table.
+**Description:** Files, IP addresses, URLs, users, or devices associated with alerts. The AlertEvidence table in the advanced hunting schema contains information about various entities—files, IP addresses, URLs, users, or devices—associated with alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, and Microsoft Defender for Identity. Use this reference to construct queries that return information from this table.
 
 ### Table Schema:
 | Field | Description |
@@ -247,7 +201,7 @@ IdentityInfo
 
 ## IdentityLogonEvents
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identitylogonevents-table?view=o365-worldwide)
-**Description:** Authentication events recorded by Active Directory and other Microsoft online services. The IdentityLogonEvents table in the advanced hunting schema contains information about authentication activities made through your on-premises Active Directory captured by Microsoft Defender for Identity and authentication activities related to Microsoft online services captured by Microsoft Cloud App Security. Use this reference to construct queries that return information from this table.
+**Description:** Authentication events recorded by Active Directory and other Microsoft online services. The IdentityLogonEvents table in the advanced hunting schema contains information about authentication activities made through your on-premises Active Directory captured by Microsoft Defender for Identity and authentication activities related to Microsoft online services captured by Microsoft Defender for Cloud Apps. Use this reference to construct queries that return information from this table.
 
 ### Table Schema:
 | Field | Description |
@@ -308,7 +262,7 @@ DeviceNetworkEvents
 
 ## IdentityQueryEvents
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identityqueryevents-table?view=o365-worldwide)
-**Description:** Query activities performed against Active Directory objects, such as users, groups, devices, and domain. The IdentityQueryEvents table in the advanced hunting schema contains information about queries performed against Active Directory objects, such as users, groups, devices, and domains. Use this reference to construct queries that return information from this table.
+**Description:** Query activities performed against Active Directory objects, such as users, groups, devices, and domains. The IdentityQueryEvents table in the advanced hunting schema contains information about queries performed against Active Directory objects, such as users, groups, devices, and domains. Use this reference to construct queries that return information from this table.
 
 ### Table Schema:
 | Field | Description |
@@ -467,89 +421,9 @@ IdentityDirectoryEvents
 | summarize LastPasswordChangeTime = max(Timestamp) by TargetAccountDisplayName // or change to TargetDeviceName for devcie account
 ```
 
-## AppFileEvents
-**Retired March 7, 2021 and replaced by [Table: CloudAppEvents](#cloudappevents)**
-
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-appfileevents-table?view=o365-worldwide)
-**Description:** File-related activities in cloud apps and services. The AppFileEvents table in the advanced hunting schema contains information about file-related activities in cloud apps and services monitored by Microsoft Cloud App Security. Use this reference to construct queries that return information from this table.
-
-### Table Schema:
-| Field | Description |
-| :--- | :--- |
-| **Timestamp** | Date and time when the record was generated
-| **ActionType** | Type of activity that triggered the event
-| **Application** | Application that performed the recorded action
-| **FileName** | Name of the file that the recorded action was applied to
-| **FolderPath** | Folder containing the file that the recorded action was applied to
-| **PreviousFileName** | Original name of the file that was renamed as a result of the action
-| **PreviousFolderPath** | Original folder containing the file before the recorded action was applied
-| **Protocol** | Protocol used during the communication
-| **AccountName** | User name of the account
-| **AccountDomain** | Domain of the account
-| **AccountSid** | Security Identifier (SID) of the account
-| **AccountUpn** | User principal name (UPN) of the account
-| **AccountObjectId** | Unique identifier for the account in Azure AD
-| **AccountDisplayName** | Name displayed in the address book entry for the account user. This is usually a combination of the given name, middle initial, and surname of the user.
-| **DeviceName** | Fully qualified domain name (FQDN) of the device
-| **DeviceType** | Type of the device
-| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
-| **IPAddress** | IP address assigned to the device during communication
-| **Port** | TCP port used during communication
-| **DestinationDeviceName** | Name of the device running the server application that processed the recorded action
-| **DestinationIPAddress** | IP address of the device running the server application that processed the recorded action
-| **DestinationPort** | Destination port of the activity
-| **Location** | City, country, or other geographic location associated with the event
-| **ISP** | Internet service provider associated with the IP address
-| **ReportId** | Unique identifier for the event
-| **AdditionalFields** | Additional information about the entity or event
-
-### AppFileEvents ActionTypes:
-| ActionType | Description |
-| :--- | :--- |
-| **FileUploaded** | A file was uploaded to a cloud app or service.
-| **FileDownloaded** | A file in a cloud app or service was downloaded.
-| **FileAccessed** | A file in a cloud app or service was accessed.
-| **FileMoved** | A file in a cloud app or service was moved.
-| **SmbFileCopy** | User copied files using SMB.
-| **FileDeleted** | not documented
-| **FileRenamed** |  not documented
-| **FileCopied** |  not documented
-| **FileCheckedOut** | not documented
-| **FileCheckedIn** | not documented
-| **FolderCreated** | not documented
-| **FolderDeleted** | not documented
-| **AccessRequestCreated** | not documented
-
-### Examples:
-
-#### File activity over time:
-```
-let MyFileName = "<insert your File Name>";
-AppFileEvents
-| union DeviceFileEvents
-| where FileName == MyFileName
-| summarize FileCount = count() by bin(Timestamp, 30m)
-| render linechart
-```
-
-#### File name extension change:
-```
-// Find applications that renamed .docx files to .doc on devices
-AppFileEvents
-| where Timestamp > ago(7d)
-| where ActionType == "FileRenamed"
-| join kind=inner (
-DeviceFileEvents
-| where Timestamp > ago(7d)
-| project FileName, AccountName = InitiatingProcessAccountName, DeviceName
-) on FileName, AccountName
-| where FileName endswith "doc" and PreviousFileName endswith "docx"
-| project Timestamp, FileName, PreviousFileName, Application, AccountName, DeviceName
-```
-
 ## CloudAppEvents
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-cloudappevents-table?view=o365-worldwide        )
-**Description:** Events involving accounts and objects in Office 365 and other cloud apps and services. Currently available in preview, the CloudAppEvents table in the advanced hunting schema contains information about activities in various cloud apps and services, specifically Microsoft Teams and Exchange Online. Use this reference to construct queries that return information from this table. This table will expand to include more activities monitored by Microsoft Cloud App Security. Eventually, this table will include file activity currently stored in the AppFileEvents table. Microsoft will provide additional guidance as more data moves to this table.
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-cloudappevents-table?view=o365-worldwide)
+**Description:** Events involving accounts and objects in Office 365 and other cloud apps and services. The CloudAppEvents table in the advanced hunting schema contains information about activities in various cloud apps and services covered by Microsoft Defender for Cloud Apps. For a complete list, jump to Apps and services covered. Use this reference to construct queries that return information from this table.
 
 ### Table Schema:
 | Field | Description |
@@ -580,8 +454,8 @@ DeviceFileEvents
 
 ### CloudAppEvents ActionTypes:
 
-Currently all ActionTypes are not documented. Probably Microsoft is still working on finalizing these.
-There are over 600+ ActionTypes available. The list would be way to large, some examples:
+Currently all ActionTypes are not documented. There are over 600+ ActionTypes available. The list would be way too large.
+Some samples:
 
 | ActionType | Description |
 | :--- | :--- |
@@ -615,9 +489,40 @@ There are over 600+ ActionTypes available. The list would be way to large, some 
 | **ListCreated** |  not documented
 | **ViewDocument** |  not documented
 
+### Examples:
+
+#### File name extension change:
+```
+// Find applications that renamed .docx files to .doc on devices
+CloudAppEvents
+| where Timestamp > ago(3d)
+| where Application in ("Microsoft OneDrive for Business", "Microsoft SharePoint Online") and ActionType == "FileRenamed"
+| extend NewFileNameExtension = tostring(RawEventData.DestinationFileExtension)
+| extend OldFileNameExtension = tostring(RawEventData.SourceFileExtension)
+| extend OldFileName = tostring(RawEventData.SourceFileName)
+| extend NewFileName = tostring(RawEventData.DestinationFileName)
+| where NewFileNameExtension == "doc" and OldFileNameExtension == "docx"
+| project RenameTime = Timestamp, OldFileNameExtension, OldFileName, NewFileNameExtension, NewFileName, ActionType, Application, AccountDisplayName, AccountObjectId
+| join kind=inner (
+DeviceFileEvents
+| where Timestamp > ago(3d)
+| project FileName, AccountObjectId = InitiatingProcessAccountObjectId , DeviceName, SeenOnDevice = Timestamp, FolderPath
+) on $left.NewFileName == $right.FileName, AccountObjectId
+| project RenameTime, NewFileName, OldFileName, Application, AccountObjectId, AccountDisplayName, DeviceName , SeenOnDevice, FolderPath
+```
+
+#### Sharing activities:
+```
+// Gives a list of sharing activities in cloud apps
+// Includes invitations, acceptances, requests and approvals for sharing files and folders in the cloud
+CloudAppEvents
+| where ActivityType == "Share"
+| take 100
+```
+
 ## AADSpnSignInEventsBeta
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadspnsignineventsbeta-table?view=o365-worldwide)
-**Description:** Information about sign-in events initiated by Azure Active Directory (AAD) service principal or managed identities. The AADSignInEventsBeta table is currently in beta and is being offered on a short-term basis to allow you to hunt through Azure Active Directory (AAD) sign-in events. We will eventually move all sign-in schema information to the IdentityLogonEvents table. Customers who can access Microsoft 365 Defender through the Azure Security Center’s integrated Microsoft Defender for Endpoint solution, but do not have licenses for Microsoft Defender for Office, Microsoft Defender for Identity, or Microsoft Cloud App Security, will not be able to view this schema. The AADSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory interactive and non-interactive sign-ins. Learn more about sign-ins in Azure Active Directory sign-in activity reports - preview. Sse this reference to construct queries that return information from the table. For information on other tables in the advanced hunting schema, see the advanced hunting reference.
+**Description:** Information about sign-in events initiated by Azure Active Directory (AAD) service principal or managed identities. The AADSpnSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory service principal and managed identity sign-ins. You can learn more about the different kinds of sign-ins in Azure Active Directory sign-in activity reports - preview.
 
 ### Table Schema:
 | Field | Description |
@@ -670,7 +575,7 @@ AADSpnSignInEventsBeta
 
 ## AADSignInEventsBeta
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
-**Description:** Information about Azure Active Directory (AAD) sign-in events either by a user (interactive) or a client on the user's behalf (non-interactive). The AADSignInEventsBeta table is currently in beta and is being offered on a short-term basis to allow you to hunt through Azure Active Directory (AAD) sign-in events. We will eventually move all sign-in schema information to the IdentityLogonEvents table. Customers who can access Microsoft 365 Defender through the Azure Security Center’s integrated Microsoft Defender for Endpoint solution, but do not have licenses for Microsoft Defender for Office, Microsoft Defender for Identity, or Microsoft Cloud App Security, will not be able to view this schema. The AADSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory interactive and non-interactive sign-ins. Learn more about sign-ins in Azure Active Directory sign-in activity reports - preview. Use this reference to construct queries that return information from the table. For information on other tables in the advanced hunting schema, see the advanced hunting reference.
+**Description:** Information about Azure Active Directory (AAD) sign-in events either by a user (interactive) or a client on the user's behalf (non-interactive). The AADSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory interactive and non-interactive sign-ins. Learn more about sign-ins in Azure Active Directory sign-in activity reports - preview.
 
 ### Table Schema:
 | Field | Description |
@@ -872,7 +777,8 @@ EmailEvents
 | **Timestamp** | Date and time when the record was generated
 | **NetworkMessageId** | Unique identifier for the email, generated by Office 365
 | **Url** | Full Url from email
-| **UrlDomain** | <no documentation>
+| **UrlLocation** | Indicates which part of the email the URL is located
+| **UrlDomain** | Domain name or host name of the URL
 | **ReportId** | Unique identifier for the event
 
 ### Examples:
@@ -936,28 +842,50 @@ EmailEvents
 | join EmailPostDeliveryEvents on NetworkMessageId, RecipientEmailAddress
 ```
 
-# Threat & Vulnerability Management
-
-## DeviceTvmSoftwareInventory
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsoftwareinventory-table?view=o365-worldwide)
-**Description:** Inventory of software installed on devices, including their version information and end-of-support status. The DeviceTvmSoftwareInventory table in the advanced hunting schema contains the Threat & Vulnerability Management inventory of software currently installed on devices in your network, including end of support information. You can, for instance, hunt for events involving devices that are installed with a currently vulnerable software version. Use this reference to construct queries that return information from the table.
+## UrlClickEvents
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-urlclickevents-table?view=o365-worldwide)
+**Description:** Events involving URLs clicked, selected, or requested on Microsoft Defender for Office 365. The UrlClickEvents table in the advanced hunting schema contains information about Safe Links clicks from email messages, Microsoft Teams, and Office 365 apps in supported desktop, mobile, and web apps.
 
 ### Table Schema:
 | Field | Description |
 | :--- | :--- |
-| **DeviceId** | Unique identifier for the device in the service
-| **DeviceName** | Fully qualified domain name (FQDN) of the device
-| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
-| **OSVersion** | Version of the operating system running on the machine
-| **OSArchitecture** | Architecture of the operating system running on the machine
-| **SoftwareVendor** | Name of the software vendor
-| **SoftwareName** | Name of the software product
-| **SoftwareVersion** | Version number of the software product
-| **EndOfSupportStatus** | Indicates the lifecycle stage of the software product relative to its specified end-of-support (EOS) or end-of-life (EOL) date
-| **EndOfSupportDate** |  End-of-support (EOS) or end-of-life (EOL) date of the software product
+| **Timestamp** | The date and time when the user clicked on the link
+| **Url** | The full URL that was clicked on by the user
+| **ActionType** | Indicates whether the click was allowed or blocked by Safe Links or blocked due to a tenant policy e.g., from Tenant Allow Block list
+| **AccountUpn** | User Principal Name of the account that clicked on the link
+| **Workload** | The application from which the user clicked on the link, with the values being Email, Office and Teams
+| **NetworkMessageId** | The unique identifier for the email that contains the clicked link, generated by Microsoft 365
+| **IPAddress** | Public IP address of the device from which the user clicked on the link
+| **ThreatTypes** | Verdict at the time of click, which tells whether the URL led to malware, phish or other threats
+| **DetectionMethods** | Detection technology which was used to identify the threat at the time of click
+| **IsClickedThrough** | Indicates whether the user was able to click through to the original URL or was not allowed
+| **UrlChain** | For scenarios involving redirections, it includes URLs present in the redirection chain
+| **ReportId** | This is the unique identifier for a click event. Note that for clickthrough scenarios, report ID would have same value, and therefore it should be used to correlate a click event.
+
+### UrlClickEvents ActionTypes:
+
+| ActionType | Description |
+| :--- | :--- |
+| **ClickAllowed** | The user was allowed to navigate to the URL.
+| **ClickBlocked** | The user was blocked from navigating to the URL.
+| **ClickBlockedByTenantPolicy** | The user was blocked from navigating to the URL by a tenant policy.
+| **UrlErrorPage** | The URL the user clicked showed an error page.
+| **UrlScanInProgress** | The URL the user clicked is being scanned by Safe Links.
+
+### Examples:
+
+#### Search for malicious links where user was allowed to proceed through:
+```
+UrlClickEvents
+| where ActionType == "ClickAllowed" or IsClickedThrough !="0"
+| where ThreatTypes has "Phish"
+| summarize by ReportId, IsClickedThrough, AccountUpn, NetworkMessageId, ThreatTypes, Timestamp
+```
+
+# Threat & Vulnerability Management
 
 ## DeviceTvmSoftwareVulnerabilities
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsoftwarevulnerabilities-table?view=o365-worldwide)
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwarevulnerabilities-table?view=o365-worldwide)
 **Description:** Software vulnerabilities found on devices and the list of available security updates that address each vulnerability. The DeviceTvmSoftwareVulnerabilities table in the advanced hunting schema contains the Threat & Vulnerability Management list of vulnerabilities in installed software products. This table also includes operating system information, CVE IDs, and vulnerability severity information. You can use this table, for example, to hunt for events involving devices that have severe vulnerabilities in their software. Use this reference to construct queries that return information from the table.
 
 ### Table Schema:
@@ -975,9 +903,19 @@ EmailEvents
 | **VulnerabilitySeverityLevel** | Severity level assigned to the security vulnerability based on the CVSS score and dynamic factors influenced by the threat landscape
 | **RecommendedSecurityUpdate** | Name or description of the security update provided by the software vendor to address the vulnerability
 | **RecommendedSecurityUpdateId** | Identifier of the applicable security updates or identifier for the corresponding guidance or knowledge base (KB) articles
+| **CveTags** | Array of tags relevant to the CVE; example: ZeroDay, NoSecurityUpdate
+
+### Examples:
+
+#### Vulnerable devices:
+```
+DeviceTvmSoftwareVulnerabilities
+| where CveId == 'CVE-2020-0791'
+| limit 100
+```
 
 ## DeviceTvmSoftwareVulnerabilitiesKB
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsoftwarevulnerabilitieskb-table?view=o365-worldwide)
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwarevulnerabilitieskb-table?view=o365-worldwide)
 **Description:** Knowledge base of publicly disclosed vulnerabilities, including whether exploit code is publicly available. The DeviceTvmSoftwareVulnerabilitiesKB table in the advanced hunting schema contains the list of vulnerabilities Threat & Vulnerability Management assesses devices for. Use this reference to construct queries that return information from the table.
 
 ### Table Schema:
@@ -992,9 +930,25 @@ EmailEvents
 | **VulnerabilityDescription** | Description of vulnerability and associated risks
 | **AffectedSoftware** | List of all software products affected by the vulnerability
 
+### Examples:
+
+#### Recent exploitable vulnerabilities:
+```
+//List vulnerabilities that have an available exploit and were published in the last week.
+DeviceTvmSoftwareVulnerabilitiesKB
+| where IsExploitAvailable == True and PublishedDate > ago(7d)
+| limit 100
+```
+
+#### Vulnerability information:
+```
+DeviceTvmSoftwareVulnerabilitiesKB
+| where CveId == 'CVE-2020-0791'
+```
+
 ## DeviceTvmSecureConfigurationAssessment
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsecureconfigurationassessment-table?view=o365-worldwide)
-**Description:** Threat & Vulnerability Management assessment events, indicating the status of various security configurations on devices. Each row in the DeviceTvmSecureConfigurationAssessment table contains an assessment event for a specific security configuration from Threat & Vulnerability Management. Use this reference to check the latest assessment results and determine whether devices are compliant.
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsecureconfigurationassessment-table?view=o365-worldwide)
+**Description:** Threat & Vulnerability Management assessment events, indicating the status of various security configurations on devices. Each row in the DeviceTvmSecureConfigurationAssessment table contains an assessment event for a specific security configuration from Threat & Vulnerability Management. Use this reference to check the latest assessment results and determine whether devices are compliant. You can join this table with the DeviceTvmSecureConfigurationAssessmentKB table using ConfigurationId so you can, for example, view the text description of the configuration from the ConfigurationDescription column of the DeviceTvmSecureConfigurationAssessmentKB table, in the configuration assessment results.
 
 ### Table Schema:
 | Field | Description |
@@ -1012,9 +966,22 @@ EmailEvents
 | **Context** | Additional contextual information about the configuration or policy
 | **IsExpectedUserImpact** | Indicates whether there will be user impact if the configuration or policy is applied
 
+### Examples:
+
+#### Devices with antivirus configurations issues:
+```
+DeviceTvmSecureConfigurationAssessment
+| where ConfigurationSubcategory == 'Antivirus' and IsApplicable == 1 and IsCompliant == 0
+| join kind=leftouter (
+    DeviceTvmSecureConfigurationAssessmentKB
+    | project ConfigurationId, ConfigurationName, ConfigurationDescription, RiskDescription, Tags, ConfigurationImpact
+) on ConfigurationId
+| project DeviceName, OSPlatform, ConfigurationId, ConfigurationName, ConfigurationCategory, ConfigurationSubcategory, ConfigurationDescription, RiskDescription, ConfigurationImpact, Tags
+```
+
 ## DeviceTvmSecureConfigurationAssessmentKB
-[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicetvmsecureconfigurationassessmentkb-table?view=o365-worldwide)
-**Description:** Knowledge base of various security configurations used by Threat & Vulnerability Management to assess devices; includes mappings to various standards and benchmarks. The DeviceTvmSecureConfigurationAssessmentKB table in the advanced hunting schema contains information about the various secure configurations — such as whether a device has automatic updates on — checked by Threat & Vulnerability Management. It also includes risk information, related industry benchmarks, and applicable MITRE ATT&CK techniques and tactics. Use this reference to construct queries that return information from the table.
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsecureconfigurationassessmentkb-table?view=o365-worldwide)
+**Description:** Knowledge base of various security configurations used by Threat & Vulnerability Management to assess devices; includes mappings to various standards and benchmarks. The DeviceTvmSecureConfigurationAssessmentKB table in the advanced hunting schema contains information about the various secure configurations checked by Threat & Vulnerability Management. It also includes risk information, related industry benchmarks, and applicable MITRE ATT&CK techniques and tactics. This table doesn't return events or records. We recommend joining this table to the DeviceTvmSecureConfigurationAssessment table using ConfigurationId to view text information about the security configurations in the returned assessments. For example, when you query the DeviceTvmSecureConfigurationAssessment table you might want to view the ConfigurationDescription for the security configurations that come up in the assessment results. You can see this information by joining this table to DeviceTvmSecureConfigurationAssessment using ConfigurationId and project ConfigurationDescription.
 
 ### Table Schema:
 | Field | Description |
@@ -1029,6 +996,110 @@ EmailEvents
 | **ConfigurationBenchmarks** | List of industry benchmarks recommending the same or similar configuration
 | **Tags** | List of Mitre ATT&CK framework techniques related to the configuration
 | **RemediationOptions** | List of Mitre ATT&CK framework tactics related to the configuration
+
+### Examples:
+
+#### Devices with antivirus configurations issues:
+```
+DeviceTvmSecureConfigurationAssessment
+| where ConfigurationSubcategory == 'Antivirus' and IsApplicable == 1 and IsCompliant == 0
+| join kind=leftouter (
+    DeviceTvmSecureConfigurationAssessmentKB
+    | project ConfigurationId, ConfigurationName, ConfigurationDescription, RiskDescription, Tags, ConfigurationImpact
+) on ConfigurationId
+| project DeviceName, OSPlatform, ConfigurationId, ConfigurationName, ConfigurationCategory, ConfigurationSubcategory, ConfigurationDescription, RiskDescription, ConfigurationImpact, Tags
+```
+
+## DeviceTvmSoftwareInventory
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwareinventory-table?view=o365-worldwide)
+**Description:** Inventory of software installed on devices, including their version information and end-of-support status. The DeviceTvmSoftwareInventory table in the advanced hunting schema contains the Threat & Vulnerability Management inventory of software currently installed on devices in your network, including end of support information. You can, for instance, hunt for events involving devices that are installed with a currently vulnerable software version. Use this reference to construct queries that return information from the table.
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **DeviceId** | Unique identifier for the device in the service
+| **DeviceName** | Fully qualified domain name (FQDN) of the device
+| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
+| **OSVersion** | Version of the operating system running on the machine
+| **OSArchitecture** | Architecture of the operating system running on the machine
+| **SoftwareVendor** | Name of the software vendor
+| **SoftwareName** | Name of the software product
+| **SoftwareVersion** | Version number of the software product
+| **EndOfSupportStatus** | Indicates the lifecycle stage of the software product relative to its specified end-of-support (EOS) or end-of-life (EOL) date
+| **EndOfSupportDate** |  End-of-support (EOS) or end-of-life (EOL) date of the software product
+
+### Examples:
+
+#### List outdated software (EOS)
+```
+DeviceTvmSoftwareInventory
+| where EndOfSupportStatus == 'EOS Software'
+| summarize dcount(DeviceId ) by SoftwareName
+```
+
+## DeviceTvmInfoGathering
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvminfogathering-table?view=o365-worldwide)
+**Description:** The DeviceTvmInfoGathering table contains Threat & Vulnerability Management assessment events including the status of various configurations and attack surface area states of devices. The DeviceTvmInfoGathering table in the advanced hunting schema contains Microsoft Defender Vulnerability Management assessment events including the status of various configurations and attack surface area states of devices. You can use this table to hunt for assessment events related to mitigation for zero-days, posture assessment for emerging threats supporting threat analytics mitigation status reports, enabled TLS protocol versions on servers, and more. Use this reference to construct queries that return information from the table.
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **Timestamp** | Date and time when the event was recorded
+| **LastSeenTime** | Date and time when the service last saw the device
+| **DeviceId** | Unique identifier for the device in the service
+| **DeviceName** | Fully qualified domain name (FQDN) of the device
+| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7.
+| **AdditionalFields** | Additional information about the event
+
+### Examples:
+
+#### View devices affected by the Log4Shell vulnerability without mitigation
+```
+DeviceTvmInfoGathering
+| where AdditionalFields.Log4JEnvironmentVariableMitigation in ("RebootRequired", "false")
+| join kind=inner (
+    DeviceTvmSoftwareVulnerabilities
+    | where CveId == "CVE-2021-44228"
+) on DeviceId
+| summarize any(DeviceName), any(AdditionalFields.Log4JEnvironmentVariableMitigation) by DeviceId
+```
+
+## DeviceTvmInfoGatheringKB
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvminfogatheringkb-table?view=o365-worldwide)
+**Description:** The DeviceTvmInfoGatheringKB table contains the list of various configuration and attack surface area assessments used by Threat & Vulnerability Management information gathering to assess devices. The DeviceTvmInfoGatheringKB table in the advanced hunting schema contains metadata for Microsoft Defender Vulnerability Management assessment events data collected in the DeviceTvmInfoGathering table. The DeviceTvmInfoGatheringKB table contains the list of various configuration and attack surface area assessments used by Defender Vulnerability Management information gathering to assess devices. Use this reference to construct queries that return information from the table.
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **IgId ** | Unique identifier for the piece of information gathered
+| **FieldName** | Name of the field where this information appears in the AdditionalFields column of the DeviceTvmInfoGathering table
+| **Description** | 	Description of the information gathered
+| **Categories ** | List of categories that the information belongs to, in JSON array format
+| **DataStructure ** | The data structure of the information gathered
+
+### Examples:
+
+#### Assessment categories involving the TLS protocol:
+```
+// Return all findings for a specified category
+DeviceTvmInfoGatheringKB
+| where Categories contains "tls"
+```
+
+## DeviceTvmSoftwareEvidenceBeta
+[[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwareevidencebeta-table?view=o365-worldwide)
+**Description:** Evidence indicating the existence of a software on a device based on registry paths, disk paths, or both. The DeviceTvmSoftwareEvidenceBeta table in the advanced hunting schema contains data from Threat & Vulnerability Management related to the software evidence section. This table allows you to view evidence of where a specific software was detected on a device. You can use this table, for example, to identify the file paths of specific software. Use this reference to construct queries that return information from the table.
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **DeviceId** | Unique identifier for the device in the service
+| **SoftwareVendor** | Name of the software publisher
+| **SoftwareName** | Name of the software product
+| **SoftwareVersion** | Version number of the software product
+| **RegistryPaths** | Registry paths where evidence indicating the existence of the software on a device was detected
+| **DiskPaths** | Disk paths where file-level evidence indicating the existence of the software on a device was detected
+| **LastSeenTime** | Date and time when the device last seen by this service
 
 # Devices
 
@@ -1050,11 +1121,21 @@ EmailEvents
 | **IsAzureADJoined** | Boolean indicator of whether machine is joined to the Azure Active Directory
 | **AadDeviceId** | Unique identifier for the device in Azure AD
 | **LoggedOnUsers** | List of all users that are logged on the machine at the time of the event in JSON array format
-| **RegistryDeviceTag** | Device tag added through the registry
+| **RegistryDeviceTag** | Machine tag added through the registry
 | **OSVersion** | Version of the operating system running on the machine
 | **MachineGroup** | Machine group of the machine. This group is used by role-based access control to determine access to the machine
-| **ReportId** | Unique identifier for the event
-| **AdditionalFields** | Additional information about the entity or event
+| **ReportId** | Event identifier based on a repeating counter. To identify unique events, this column must be used in conjunction with the DeviceName and Timestamp columns
+| **OnboardingStatus** | Indicates whether the device is currently onboarded or not to Microsoft Defender for Endpoint or if the device is not supported
+| **AdditionalFields** | Additional information about the event in JSON array format
+| **DeviceCategory** | Broader classification that groups certain device types under the following categories: Endpoint, Network device, IoT, Unknown
+| **DeviceType** | Type of device based on purpose and functionality, such as network device, workstation, server, mobile, gaming console, or printer
+| **DeviceSubType** | Additional modifier for certain types of devices, for example, a mobile device can be a tablet or a smartphone; only available if device discovery finds enough information about this attribute
+| **Model** | Model name or number of the product from the vendor or manufacturer, only available if device discovery finds enough information about this attribute
+| **Vendor** | Name of the product vendor or manufacturer, only available if device discovery finds enough information about this attribute
+| **OSDistribution** | Distribution of the OS platform, such as Ubuntu or RedHat for Linux platforms
+| **OSVersionInfo** | Additional information about the OS version, such as the popular name, code name, or version number
+| **MergedDeviceIds** | Previous device IDs that have been assigned to the same device
+| **MergedToDeviceId** | The most recent device ID assigned to a device
 
 ### Examples:
 
@@ -1083,22 +1164,46 @@ DeviceInfo
 ### Table Schema:
 | Field | Description |
 | :--- | :--- |
-| **Timestamp** | Date and time when the record was generated
-| **DeviceId** | Unique identifier for the device in the service
-| **DeviceName** | Fully qualified domain name (FQDN) of the device
-| **NetworkAdapterName** | Name of the network adapter
-| **MacAddress** | MAC address of the network adapter
-| **NetworkAdapterType** | Network adapter type
-| **NetworkAdapterStatus** | Operational status of the network adapter
-| **TunnelType** | Tunneling protocol, if the interface is used for this purpose, for example 6to4, Teredo, ISATAP, PPTP, SSTP, and SSH
-| **ConnectedNetworks** | Networks that the adapter is connected to. Each JSON element in the array contains the network name, category (public, private or domain), a description, and a flag indicating if it’s connected publicly to the internet
-| **DnsAddresses** | DNS server addresses in JSON array format
-| **IPv4Dhcp** | IPv4 address of DHCP server
-| **IPv6Dhcp** | IPv6 address of DHCP server
-| **DefaultGateways** | Default gateway addresses in JSON array format
-| **IPAddresses** | JSON array containing all the IP addresses assigned to the adapter, along with their respective subnet prefix and the IP class (RFC 1918 & RFC 4291)
-| **ReportId** | Unique identifier for the event
-| **NetworkAdapterVendor** | Name of the manufacturer or vendor of the network adapter
+| **Timestamp** | Date and time when the event was recorded
+| **DeviceId** | Unique identifier for the machine in the service
+| **DeviceName** | Fully qualified domain name (FQDN) of the machine
+| **ActionType** | Type of activity that triggered the event. See the in-portal schema reference for details
+| **RemoteIP** | IP address that was being connected to
+| **RemotePort** | TCP port on the remote device that was being connected to
+| **RemoteUrl** | URL or fully qualified domain name (FQDN) that was being connected to
+| **LocalIP** | IP address assigned to the local machine used during communication
+| **LocalPort** | TCP port on the local machine used during communication
+| **Protocol** | Protocol used during the communication
+| **LocalIPType** | Type of IP address, for example Public, Private, Reserved, Loopback, Teredo, FourToSixMapping, and Broadcast
+| **RemoteIPType** | Type of IP address, for example Public, Private, Reserved, Loopback, Teredo, FourToSixMapping, and Broadcast
+| **InitiatingProcessSHA1** | SHA-1 of the process (image file) that initiated the event
+| **InitiatingProcessSHA256** | SHA-256 of the process (image file) that initiated the event. This field is usually not populated — use the SHA1 column when available.
+| **InitiatingProcessMD5** | MD5 hash of the process (image file) that initiated the event
+| **InitiatingProcessFileName** | Name of the process that initiated the event
+| **InitiatingProcessFileSize** | Size of the file that ran the process responsible for the event
+| **InitiatingProcessVersionInfoCompanyName** | Company name from the version information of the process (image file) responsible for the event
+| **InitiatingProcessVersionInfoProductName** | Product name from the version information of the process (image file) responsible for the event
+| **InitiatingProcessVersionInfoProductVersion** | Product version from the version information of the process (image file) responsible for the event
+| **InitiatingProcessVersionInfoInternalFileName** | Internal file name from the version information of the process (image file) responsible for the event
+| **InitiatingProcessVersionInfoOriginalFileName** | Original file name from the version information of the process (image file) responsible for the event
+| **InitiatingProcessVersionInfoFileDescription** | Description from the version information of the process (image file) responsible for the event
+| **InitiatingProcessId** | Process ID (PID) of the process that initiated the event
+| **InitiatingProcessCommandLine** | Command line used to run the process that initiated the event
+| **InitiatingProcessCreationTime** | Date and time when the process that initiated the event was started
+| **InitiatingProcessFolderPath** | Folder containing the process (image file) that initiated the event
+| **InitiatingProcessParentFileName** | Name of the parent process that spawned the process responsible for the event
+| **InitiatingProcessParentId** | Process ID (PID) of the parent process that spawned the process responsible for the event
+| **InitiatingProcessParentCreationTime** | Date and time when the parent of the process responsible for the event was started
+| **InitiatingProcessAccountDomain** | Domain of the account that ran the process responsible for the event
+| **InitiatingProcessAccountName** | User name of the account that ran the process responsible for the event
+| **InitiatingProcessAccountSid** | Security Identifier (SID) of the account that ran the process responsible for the event
+| **InitiatingProcessAccountUpn** | User principal name (UPN) of the account that ran the process responsible for the event
+| **InitiatingProcessAccountObjectId** | Azure AD object ID of the user account that ran the process responsible for the event
+| **InitiatingProcessIntegrityLevel** | Integrity level of the process that initiated the event. Windows assigns integrity levels to processes based on certain characteristics, such as if they were launched from an internet download. These integrity levels influence permissions to resources
+| **InitiatingProcessTokenElevation** | Token type indicating the presence or absence of User Access Control (UAC) privilege elevation applied to the process that initiated the event
+| **ReportId** | Event identifier based on a repeating counter. To identify unique events, this column must be used in conjunction with the DeviceName and Timestamp columns
+| **AppGuardContainerId** | Identifier for the virtualized container used by Application Guard to isolate browser activity
+| **AdditionalFields** | Additional information about the event in JSON array format
 
 ### Examples:
 
@@ -1189,6 +1294,7 @@ DeviceNetworkInfo
 ### DeviceProcessEvents ActionTypes:
 | ActionType | Description |
 | :--- | :--- |
+| **OpenProcess** | The OpenProcess function was called indicating an attempt to open a handle to a local process and potentially manipulate that process.
 | **ProcessCreated** | A process was launched on the device.
 
 ### Examples:
@@ -1279,19 +1385,9 @@ DeviceProcessEvents
 | **ConnectionAttempt** | not documented
 | **InboundConnectionAccepted** | The device accepted a network connection initiated by another device.
 | **ListeningConnectionCreated** | A process has started listening for connections on a certain port.
+| **NetworkSignatureInspected** | A packet content was inspected. 
 
 ### Examples:
-
-#### Tor client connections:
-```
-//Find network connections by known Tor clients
-DeviceNetworkEvents
-| where Timestamp > ago(7d) and InitiatingProcessFileName in~ ("tor.exe", "meek-client.exe")
-// Returns MD5 hashes of files used by Tor, to enable you to block them.
-// We count how prevalent each file is (by devices) and show examples for some of them (up to 5 device names per hash).
-| summarize DeviceCount=dcount(DeviceId), DeviceNames=make_set(DeviceName, 5) by InitiatingProcessMD5
-| order by DeviceCount desc
-```
 
 #### PowerShell download activity:
 ```
@@ -1312,6 +1408,17 @@ union DeviceProcessEvents, DeviceNetworkEvents
 | project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine,
 FileName, ProcessCommandLine, RemoteIP, RemoteUrl, RemotePort, RemoteIPType
 | top 100 by Timestamp
+```
+
+#### Tor client connections:
+```
+//Find network connections by known Tor clients
+DeviceNetworkEvents
+| where Timestamp > ago(7d) and InitiatingProcessFileName in~ ("tor.exe", "meek-client.exe")
+// Returns MD5 hashes of files used by Tor, to enable you to block them.
+// We count how prevalent each file is (by devices) and show examples for some of them (up to 5 device names per hash).
+| summarize DeviceCount=dcount(DeviceId), DeviceNames=make_set(DeviceName, 5) by InitiatingProcessMD5
+| order by DeviceCount desc
 ```
 
 ## DeviceFileEvents
@@ -1379,11 +1486,19 @@ FileName, ProcessCommandLine, RemoteIP, RemoteUrl, RemotePort, RemoteIPType
 | ActionType | Description |
 | :--- | :--- |
 | **FileCreated** | A file was created on the device.
+| **FileDeleted** | A file was deleted.
 | **FileModified** | A file on the device was modified.
 | **FileRenamed** | A file on the device was renamed.
-| **FileDeleted** | A file was deleted.
 
 ### Examples:
+
+#### Copy or move file:
+```
+let myFile = '<file SHA1>';
+DeviceFileEvents
+| where SHA1 == myFile and ActionType == 'FileCreated'
+| limit 100
+```
 
 #### Sensitive file uploads:
 ```
@@ -1396,14 +1511,6 @@ DeviceFileEvents
 | where ActionType == "FileUploaded" and Timestamp > ago(1d) | extend FileName = tostring(RawEventData.SourceFileName) ) on FileName
 | project UploadTime = Timestamp, ActionType, Application, FileName, SensitivityLabel, AccountDisplayName ,
 AccountObjectId , IPAddress, CountryCode , LastTimeSeenOnDevice, DeviceName, DeviceId, FolderPath
-| limit 100
-```
-
-#### Copy or move file:
-```
-let myFile = '<file SHA1>';
-DeviceFileEvents
-| where SHA1 == myFile and ActionType == 'FileCreated'
 | limit 100
 ```
 
@@ -1456,13 +1563,25 @@ DeviceFileEvents
 ### DeviceRegistryEvents ActionTypes:
 | ActionType | Description |
 | :--- | :--- |
-| **RegistryValueDeleted** | A registry value was deleted.
-| **RegistryKeyDeleted** | A registry key was deleted.
 | **RegistryKeyCreated** | A registry key was created.
-| **RegistryValueSet** | The data for a registry value was modified.
+| **RegistryKeyDeleted** | A registry key was deleted.
 | **RegistryKeyRenamed** | A registry key was renamed.
+| **RegistryValueDeleted** | A registry value was deleted.
+| **RegistryValueSet** | The data for a registry value was modified.
 
 ### Examples:
+
+#### Autostart services:
+```
+//Check a specific device for the services set to automatically start with Windows
+let myDevice = "<insert your device ID>";
+DeviceRegistryEvents
+| where DeviceId == ""//myDevice
+    and ActionType in ("RegistryValueSet")
+    and RegistryKey matches regex @"HKEY_LOCAL_MACHINE\\SYSTEM\\.*\\Services\\.*"
+    and RegistryValueName == "Start" and RegistryValueData == "2"
+| limit 100
+```
 
 #### Devices with security controls turned off:
 ```
@@ -1478,18 +1597,6 @@ DeviceRegistryEvents
     // Where 1 means it’s disabled.
 and RegistryValueData has "1" and isnotempty(PreviousRegistryValueData) and Timestamp > ago(7d)
 | project Timestamp, ActionType, DeviceId , DeviceName, RegistryKey, RegistryValueName , RegistryValueData,  PreviousRegistryValueData
-```
-
-#### Autostart services:
-```
-//Check a specific device for the services set to automatically start with Windows
-let myDevice = "<insert your device ID>";
-DeviceRegistryEvents
-| where DeviceId == ""//myDevice
-    and ActionType in ("RegistryValueSet")
-    and RegistryKey matches regex @"HKEY_LOCAL_MACHINE\\SYSTEM\\.*\\Services\\.*"
-    and RegistryValueName == "Start" and RegistryValueData == "2"
-| limit 100
 ```
 
 ## DeviceLogonEvents
@@ -1547,9 +1654,9 @@ DeviceRegistryEvents
 ### DeviceLogonEvents ActionTypes:
 | ActionType | Description |
 | :--- | :--- |
-| **LogonSuccess** | A user successfully logged on to the device.
 | **LogonAttempted** | A user attempted to log on to the device.
 | **LogonFailed** | A user attempted to logon to the device but failed.
+| **LogonSuccess** | A user successfully logged on to the device.
 
 ### Examples:
 
@@ -1700,22 +1807,31 @@ DeviceLogonEvents
 | **AntivirusDetection** | Windows Defender Antivirus detected a threat.
 | **AntivirusEmergencyUpdatesInstalled** | Emergency security intelligence updates for Windows Defender Antivirus were applied.
 | **AntivirusError** | Windows Defender Antivirus encountered an error while taking action on malware or a potentially unwanted application.
-| **AntivirusMalwareActionFailed** | "Windows Defender Antivirus attempted to take action on malware or a potentially unwanted application but the action failed."
-| **AntivirusMalwareBlocked** | "Windows Defender Antivirus blocked files or activity involving malware potentially unwanted applications or suspicious behavior."
+| **AntivirusMalwareActionFailed** | Windows Defender Antivirus attempted to take action on malware or a potentially unwanted application but the action failed.
+| **AntivirusMalwareBlocked** | Windows Defender Antivirus blocked files or activity involving malware potentially unwanted applications or suspicious behavior.
 | **AntivirusScanCancelled** | A Windows Defender Antivirus scan was cancelled.
 | **AntivirusScanCompleted** | A Windows Defender Antivirus scan completed successfully.
 | **AntivirusScanFailed** | A Windows Defender Antivirus scan did not complete successfully.
+| **AntivirusTroubleshootModeEvent** | The troubleshooting mode in Microsoft Defender Antivirus was used.
 | **AppControlAppInstallationAudited** | Application control detected the installation of an untrusted app.
 | **AppControlAppInstallationBlocked** | Application control blocked the installation of an untrusted app.
+| **AppControlCIScriptAudited** | A script or MSI file generated by Windows LockDown Policy was audited.
+| **AppControlCIScriptBlocked** | A script or MSI file generated by Windows LockDown Policy was blocked.
 | **AppControlCodeIntegrityDriverRevoked** | Application control found a driver with a revoked certificate.
 | **AppControlCodeIntegrityImageAudited** | Application control detected an executable file that violated code integrity policies.
 | **AppControlCodeIntegrityImageRevoked** | Application control found an executable file with a revoked certificate.
+| **AppControlCodeIntegrityOriginAllowed** | Application control allowed a file due to its good reputation (ISG) or installation source (managed installer).
+| **AppControlCodeIntegrityOriginAudited** | Application control would have blocked a file due to its bad reputation (ISG) or installation source (managed installer) if the policy was enforced.
+| **AppControlCodeIntegrityOriginBlocked** | Application control blocked a file due to its bad reputation (ISG) or installation source (managed installer).
 | **AppControlCodeIntegrityPolicyAudited** | Application control detected a code integrity policy violation.
 | **AppControlCodeIntegrityPolicyBlocked** | Application control blocked a code integrity policy violation.
+| **AppControlCodeIntegrityPolicyLoaded** | An application control code integrity policy was loaded.
+| **AppControlCodeIntegritySigningInformation** | Application control signing information was generated.
 | **AppControlExecutableAudited** | Application control detected the use of an untrusted executable.
 | **AppControlExecutableBlocked** | Application control blocked the use of an untrusted executable.
 | **AppControlPackagedAppAudited** | Application control detected the use of an untrusted packaged app.
 | **AppControlPackagedAppBlocked** | Application control blocked the installation of an untrusted packaged app.
+| **AppControlPolicyApplied** | An application control policy was applied to the device.
 | **AppControlScriptAudited** | Application control detected the use of an untrusted script.
 | **AppControlScriptBlocked** | Application control blocked the use of an untrusted script.
 | **AppGuardBrowseToUrl** | A URL was accessed from within an application guard container.
@@ -1724,6 +1840,10 @@ DeviceLogonEvents
 | **AppGuardResumeContainer** | Application guard resumed an isolated container from a suspended state.
 | **AppGuardStopContainer** | Application guard stopped an isolated container.
 | **AppGuardSuspendContainer** | Application guard suspended an isolated container.
+| **AppLockerBlockExecutable** | AppLocker prevented an untrusted executable from running.
+| **AppLockerBlockPackagedApp** | AppLocker prevented an untrusted packaged app from running.
+| **AppLockerBlockPackagedAppInstallation** | AppLocker prevented the installation of an untrusted packaged app.
+| **AppLockerBlockScript** | AppLocker prevented an untrusted script from running.
 | **AsrAdobeReaderChildProcessAudited** | An attack surface reduction rule detected Adobe Reader creating a child process.
 | **AsrAdobeReaderChildProcessBlocked** | An attack surface reduction rule blocked Adobe Reader from creating a child process.
 | **AsrExecutableEmailContentAudited** | An attack surface reduction rule detected the launch of executable content from an email client and or webmail.
@@ -1754,6 +1874,11 @@ DeviceLogonEvents
 | **AsrUntrustedExecutableBlocked** | An attack surface reduction rule blocked the execution of an untrusted file that doesn't meet criteria for age or prevalence.
 | **AsrUntrustedUsbProcessAudited** | An attack surface reduction rule detected the execution of an untrusted and unsigned processes from a USB device.
 | **AsrUntrustedUsbProcessBlocked** | An attack surface reduction rule blocked the execution of an untrusted and unsigned processes from a USB device.
+| **AsrVulnerableSignedDriverAudited** | An attack surface reduction rule detected a signed driver that has known vulnerabilities.
+| **AsrVulnerableSignedDriverBlocked** | An attack surface reduction rule blocked a signed driver that has known vulnerabilities.
+| **AuditPolicyModification** | Changes in the Windows audit policy (which feed events to the event log).
+| **BitLockerAuditCompleted** | An audit for BitLocker encryption was completed.
+| **BluetoothPolicyTriggered** | A Bluetooth service activity was allowed or blocked by a device control policy.
 | **BrowserLaunchedToOpenUrl** | A web browser opened a URL that originated as a link in another application.
 | **ControlFlowGuardViolation** | Control Flow Guard terminated an application after detecting an invalid function call
 | **ControlledFolderAccessViolationAudited** | Controlled folder access detected an attempt to modify a protected folder.
@@ -1763,8 +1888,10 @@ DeviceLogonEvents
 | **DeviceBootAttestationInfo** | System Guard generated a boot-time attestation report.
 | **DirectoryServiceObjectCreated** | An object was added to the directory service.
 | **DirectoryServiceObjectModified** | An object in the directory service was modified.
-| **FilePrinted** | A file was sent to a printer device for printing.
+| **DlpPocPrintJob** | A file was sent to a printer device for printing.
+| **DnsQueryRequest** | A DNS request was initiated.
 | **DnsQueryResponse** | A response to a DNS query was sent.
+| **DpapiAccessed** | Decription of saved sensitive data encrypted using DPAPI.
 | **DriverLoad** | A driver was loaded.
 | **ExploitGuardAcgAudited** | Arbitrary code guard (ACG) in exploit protection detected an attempt to modify code page permissions or create unsigned code pages.
 | **ExploitGuardAcgEnforced** | Arbitrary code guard (ACG) blocked an attempt to modify code page permissions or create unsigned code pages.
@@ -1776,6 +1903,8 @@ DeviceLogonEvents
 | **ExploitGuardIafViolationBlocked** | Import address filtering (IAF) in exploit protection blocked possible exploitation activity.
 | **ExploitGuardLowIntegrityImageAudited** | Exploit protection detected the launch of a process from a low-integrity file.
 | **ExploitGuardLowIntegrityImageBlocked** | Exploit protection blocked the launch of a process from a low-integrity file.
+| **ExploitGuardNetworkProtectionAudited** | Network protection detected an attempt to access a malicious or unwanted IP address domain or URL.
+| **ExploitGuardNetworkProtectionBlocked** | Network protection blocked a malicious or unwanted IP address domain or URL.
 | **ExploitGuardNonMicrosoftSignedAudited** | Exploit protection detected the launch of a process from an image file that is not signed by Microsoft.
 | **ExploitGuardNonMicrosoftSignedBlocked** | Exploit protection blocked the launch of a process from an image file that is not signed by Microsoft.
 | **ExploitGuardRopExploitAudited** | Exploit protection detected possible return-object programming (ROP) exploitation.
@@ -1784,6 +1913,7 @@ DeviceLogonEvents
 | **ExploitGuardSharedBinaryBlocked** | Exploit protection blocked the launch of a process from a file in a remote device.
 | **ExploitGuardWin32SystemCallAudited** | Exploit protection detected a call to the Windows system API.
 | **ExploitGuardWin32SystemCallBlocked** | Exploit protection blocked a call to the Windows system API.
+| **FileTimestampModificationEvent** | File timestamp information was modified.
 | **FirewallInboundConnectionBlocked** | A firewall or another application blocked an inbound connection using the Windows Filtering Platform.
 | **FirewallInboundConnectionToAppBlocked** | The firewall blocked an inbound connection to an app.
 | **FirewallOutboundConnectionBlocked** | A firewall or another application blocked an outbound connection using the Windows Filtering Platform.
@@ -1796,14 +1926,20 @@ DeviceLogonEvents
 | **NamedPipeEvent** | A named pipe was created or opened.
 | **NetworkProtectionUserBypassEvent** | A user has bypassed network protection and accessed a blocked IP address, domain, or URL.
 | **NetworkShareObjectAccessChecked** | A request was made to access a file or folder shared on the network and permissions to the share was evaluated.
+| **NetworkShareObjectAdded** | A file or folder was shared on the network.
+| **NetworkShareObjectDeleted** | A file or folder shared on the network was deleted.
+| **NetworkShareObjectModified** | A file or folder shared on the network was modified.
 | **NtAllocateVirtualMemoryApiCall** | Memory was allocated for a process.
 | **NtAllocateVirtualMemoryRemoteApiCall** | Memory was allocated for a process remotely.
 | **NtMapViewOfSectionRemoteApiCall** | A section of a process's memory was mapped by calling the function NtMapViewOfSection.
 | **NtProtectVirtualMemoryApiCall** | The protection attributes for allocated memory was modified.
 | **OpenProcessApiCall** | The OpenProcess function was called indicating an attempt to open a handle to a local process and potentially manipulate that process.
 | **PasswordChangeAttempt** | An attempt to change a user password was made.
+| **PnpDeviceAllowed** | Device control allowed a trusted plug and play (PnP) device.
+| **PnpDeviceBlocked** | Device control blocked an untrusted plug and play (PnP) device.
 | **PnpDeviceConnected** | A plug and play (PnP) device was attached.
 | **PowerShellCommand** | A PowerShell alias function filter cmdlet external script application script workflow or configuration was executed from a PowerShell host process.
+| **PrintJobBlocked** | Device control prevented an untrusted printer from printing.
 | **PrintJobBlocked** | Device control prevented an untrusted printer from printing.
 | **ProcessCreatedUsingWmiQuery** | A process was created using Windows Management Instrumentation (WMI).
 | **ProcessPrimaryTokenModified** | A process's primary token was modified.
@@ -1811,6 +1947,8 @@ DeviceLogonEvents
 | **ReadProcessMemoryApiCall** | The ReadProcessMemory function was called indicating that a process read data from the process memory of another process.
 | **RemoteDesktopConnection** | A Remote Desktop connection was established
 | **RemoteWmiOperation** | A Windows Management Instrumentation (WMI) operation was initiated from a remote device.
+| **RemovableStorageFileEvent** | Removable storage file activity matched a device control removable storage access control policy.
+| **RemovableStoragePolicyTriggered** | Device control detected an attempted read/write/execute event from a removable storage device.
 | **SafeDocFileScan** | A document was sent to the cloud for analysis while in protected view.
 | **ScheduledTaskCreated** | A scheduled task was created.
 | **ScheduledTaskDeleted** | A scheduled task was deleted.
@@ -1818,10 +1956,10 @@ DeviceLogonEvents
 | **ScheduledTaskEnabled** | A scheduled task was turned on.
 | **ScheduledTaskUpdated** | A scheduled task was updated.
 | **ScreenshotTaken** | A screenshot was taken.
-| **SecurityLogCleared** | The security log was cleared.
 | **SecurityGroupCreated** | A security group was created
 | **SecurityGroupDeleted** | A security group was deleted.
-| **SensitiveFileRead** | A file that matched DLP policy was accessed.
+| **SecurityLogCleared** | The security log was cleared.
+| **SensitiveFileRead** | A file that matched DLP policy was accessed or processes that are reading sensitive files such as ssh keys, Outlook mail archives etc.
 | **ServiceInstalled** | A service was installed. This is based on Windows event ID 4697, which requires the advanced security audit setting Audit Security System Extension.
 | **SetThreadContextRemoteApiCall** | The context of a thread was set from a user-mode process.
 | **ShellLinkCreateFileEvent** | A specially crafted link file (.lnk) was generated. The link file contains unusual attributes that might launch malicious code along with a legitimate file or application.
@@ -1829,8 +1967,12 @@ DeviceLogonEvents
 | **SmartScreenExploitWarning** | SmartScreen warned about opening a web page that contains an exploit.
 | **SmartScreenUrlWarning** | SmartScreen warned about opening a low-reputation URL that might be hosting malware or is a phishing site.
 | **SmartScreenUserOverride** | A user has overridden a SmartScreen warning and continued to open an untrusted app or a low-reputation URL.
+| **TamperingAttempt** | An attempt to change Microsoft Defender 365 settings was made.
 | **UntrustedWifiConnection** | A connection was established to an open Wi-Fi access point that is set to connect automatically.
+| **UsbDriveDriveLetterChanged** | The drive letter assigned to a mounted USB storage device was modified
+| **UsbDriveMount** | A USB storage device was mounted as a drive.
 | **UsbDriveMounted** | A USB storage device was mounted as a drive.
+| **UsbDriveUnmount** | A USB storage device was unmounted.
 | **UsbDriveUnmounted** | A USB storage device was unmounted.
 | **UserAccountAddedToLocalGroup** | A user was added to a security-enabled local group.
 | **UserAccountCreated** | A local SAM account or a domain account was created.
@@ -1838,9 +1980,20 @@ DeviceLogonEvents
 | **UserAccountModified** | A user account was modified.
 | **UserAccountRemovedFromLocalGroup** | A user was removed from a security-enabled local group.
 | **WmiBindEventFilterToConsumer** | A filter for WMI events was bound to a consumer. This enables listening for all kinds of system events and triggering corresponding actions, including potentially malicious ones.
+| **WriteProcessMemoryApiCall** | The WriteProcessMemory function was called indicating that a process has written data into memory for another process.
 | **WriteToLsassProcessMemory** | The WriteProcessMemory function was called indicating that a process has written data into memory for another process.
 
 ### Examples:
+
+#### Antivirus scan events:
+```
+// Get antivirus scan events, including completed and cancelled scans
+let myDevice = "<insert your device ID>";
+DeviceEvents
+| where ActionType startswith "AntivirusScan"  and Timestamp > ago(7d) and DeviceId == myDevice
+| extend ScanDesc = parse_json(AdditionalFields)
+|project Timestamp, DeviceName, ActionType, Domain = ScanDesc.Domain, ScanId= ScanDesc.ScanId, User = ScanDesc.User, ScanParametersIndex = ScanDesc.ScanParametersIndex, ScanTypeIndex = ScanDesc.ScanTypeIndex
+```
 
 #### USB devices:
 ```
@@ -1851,16 +2004,6 @@ DeviceEvents
 | extend ProductName = todynamic(AdditionalFields)["ProductName"], SerialNumber = todynamic(AdditionalFields)["SerialNumber"],
 Manufacturer = todynamic(AdditionalFields)["Manufacturer"], Volume = todynamic(AdditionalFields)["Volume"]
 | summarize lastInsert = max(Timestamp) by tostring(ProductName), tostring(SerialNumber), tostring(Manufacturer), tostring(Volume)
-```
-
-#### Antivirus scan events:
-```
-// Get antivirus scan events, including completed and cancelled scans
-let myDevice = "<insert your device ID>";
-DeviceEvents
-| where ActionType startswith "AntivirusScan"  and Timestamp > ago(7d) and DeviceId == myDevice
-| extend ScanDesc = parse_json(AdditionalFields)
-|project Timestamp, DeviceName, ActionType, Domain = ScanDesc.Domain, ScanId= ScanDesc.ScanId, User = ScanDesc.User, ScanParametersIndex = ScanDesc.ScanParametersIndex, ScanTypeIndex = ScanDesc.ScanTypeIndex
 ```
 
 ## DeviceFileCertificateInfo
@@ -1905,3 +2048,260 @@ DeviceFileCertificateInfo
     CertificateCreationTime,CertificateExpirationTime,CrlDistributionPointUrls
 | limit 10
 ```
+
+# All ActionTypes
+
+In Microsoft documentation all Advanced hunting tables except the table CloudAppEvents have ActionTypes documented. CloudAppEvents has over 600+ ActionTypes which are not part of this list. CloudAppEvents = Defender for Cloud Apps (MDA) table which has O365 Management API, Azure Sign-In/Audit-Logs, Teams, Slack, Github, AWS, etc. all connected Apps hence the number of ActionTypes for this table is enormous.
+Microsoft uses MDA as fusion-engine for their XDR approach, so it is likely that this table will be used centrally to contain data from several products (used for correlation). Depending on integration between MDE/MDI/MDO/MDA this table has redundant Action Types.
+
+| ActionType | Description |
+| :--- | :--- |
+| **Account Constrained Delegation SPNs changed** | Constrained delegation restricts the services to which the specified server can act on behalf of the user.
+| **Account Constrained Delegation State changed** | The account state is now enabled or disabled for delegation.
+| **Account Delegation changed** | The account state is now enabled or disabled for delegation.
+| **Account Disabled changed** | Indicates whether an account is disabled or enabled.
+| **Account Display Name changed** | User's display name was changed.
+| **Account Expiry Time changed** | Change to the date when the account expires.
+| **Account Locked changed** | Change to the date when the account expires.
+| **Account Name changed** | User's name was changed.
+| **Account Password Never Expires changed** | User's password changed to never expire.
+| **Account Password Not Required changed** | User account was changed allow logging in with a blank password.
+| **Account Password changed** | User changed their password.
+| **Account Password expired** | User's password expired.
+| **Account Path changed** | User Distinguished name was changed from X to Y.
+| **Account Smartcard Required changed** |
+| **Account Supported Encryption Types changed** | Kerberos supported encryption types were changed(types: Des, AES 129, AES 256).
+| **Account Upn Name changed** | User's principle name was changed.
+| **Account expired** | Date when the account expires.
+| **AccountCheckedForBlankPassword** | An account was checked for a blank password.
+| **AntivirusDefinitionsUpdateFailed** | Security intelligence updates for Windows Defender Antivirus were not applied.
+| **AntivirusDefinitionsUpdated** | Security intelligence updates for Windows Defender Antivirus were applied successfully.
+| **AntivirusDetection** | Windows Defender Antivirus detected a threat.
+| **AntivirusEmergencyUpdatesInstalled** | Emergency security intelligence updates for Windows Defender Antivirus were applied.
+| **AntivirusError** | Windows Defender Antivirus encountered an error while taking action on malware or a potentially unwanted application.
+| **AntivirusMalwareActionFailed** | Windows Defender Antivirus attempted to take action on malware or a potentially unwanted application but the action failed.
+| **AntivirusMalwareBlocked** | Windows Defender Antivirus blocked files or activity involving malware potentially unwanted applications or suspicious behavior.
+| **AntivirusScanCancelled** | A Windows Defender Antivirus scan was cancelled.
+| **AntivirusScanCompleted** | A Windows Defender Antivirus scan completed successfully.
+| **AntivirusScanFailed** | A Windows Defender Antivirus scan did not complete successfully.
+| **AntivirusTroubleshootModeEvent** | The troubleshooting mode in Microsoft Defender Antivirus was used.
+| **AppControlAppInstallationAudited** | Application control detected the installation of an untrusted app.
+| **AppControlAppInstallationBlocked** | Application control blocked the installation of an untrusted app.
+| **AppControlCIScriptAudited** | A script or MSI file generated by Windows LockDown Policy was audited.
+| **AppControlCIScriptBlocked** | A script or MSI file generated by Windows LockDown Policy was blocked.
+| **AppControlCodeIntegrityDriverRevoked** | Application control found a driver with a revoked certificate.
+| **AppControlCodeIntegrityImageAudited** | Application control detected an executable file that violated code integrity policies.
+| **AppControlCodeIntegrityImageRevoked** | Application control found an executable file with a revoked certificate.
+| **AppControlCodeIntegrityOriginAllowed** | Application control allowed a file due to its good reputation (ISG) or installation source (managed installer).
+| **AppControlCodeIntegrityOriginAudited** | Application control would have blocked a file due to its bad reputation (ISG) or installation source (managed installer) if the policy was enforced.
+| **AppControlCodeIntegrityOriginBlocked** | Application control blocked a file due to its bad reputation (ISG) or installation source (managed installer).
+| **AppControlCodeIntegrityPolicyAudited** | Application control detected a code integrity policy violation.
+| **AppControlCodeIntegrityPolicyBlocked** | Application control blocked a code integrity policy violation.
+| **AppControlCodeIntegrityPolicyLoaded** | An application control code integrity policy was loaded.
+| **AppControlCodeIntegritySigningInformation** | Application control signing information was generated.
+| **AppControlExecutableAudited** | Application control detected the use of an untrusted executable.
+| **AppControlExecutableBlocked** | Application control blocked the use of an untrusted executable.
+| **AppControlPackagedAppAudited** | Application control detected the use of an untrusted packaged app.
+| **AppControlPackagedAppBlocked** | Application control blocked the installation of an untrusted packaged app.
+| **AppControlPolicyApplied** | An application control policy was applied to the device.
+| **AppControlScriptAudited** | Application control detected the use of an untrusted script.
+| **AppControlScriptBlocked** | Application control blocked the use of an untrusted script.
+| **AppGuardBrowseToUrl** | A URL was accessed from within an application guard container.
+| **AppGuardCreateContainer** | Application guard initiated an isolated container.
+| **AppGuardLaunchedWithUrl** | The opening of an untrusted URL has initiated an application guard container.
+| **AppGuardResumeContainer** | Application guard resumed an isolated container from a suspended state.
+| **AppGuardStopContainer** | Application guard stopped an isolated container.
+| **AppGuardSuspendContainer** | Application guard suspended an isolated container.
+| **AppLockerBlockExecutable** | AppLocker prevented an untrusted executable from running.
+| **AppLockerBlockPackagedApp** | AppLocker prevented an untrusted packaged app from running.
+| **AppLockerBlockPackagedAppInstallation** | AppLocker prevented the installation of an untrusted packaged app.
+| **AppLockerBlockScript** | AppLocker prevented an untrusted script from running.
+| **AsrAdobeReaderChildProcessAudited** | An attack surface reduction rule detected Adobe Reader creating a child process.
+| **AsrAdobeReaderChildProcessBlocked** | An attack surface reduction rule blocked Adobe Reader from creating a child process.
+| **AsrExecutableEmailContentAudited** | An attack surface reduction rule detected the launch of executable content from an email client and or webmail.
+| **AsrExecutableEmailContentBlocked** | An attack surface reduction rule blocked executable content from an email client and or webmail.
+| **AsrExecutableOfficeContentAudited** | An attack surface reduction rule detected an Office application creating executable content.
+| **AsrExecutableOfficeContentBlocked** | An attack surface reduction rule blocked an Office application from creating executable content.
+| **AsrLsassCredentialTheftAudited** | An attack surface reduction rule detected possible credential theft from lsass.exe.
+| **AsrLsassCredentialTheftBlocked** | An attack surface reduction rule blocked possible credential theft from lsass.exe.
+| **AsrObfuscatedScriptAudited** | An attack surface reduction rule detected the execution of scripts that appear obfuscated.
+| **AsrObfuscatedScriptBlocked** | An attack surface reduction rule blocked the execution of scripts that appear obfuscated.
+| **AsrOfficeChildProcessAudited** | An attack surface reduction rule detected an Office application spawning a child process.
+| **AsrOfficeChildProcessBlocked** | An attack surface reduction rule blocked an Office application from creating child processes.
+| **AsrOfficeCommAppChildProcessAudited** | An attack surface reduction rule detected an Office communication app attempting to spawn a child process.
+| **AsrOfficeCommAppChildProcessBlocked** | An attack surface reduction rule blocked an Office communication app from spawning a child process.
+| **AsrOfficeMacroWin32ApiCallsAudited** | An attack surface reduction rule detected Win32 API calls from Office macros.
+| **AsrOfficeMacroWin32ApiCallsBlocked** | An attack surface reduction rule blocked Win32 API calls from Office macros.
+| **AsrOfficeProcessInjectionAudited** | An attack surface reduction rule detected an Office application injecting code into other processes.
+| **AsrOfficeProcessInjectionBlocked** | An attack surface reduction rule blocked an Office application from injecting code into other processes.
+| **AsrPersistenceThroughWmiAudited** | An attack surface reduction rule detected an attempt to establish persistence through WMI event subscription.
+| **AsrPersistenceThroughWmiBlocked** | An attack surface reduction rule blocked an attempt to establish persistence through WMI event subscription.
+| **AsrPsexecWmiChildProcessAudited** | An attack surface reduction rule detected the use of PsExec or WMI commands to spawn a child process.
+| **AsrPsexecWmiChildProcessBlocked** | An attack surface reduction rule blocked the use of PsExec or WMI commands to spawn a child process.
+| **AsrRansomwareAudited** | An attack surface reduction rule detected ransomware activity.
+| **AsrRansomwareBlocked** | An attack surface reduction rule blocked ransomware activity.
+| **AsrScriptExecutableDownloadAudited** | An attack surface reduction rule detected JavaScript or VBScript code launching downloaded executable content.
+| **AsrScriptExecutableDownloadBlocked** | An attack surface reduction rule blocked JavaScript or VBScript code from launching downloaded executable content.
+| **AsrUntrustedExecutableAudited** | An attack surface reduction rule detected the execution of an untrusted file that doesn't meet criteria for age or prevalence.
+| **AsrUntrustedExecutableBlocked** | An attack surface reduction rule blocked the execution of an untrusted file that doesn't meet criteria for age or prevalence.
+| **AsrUntrustedUsbProcessAudited** | An attack surface reduction rule detected the execution of an untrusted and unsigned processes from a USB device.
+| **AsrUntrustedUsbProcessBlocked** | An attack surface reduction rule blocked the execution of an untrusted and unsigned processes from a USB device.
+| **AsrVulnerableSignedDriverAudited** | An attack surface reduction rule detected a signed driver that has known vulnerabilities.
+| **AsrVulnerableSignedDriverBlocked** | An attack surface reduction rule blocked a signed driver that has known vulnerabilities.
+| **AuditPolicyModification** | Changes in the Windows audit policy (which feed events to the event log).
+| **BitLockerAuditCompleted** | An audit for BitLocker encryption was completed.
+| **BluetoothPolicyTriggered** | A Bluetooth service activity was allowed or blocked by a device control policy.
+| **BrowserLaunchedToOpenUrl** | A web browser opened a URL that originated as a link in another application.
+| **ConnectionAcknowledged** | not documented
+| **ConnectionAttempt** | not documented
+| **ConnectionFailed** | An attempt to establish a network connection from the device failed.
+| **ConnectionFound** | An active network connection was found on the device.
+| **ConnectionRequest** | The device initiated a network connection.
+| **ConnectionSuccess** | A network connection was successfully established from the device.
+| **ControlFlowGuardViolation** | Control Flow Guard terminated an application after detecting an invalid function call
+| **ControlledFolderAccessViolationAudited** | Controlled folder access detected an attempt to modify a protected folder.
+| **ControlledFolderAccessViolationBlocked** | Controlled folder access blocked an attempt to modify a protected folder.
+| **CreateRemoteThreadApiCall** | A thread that runs in the virtual address space of another process was created.
+| **CredentialsBackup** | The backup feature in Credential Manager was initiated
+| **DNS query** | Type of query user performed against the domain controller (AXFR, TXT, MX, NS, SRV, ANY, DNSKEY)
+| **DeviceBootAttestationInfo** | System Guard generated a boot-time attestation report.
+| **Directory Service replication** | User tried to replicate the directory service.
+| **DirectoryServiceObjectCreated** | An object was added to the directory service.
+| **DirectoryServiceObjectModified** | An object in the directory service was modified.
+| **DlpPocPrintJob** | A file was sent to a printer device for printing.
+| **DnsQueryRequest** | A DNS request was initiated.
+| **DnsQueryResponse** | A response to a DNS query was sent.
+| **DpapiAccessed** | Decription of saved sensitive data encrypted using DPAPI.
+| **DriverLoad** | A driver was loaded.
+| **ExploitGuardAcgAudited** | Arbitrary code guard (ACG) in exploit protection detected an attempt to modify code page permissions or create unsigned code pages.
+| **ExploitGuardAcgEnforced** | Arbitrary code guard (ACG) blocked an attempt to modify code page permissions or create unsigned code pages.
+| **ExploitGuardChildProcessAudited** | Exploit protection detected the creation of a child process.
+| **ExploitGuardChildProcessBlocked** | Exploit protection blocked the creation of a child process.
+| **ExploitGuardEafViolationAudited** | Export address filtering (EAF) in exploit protection detected possible exploitation activity.
+| **ExploitGuardEafViolationBlocked** | Export address filtering (EAF) in exploit protection blocked possible exploitation activity.
+| **ExploitGuardIafViolationAudited** | Import address filtering (IAF) in exploit protection detected possible exploitation activity.
+| **ExploitGuardIafViolationBlocked** | Import address filtering (IAF) in exploit protection blocked possible exploitation activity.
+| **ExploitGuardLowIntegrityImageAudited** | Exploit protection detected the launch of a process from a low-integrity file.
+| **ExploitGuardLowIntegrityImageBlocked** | Exploit protection blocked the launch of a process from a low-integrity file.
+| **ExploitGuardNetworkProtectionAudited** | Network protection detected an attempt to access a malicious or unwanted IP address domain or URL.
+| **ExploitGuardNetworkProtectionBlocked** | Network protection blocked a malicious or unwanted IP address domain or URL.
+| **ExploitGuardNonMicrosoftSignedAudited** | Exploit protection detected the launch of a process from an image file that is not signed by Microsoft.
+| **ExploitGuardNonMicrosoftSignedBlocked** | Exploit protection blocked the launch of a process from an image file that is not signed by Microsoft.
+| **ExploitGuardRopExploitAudited** | Exploit protection detected possible return-object programming (ROP) exploitation.
+| **ExploitGuardRopExploitBlocked** | Exploit protection blocked possible return-object programming (ROP) exploitation.
+| **ExploitGuardSharedBinaryAudited** | Exploit protection detected the launch of a process from a remote shared file.
+| **ExploitGuardSharedBinaryBlocked** | Exploit protection blocked the launch of a process from a file in a remote device.
+| **ExploitGuardWin32SystemCallAudited** | Exploit protection detected a call to the Windows system API.
+| **ExploitGuardWin32SystemCallBlocked** | Exploit protection blocked a call to the Windows system API.
+| **FileCreated** | A file was created on the device.
+| **FileDeleted** | A file was deleted.
+| **FileModified** | A file on the device was modified.
+| **FileRenamed** | A file on the device was renamed.
+| **FileTimestampModificationEvent** | File timestamp information was modified.
+| **FirewallInboundConnectionBlocked** | A firewall or another application blocked an inbound connection using the Windows Filtering Platform.
+| **FirewallInboundConnectionToAppBlocked** | The firewall blocked an inbound connection to an app.
+| **FirewallOutboundConnectionBlocked** | A firewall or another application blocked an outbound connection using the Windows Filtering Platform.
+| **FirewallServiceStopped** | The firewall service was stopped.
+| **GetAsyncKeyStateApiCall** | The GetAsyncKeyState function was called. This function can be used to obtain the states of input keys and buttons.
+| **GetClipboardData** | The GetClipboardData function was called. This function can be used obtain the contents of the system clipboard.
+| **Group Membership changed** | User was added/removed, to/from a group, by another user or by themselves.
+| **ImageLoaded** | A dynamic link library (DLL) was loaded.
+| **InboundConnectionAccepted** | The device accepted a network connection initiated by another device.
+| **LDAP query** | An LDAP query was performed.
+| **LdapSearch** | An LDAP search was performed.
+| **ListeningConnectionCreated** | A process has started listening for connections on a certain port.
+| **LogonAttempted** | A user attempted to log on to the device.
+| **LogonFailed** | A user attempted to logon to the device but failed.
+| **LogonFailed** | A user attempted to logon to the device but failed.
+| **LogonRightsSettingEnabled** | Interactive logon rights on the machine were granted to a user.
+| **LogonSuccess** | A user successfully logged on to the device.
+| **LogonSuccess** | A user successfully logged on to the device.
+| **Malware ZAP** | Zero-hour auto purge (ZAP) took action on an email message found containing malware after delivery.
+| **Manual remediation** | An administrator manually took action on an email message after it was delivered to the user mailbox. This includes actions taken manually through Threat Explorer or approvals of automated investigation and response (AIR) actions.
+| **MemoryRemoteProtect** | A process has modified the protection mask for a memory region used by another process. This might allow execution of content from non-executable memory.
+| **NamedPipeEvent** | A named pipe was created or opened.
+| **NetworkProtectionUserBypassEvent** | A user has bypassed network protection and accessed a blocked IP address, domain, or URL.
+| **NetworkShareObjectAccessChecked** | A request was made to access a file or folder shared on the network and permissions to the share was evaluated.
+| **NetworkShareObjectAdded** | A file or folder was shared on the network.
+| **NetworkShareObjectDeleted** | A file or folder shared on the network was deleted.
+| **NetworkShareObjectModified** | A file or folder shared on the network was modified.
+| **NetworkSignatureInspected** | A packet content was inspected.
+| **NtAllocateVirtualMemoryApiCall** | Memory was allocated for a process.
+| **NtAllocateVirtualMemoryRemoteApiCall** | Memory was allocated for a process remotely.
+| **NtMapViewOfSectionRemoteApiCall** | A section of a process's memory was mapped by calling the function NtMapViewOfSection.
+| **NtProtectVirtualMemoryApiCall** | The protection attributes for allocated memory was modified.
+| **OpenProcess** | The OpenProcess function was called indicating an attempt to open a handle to a local process and potentially manipulate that process.
+| **OpenProcessApiCall** | The OpenProcess function was called indicating an attempt to open a handle to a local process and potentially manipulate that process.
+| **PasswordChangeAttempt** | An attempt to change a user password was made.
+| **Phish ZAP** | Zero-hour auto purge (ZAP) took action on a phishing email after delivery.
+| **PnpDeviceAllowed** | Device control allowed a trusted plug and play (PnP) device.
+| **PnpDeviceBlocked** | Device control blocked an untrusted plug and play (PnP) device.
+| **PnpDeviceConnected** | A plug and play (PnP) device was attached.
+| **Potential lateral movement path identified** | Identified potential lateral movement path to a sensitive user.
+| **PowerShell execution** | User attempted to remotely execute a PowerShell command.
+| **PowerShellCommand** | A PowerShell alias function filter cmdlet external script application script workflow or configuration was executed from a PowerShell host process.
+| **PrintJobBlocked** | Device control prevented an untrusted printer from printing.
+| **PrintJobBlocked** | Device control prevented an untrusted printer from printing.
+| **Private Data retrieval** | -
+| **ProcessCreated** | A process was launched on the device.
+| **ProcessCreatedUsingWmiQuery** | A process was created using Windows Management Instrumentation (WMI).
+| **ProcessPrimaryTokenModified** | A process's primary token was modified.
+| **QueueUserApcRemoteApiCall** | An asynchronous procedure call (APC) was scheduled to execute in a user-mode thread.
+| **ReadProcessMemoryApiCall** | The ReadProcessMemory function was called indicating that a process read data from the process memory of another process.
+| **RegistryKeyCreated** | A registry key was created.
+| **RegistryKeyDeleted** | A registry key was deleted.
+| **RegistryKeyRenamed** | A registry key was renamed.
+| **RegistryValueDeleted** | A registry value was deleted.
+| **RegistryValueSet** | The data for a registry value was modified.
+| **RemoteDesktopConnection** | A Remote Desktop connection was established
+| **RemoteWmiOperation** | A Windows Management Instrumentation (WMI) operation was initiated from a remote device.
+| **RemovableStorageFileEvent** | Removable storage file activity matched a device control removable storage access control policy.
+| **RemovableStoragePolicyTriggered** | Device control detected an attempted read/write/execute event from a removable storage device.
+| **SAMR query** | A SAMR query was performed.
+| **SMB session** | User attempted to enumerate all users with open SMB sessions on the domain controllers.
+| **SafeDocFileScan** | A document was sent to the cloud for analysis while in protected view.
+| **ScheduledTaskCreated** | A scheduled task was created.
+| **ScheduledTaskDeleted** | A scheduled task was deleted.
+| **ScheduledTaskDisabled** | A scheduled task was turned off.
+| **ScheduledTaskEnabled** | A scheduled task was turned on.
+| **ScheduledTaskUpdated** | A scheduled task was updated.
+| **ScreenshotTaken** | A screenshot was taken.
+| **Security Principal Display Name changed** | Account display name was changed from X to Y.
+| **Security Principal Name changed** | Account name attribute was changed.
+| **Security Principal Path changed** | Account Distinguished name was changed from X to Y.
+| **Security Principal Sam Name changed** | SAM name changed (SAM is the logon name used to support clients and servers running earlier versions of the operating system).
+| **Security Principal created** | Account was created (both user and computer).
+| **Security Principal deleted changed** | Account was deleted/restored (both user and computer).
+| **SecurityGroupCreated** | A security group was created
+| **SecurityGroupDeleted** | A security group was deleted.
+| **SecurityLogCleared** | The security log was cleared.
+| **SensitiveFileRead** | A file that matched DLP policy was accessed or processes that are reading sensitive files such as ssh keys, Outlook mail archives etc.
+| **Service creation** | User attempted to remotely create a specific service to a remote machine.
+| **ServiceInstalled** | A service was installed. This is based on Windows event ID 4697, which requires the advanced security audit setting Audit Security System Extension.
+| **SetThreadContextRemoteApiCall** | The context of a thread was set from a user-mode process.
+| **ShellLinkCreateFileEvent** | A specially crafted link file (.lnk) was generated. The link file contains unusual attributes that might launch malicious code along with a legitimate file or application.
+| **SmartScreenAppWarning** | SmartScreen warned about running a downloaded application that is untrusted or malicious.
+| **SmartScreenExploitWarning** | SmartScreen warned about opening a web page that contains an exploit.
+| **SmartScreenUrlWarning** | SmartScreen warned about opening a low-reputation URL that might be hosting malware or is a phishing site.
+| **SmartScreenUserOverride** | A user has overridden a SmartScreen warning and continued to open an untrusted app or a low-reputation URL.
+| **TamperingAttempt** | An attempt to change Microsoft Defender 365 settings was made.
+| **Task scheduling** | User tried to remotely schedule X task to a remote machine.
+| **UntrustedWifiConnection** | A connection was established to an open Wi-Fi access point that is set to connect automatically.
+| **UsbDriveDriveLetterChanged** | The drive letter assigned to a mounted USB storage device was modified
+| **UsbDriveMount** | A USB storage device was mounted as a drive.
+| **UsbDriveMounted** | A USB storage device was mounted as a drive.
+| **UsbDriveUnmount** | A USB storage device was unmounted.
+| **UsbDriveUnmounted** | A USB storage device was unmounted.
+| **User Mail changed** | Users email attribute was changed.
+| **User Manager changed** | User's manager attribute was changed.
+| **User Phone Number changed** | User's phone number attribute was changed.
+| **User Title changed** | User's title attribute was changed.
+| **UserAccountAddedToLocalGroup** | A user was added to a security-enabled local group.
+| **UserAccountCreated** | A local SAM account or a domain account was created.
+| **UserAccountDeleted** | A user account was deleted.
+| **UserAccountModified** | A user account was modified.
+| **UserAccountRemovedFromLocalGroup** | A user was removed from a security-enabled local group.
+| **Wmi execution** | User attempted to remotely execute a WMI method.
+| **WmiBindEventFilterToConsumer** | A filter for WMI events was bound to a consumer. This enables listening for all kinds of system events and triggering corresponding actions, including potentially malicious ones.
+| **WriteProcessMemoryApiCall** | The WriteProcessMemory function was called indicating that a process has written data into memory for another process.
+| **WriteToLsassProcessMemory** | The WriteProcessMemory function was called indicating that a process has written data into memory for another process.
