@@ -19,8 +19,8 @@ Schema Overview
     * [MS365D Table: AlertInfo](#table-alertinfo-ms365d)
     * [MS365D Table: AlertEvidence](#table-alertevidence-ms365d)
   * [Apps & identities](#apps--identities)
-    * [MDI Table: IdentityInfo](#table-identityinfo-mdi)
-    * [MDI Table: IdentityLogonEvents](#table-identitylogonevents-mdi)
+    * [MDI/MDA Table: IdentityInfo](#table-identityinfo-mdimda)
+    * [MDI/MDA Table: IdentityLogonEvents](#table-identitylogonevents-mdimda)
         * [ActionTypes](#identitylogonevents-actiontypes)
     * [MDI Table: IdentityQueryEvents](#table-identityqueryevents-mdi)
         * [ActionTypes](#identityqueryevents-actiontypes)
@@ -28,8 +28,8 @@ Schema Overview
         * [ActionTypes](#identitydirectoryevents-actiontypes)
     * [MDA Table: CloudAppEvents](#table-cloudappevents-mda)
         * [ActionTypes](#cloudappevents-actiontypes)
-    * [MDI Table: AADSpnSignInEventsBeta](#table-aadspnsignineventsbeta-mdi)
-    * [MDI Table: AADSignInEventsBeta](#table-aadsignineventsbeta-mdi)
+    * [MDI/MDA Table: AADSpnSignInEventsBeta](#table-aadspnsignineventsbeta-mdimda)
+    * [MDI/MDA Table: AADSignInEventsBeta](#table-aadsignineventsbeta-mdimda)
   * [Email](#email)
     * [MDO Table: EmailEvents](#table-emailevents-mdo)
     * [MDO Table: EmailAttachmentInfo](#table-emailattachmentinfo-mdo)
@@ -173,7 +173,7 @@ AlertEvidence
 
 # Apps & identities
 
-## Table: IdentityInfo (MDI)
+## Table: IdentityInfo (MDI/MDA)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identityinfo-table?view=o365-worldwide)
 **Description:** Account information from various sources, including Azure Active Directory. The IdentityInfo table in the advanced hunting schema contains information about user accounts obtained from various services, including Azure Active Directory. Use this reference to construct queries that return information from this table.
 
@@ -215,7 +215,7 @@ IdentityInfo
 | summarize by AccountObjectId, AccountUpn
 ```
 
-## Table: IdentityLogonEvents (MDI)
+## Table: IdentityLogonEvents (MDI/MDA)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identitylogonevents-table?view=o365-worldwide)
 **Description:** Authentication events recorded by Active Directory and other Microsoft online services. The IdentityLogonEvents table in the advanced hunting schema contains information about authentication activities made through your on-premises Active Directory captured by Microsoft Defender for Identity and authentication activities related to Microsoft online services captured by Microsoft Defender for Cloud Apps. Use this reference to construct queries that return information from this table.
 
@@ -536,7 +536,7 @@ CloudAppEvents
 | take 100
 ```
 
-## Table: AADSpnSignInEventsBeta (MDI)
+## Table: AADSpnSignInEventsBeta (MDI/MDA)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadspnsignineventsbeta-table?view=o365-worldwide)
 **Description:** Information about sign-in events initiated by Azure Active Directory (AAD) service principal or managed identities. The AADSpnSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory service principal and managed identity sign-ins. You can learn more about the different kinds of sign-ins in Azure Active Directory sign-in activity reports - preview.
 
@@ -589,7 +589,7 @@ AADSpnSignInEventsBeta
 | order by LastSignIn desc
 ```
 
-## Table: AADSignInEventsBeta (MDI)
+## Table: AADSignInEventsBeta (MDI/MDA)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
 **Description:** Information about Azure Active Directory (AAD) sign-in events either by a user (interactive) or a client on the user's behalf (non-interactive). The AADSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory interactive and non-interactive sign-ins. Learn more about sign-ins in Azure Active Directory sign-in activity reports - preview.
 
