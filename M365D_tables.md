@@ -2,63 +2,79 @@
 
 Microsoft 365 Defender / Azure Sentinel Detections -> [Microsoft Sentinel and Microsoft 365 Defender](https://github.com/Azure/Azure-Sentinel)
 
+### Table Schema:
+| Acronym | Product |
+| :--- | :--- |
+| **MS365D** | Microsoft 365 Defender
+| **MDI** | Microsoft Defender for Identity
+| **MDE** | Microsoft Defender for Endpoint
+| **MDA** | Microsoft Defender for Cloud Apps
+| **MDO** | Microsoft Defender for Office 365
+| **TVM** | Microsoft Defender Vulnerability Management
+
 Schema Overview
 =================
   * [All ActionTypes](#all-actiontypes)
   * [Alerts](#alerts)
-    * [Table: AlertInfo](#alertinfo)
-    * [Table: AlertEvidence](#alertevidence)
+    * [MS365D Table: AlertInfo](#table-alertinfo-ms365d)
+    * [MS365D Table: AlertEvidence](#table-alertevidence-ms365d)
   * [Apps & identities](#apps--identities)
-    * [Table: IdentityInfo](#identityinfo)
-    * [Table: IdentityLogonEvents](#identitylogonevents)
-        * [Table: IdentityLogonEvents ActionTypes](#identitylogonevents-actiontypes)
-    * [Table: IdentityQueryEvents](#identityqueryevents)
-        * [Table: IdentityQueryEvents ActionTypes](#identityqueryevents-actiontypes)
-    * [Table: IdentityDirectoryEvents](#identitydirectoryevents)
-        * [Table: IdentityDirectoryEvents ActionTypes](#identitydirectoryevents-actiontypes)
-    * [Table: CloudAppEvents](#cloudappevents)
-        * [Table: CloudAppEvents ActionTypes](#cloudappevents-actiontypes)
-    * [Table: AADSpnSignInEventsBeta](#aadspnsignineventsbeta)
-    * [Table: AADSignInEventsBeta](#aadsignineventsbeta)
+    * [MDI Table: IdentityInfo](#table-identityinfo-mdi)
+    * [MDI Table: IdentityLogonEvents](#table-identitylogonevents-mdi)
+        * [ActionTypes](#identitylogonevents-actiontypes)
+    * [MDI Table: IdentityQueryEvents](#table-identityqueryevents-mdi)
+        * [ActionTypes](#identityqueryevents-actiontypes)
+    * [MDI Table: IdentityDirectoryEvents](#table-identitydirectoryevents-mdi)
+        * [ActionTypes](#identitydirectoryevents-actiontypes)
+    * [MDA Table: CloudAppEvents](#table-cloudappevents-mda)
+        * [ActionTypes](#cloudappevents-actiontypes)
+    * [MDI Table: AADSpnSignInEventsBeta](#table-aadspnsignineventsbeta-mdi)
+    * [MDI Table: AADSignInEventsBeta](#table-aadsignineventsbeta-mdi)
   * [Email](#email)
-    * [Table: EmailEvents](#emailevents)
-    * [Table: EmailAttachmentInfo](#emailattachmentinfo)
-    * [Table: EmailUrlInfo](#emailurlinfo)
-    * [Table: EmailPostDeliveryEvents](#emailpostdeliveryevents)
-        * [Table: EmailPostDeliveryEvents ActionTypes](#emailpostdeliveryevents-actiontypes)
-    * [Table: UrlClickEvents](#urlclickevents)
-        * [Table: UrlClickEvents ActionTypes](#urlclickevents-actiontypes)
+    * [MDO Table: EmailEvents](#table-emailevents-mdo)
+    * [MDO Table: EmailAttachmentInfo](#table-emailattachmentinfo-mdo)
+    * [MDO Table: EmailUrlInfo](#table-emailurlinfo-mdo)
+    * [MDO Table: EmailPostDeliveryEvents](#table-emailpostdeliveryevents-mdo)
+        * [ActionTypes](#emailpostdeliveryevents-actiontypes)
+    * [MDO Table: UrlClickEvents](#table-urlclickevents-mdo)
+        * [ActionTypes](#urlclickevents-actiontypes)
   * [Threat & Vulnerability Management](#threat--vulnerability-management)
-    * [Table: DeviceTvmSoftwareVulnerabilities](#devicetvmsoftwarevulnerabilities)
-    * [Table: DeviceTvmSoftwareVulnerabilitiesKB](#devicetvmsoftwarevulnerabilitieskb)
-    * [Table: DeviceTvmSecureConfigurationAssessment](#devicetvmsecureconfigurationassessment)
-    * [Table: DeviceTvmSecureConfigurationAssessmentKB](#devicetvmsecureconfigurationassessmentkb)
-    * [Table: DeviceTvmSoftwareInventory](#devicetvmsoftwareinventory)
-    * [Table: DeviceTvmInfoGathering](#devicetvminfogathering)
-    * [Table: DeviceTvmInfoGatheringKB](#devicetvminfogatheringkb)
-    * [Table: DeviceTvmSoftwareEvidenceBeta](#devicetvmsoftwareevidencebeta)
+    * [TVM Table: DeviceTvmSoftwareVulnerabilities](#table-devicetvmsoftwarevulnerabilities-tvm)
+    * [TVM Table: DeviceTvmSoftwareVulnerabilitiesKB](#table-devicetvmsoftwarevulnerabilitieskb-tvm)
+    * [TVM Table: DeviceTvmSecureConfigurationAssessment](#table-devicetvmsecureconfigurationassessment-tvm)
+    * [TVM Table: DeviceTvmSecureConfigurationAssessmentKB](#table-devicetvmsecureconfigurationassessmentkb-tvm)
+    * [TVM Add-on Table: DeviceBaselineComplianceAssessment](#table-devicebaselinecomplianceassessment-tvm-add-on)
+    * [TVM Add-on Table: DeviceBaselineComplianceAssessmentKB](#table-devicebaselinecomplianceassessmentkb-tvm-add-on)
+    * [TVM Table: DeviceTvmSoftwareInventory](#table-devicetvmsoftwareinventory-tvm)
+    * [TVM Add-on Table: DeviceTvmCertificateInfo](#table-devicetvmcertificateinfo-tvm-add-on)
+    * [TVM Add-on Table: DeviceBaselineComplianceProfiles](#table-devicebaselinecomplianceprofiles-tvm-add-on)
+    * [TVM Table: DeviceTvmInfoGathering](#table-devicetvminfogathering-tvm)
+    * [TVM Table: DeviceTvmInfoGatheringKB](#table-devicetvminfogatheringkb-tvm)
+    * [TVM Table: DeviceTvmSoftwareEvidenceBeta](#table-devicetvmsoftwareevidencebeta-tvm)
+    * [TVM Add-on Table: DeviceTvmBrowserExtensions](#table-devicetvmbrowserextensions-tvm-add-on)
+    * [TVM Add-on Table: DeviceTvmBrowserExtensionsKB](#table-devicetvmbrowserextensionskb-tvm-add-on)
   * [Devices](#devices)
-    * [Table: DeviceInfo](#deviceinfo)
-    * [Table: DeviceNetworkInfo](#devicenetworkinfo)
-    * [Table: DeviceProcessEvents](#deviceprocessevents)
-        * [Table: DeviceProcessEvents ActionTypes](#deviceprocessevents-actiontypes)
-    * [Table: DeviceNetworkEvents](#devicenetworkevents)
-        * [Table: DeviceNetworkEvents ActionTypes](#devicenetworkevents-actiontypes)
-    * [Table: DeviceFileEvents](#devicefileevents)
-        * [Table: DeviceFileEvents ActionTypes](#devicefileevents-actiontypes)
-    * [Table: DeviceRegistryEvents](#deviceregistryevents)
-        * [Table: DeviceRegistryEvents ActionTypes](#deviceregistryevents-actiontypes)
-    * [Table: DeviceLogonEvents](#devicelogonevents)
-        * [Table: DeviceLogonEvents ActionTypes](#devicelogonevents-actiontypes)
-    * [Table: DeviceImageLoadEvents](#deviceimageloadevents)
-        * [Table: DeviceImageLoadEvents ActionTypes](#deviceimageloadevents-actiontypes)
-    * [Table: DeviceEvents](#deviceevents)
-        * [Table: DeviceEvents ActionTypes](#deviceevents-actiontypes)
-    * [Table: DeviceFileCertificateInfo](#devicefilecertificateinfo)
+    * [MDE Table: DeviceInfo](#table-deviceinfo-mde)
+    * [MDE Table: DeviceNetworkInfo](#table-devicenetworkinfo-mde)
+    * [MDE Table: DeviceProcessEvents](#table-deviceprocessevents-mde)
+        * [ActionTypes](#deviceprocessevents-actiontypes)
+    * [MDE Table: DeviceNetworkEvents](#table-devicenetworkevents-mde)
+        * [ActionTypes](#devicenetworkevents-actiontypes)
+    * [MDE Table: DeviceFileEvents](#table-devicefileevents-mde)
+        * [ActionTypes](#devicefileevents-actiontypes)
+    * [MDE Table: DeviceRegistryEvents](#table-deviceregistryevents-mde)
+        * [ActionTypes](#deviceregistryevents-actiontypes)
+    * [MDE Table: DeviceLogonEvents](#table-devicelogonevents-mde)
+        * [ActionTypes](#devicelogonevents-actiontypes)
+    * [MDE Table: DeviceImageLoadEvents](#table-deviceimageloadevents-mde)
+        * [ActionTypes](#deviceimageloadevents-actiontypes)
+    * [MDE Table: DeviceEvents](#table-deviceevents-mde)
+        * [ActionTypes](#deviceevents-actiontypes)
+    * [MDE Table: DeviceFileCertificateInfo](#table-devicefilecertificateinfo-mde)
 
 # Alerts
 
-## AlertInfo
+## Table: AlertInfo (MS365D)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-alertinfo-table?view=o365-worldwide)
 **Description:** Alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Cloud App Security, and Microsoft Defender for Identity, including severity information and threat categorization. The AlertInfo table in the advanced hunting schema contains information about alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, and Microsoft Defender for Identity. Use this reference to construct queries that return information from this table.
 
@@ -92,7 +108,7 @@ AlertInfo
 | sort by AlertCount desc
 ```
 
-## AlertEvidence
+## Table: AlertEvidence (MS365D)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-alertevidence-table?view=o365-worldwide)
 **Description:** Files, IP addresses, URLs, users, or devices associated with alerts. The AlertEvidence table in the advanced hunting schema contains information about various entities—files, IP addresses, URLs, users, or devices—associated with alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Defender for Cloud Apps, and Microsoft Defender for Identity. Use this reference to construct queries that return information from this table.
 
@@ -157,7 +173,7 @@ AlertEvidence
 
 # Apps & identities
 
-## IdentityInfo
+## Table: IdentityInfo (MDI)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identityinfo-table?view=o365-worldwide)
 **Description:** Account information from various sources, including Azure Active Directory. The IdentityInfo table in the advanced hunting schema contains information about user accounts obtained from various services, including Azure Active Directory. Use this reference to construct queries that return information from this table.
 
@@ -199,7 +215,7 @@ IdentityInfo
 | summarize by AccountObjectId, AccountUpn
 ```
 
-## IdentityLogonEvents
+## Table: IdentityLogonEvents (MDI)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identitylogonevents-table?view=o365-worldwide)
 **Description:** Authentication events recorded by Active Directory and other Microsoft online services. The IdentityLogonEvents table in the advanced hunting schema contains information about authentication activities made through your on-premises Active Directory captured by Microsoft Defender for Identity and authentication activities related to Microsoft online services captured by Microsoft Defender for Cloud Apps. Use this reference to construct queries that return information from this table.
 
@@ -260,7 +276,7 @@ DeviceNetworkEvents
 | project Application, LogonType, ActionType, LogonTime, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine //, AccountName
 ```
 
-## IdentityQueryEvents
+## Table: IdentityQueryEvents (MDI)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identityqueryevents-table?view=o365-worldwide)
 **Description:** Query activities performed against Active Directory objects, such as users, groups, devices, and domains. The IdentityQueryEvents table in the advanced hunting schema contains information about queries performed against Active Directory objects, such as users, groups, devices, and domains. Use this reference to construct queries that return information from this table.
 
@@ -322,7 +338,7 @@ DeviceProcessEvents
 | project QueryTime, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, Query, QueryTarget //,AccountName
 ```
 
-## IdentityDirectoryEvents
+## Table: IdentityDirectoryEvents (MDI)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-identitydirectoryevents-table?view=o365-worldwide)
 **Description:** Events involving a domain controller or a directory service, such as Active Directory (AD ) or Azure AD. The IdentityDirectoryEvents table in the advanced hunting schema contains events involving an on-premises domain controller running Active Directory (AD). This table captures various identity-related events, like password changes, password expiration, and user principal name (UPN) changes. It also captures system events on the domain controller, like scheduling of tasks and PowerShell activity. Use this reference to construct queries that return information from this table.
 
@@ -421,7 +437,7 @@ IdentityDirectoryEvents
 | summarize LastPasswordChangeTime = max(Timestamp) by TargetAccountDisplayName // or change to TargetDeviceName for devcie account
 ```
 
-## CloudAppEvents
+## Table: CloudAppEvents (MDA)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-cloudappevents-table?view=o365-worldwide)
 **Description:** Events involving accounts and objects in Office 365 and other cloud apps and services. The CloudAppEvents table in the advanced hunting schema contains information about activities in various cloud apps and services covered by Microsoft Defender for Cloud Apps. For a complete list, jump to Apps and services covered. Use this reference to construct queries that return information from this table.
 
@@ -520,7 +536,7 @@ CloudAppEvents
 | take 100
 ```
 
-## AADSpnSignInEventsBeta
+## Table: AADSpnSignInEventsBeta (MDI)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadspnsignineventsbeta-table?view=o365-worldwide)
 **Description:** Information about sign-in events initiated by Azure Active Directory (AAD) service principal or managed identities. The AADSpnSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory service principal and managed identity sign-ins. You can learn more about the different kinds of sign-ins in Azure Active Directory sign-in activity reports - preview.
 
@@ -573,7 +589,7 @@ AADSpnSignInEventsBeta
 | order by LastSignIn desc
 ```
 
-## AADSignInEventsBeta
+## Table: AADSignInEventsBeta (MDI)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-aadsignineventsbeta-table?view=o365-worldwide)
 **Description:** Information about Azure Active Directory (AAD) sign-in events either by a user (interactive) or a client on the user's behalf (non-interactive). The AADSignInEventsBeta table in the advanced hunting schema contains information about Azure Active Directory interactive and non-interactive sign-ins. Learn more about sign-ins in Azure Active Directory sign-in activity reports - preview.
 
@@ -653,7 +669,7 @@ AADSignInEventsBeta
 
 # Email
 
-## EmailEvents
+## Table: EmailEvents (MDO)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-emailevents-table?view=o365-worldwide)
 **Description:** Office 365 email events, including email delivery and blocking events. The EmailEvents table in the advanced hunting schema contains information about events involving the processing of emails on Microsoft Defender for Office 365. Use this reference to construct queries that return information from this table.
 
@@ -717,7 +733,7 @@ EmailEvents
 | limit 500
 ```
 
-## EmailAttachmentInfo
+## Table: EmailAttachmentInfo (MDO)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-emailattachmentinfo-table?view=o365-worldwide)
 **Description:** Information about files attached to Office 365 emails. The EmailAttachmentInfo table in the advanced hunting schema contains information about attachments on emails processed by Microsoft Defender for Office 365. Use this reference to construct queries that return information from this table.
 
@@ -767,7 +783,7 @@ EmailEvents
 | take 100
 ```
 
-## EmailUrlInfo
+## Table: EmailUrlInfo (MDO)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-emailurlinfo-table?view=o365-worldwide)
 **Description:** Information about URLs on Office 365 emails. The EmailUrlInfo table in the advanced hunting schema contains information about URLs on emails and attachments processed by Microsoft Defender for Office 365. Use this reference to construct queries that return information from this table.
 
@@ -792,7 +808,7 @@ EmailEvents
 | project Timestamp, Subject, SenderFromAddress, RecipientEmailAddress, NetworkMessageId, Url, UrlCount
 ```
 
-## EmailPostDeliveryEvents
+## Table: EmailPostDeliveryEvents (MDO)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-emailpostdeliveryevents-table?view=o365-worldwide)
 **Description:** Security events that occur post-delivery, after Office 365 has delivered an email message to the recipient mailbox. The EmailPostDeliveryEvents table in the advanced hunting schema contains information about post-delivery actions taken on email messages processed by Microsoft 365. Use this reference to construct queries that return information from this table.
 
@@ -842,7 +858,7 @@ EmailEvents
 | join EmailPostDeliveryEvents on NetworkMessageId, RecipientEmailAddress
 ```
 
-## UrlClickEvents
+## Table: UrlClickEvents (MDO)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-urlclickevents-table?view=o365-worldwide)
 **Description:** Events involving URLs clicked, selected, or requested on Microsoft Defender for Office 365. The UrlClickEvents table in the advanced hunting schema contains information about Safe Links clicks from email messages, Microsoft Teams, and Office 365 apps in supported desktop, mobile, and web apps.
 
@@ -884,7 +900,7 @@ UrlClickEvents
 
 # Threat & Vulnerability Management
 
-## DeviceTvmSoftwareVulnerabilities
+## Table: DeviceTvmSoftwareVulnerabilities (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwarevulnerabilities-table?view=o365-worldwide)
 **Description:** Software vulnerabilities found on devices and the list of available security updates that address each vulnerability. The DeviceTvmSoftwareVulnerabilities table in the advanced hunting schema contains the Threat & Vulnerability Management list of vulnerabilities in installed software products. This table also includes operating system information, CVE IDs, and vulnerability severity information. You can use this table, for example, to hunt for events involving devices that have severe vulnerabilities in their software. Use this reference to construct queries that return information from the table.
 
@@ -914,7 +930,7 @@ DeviceTvmSoftwareVulnerabilities
 | limit 100
 ```
 
-## DeviceTvmSoftwareVulnerabilitiesKB
+## Table: DeviceTvmSoftwareVulnerabilitiesKB (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwarevulnerabilitieskb-table?view=o365-worldwide)
 **Description:** Knowledge base of publicly disclosed vulnerabilities, including whether exploit code is publicly available. The DeviceTvmSoftwareVulnerabilitiesKB table in the advanced hunting schema contains the list of vulnerabilities Threat & Vulnerability Management assesses devices for. Use this reference to construct queries that return information from the table.
 
@@ -946,7 +962,7 @@ DeviceTvmSoftwareVulnerabilitiesKB
 | where CveId == 'CVE-2020-0791'
 ```
 
-## DeviceTvmSecureConfigurationAssessment
+## Table: DeviceTvmSecureConfigurationAssessment (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsecureconfigurationassessment-table?view=o365-worldwide)
 **Description:** Threat & Vulnerability Management assessment events, indicating the status of various security configurations on devices. Each row in the DeviceTvmSecureConfigurationAssessment table contains an assessment event for a specific security configuration from Threat & Vulnerability Management. Use this reference to check the latest assessment results and determine whether devices are compliant. You can join this table with the DeviceTvmSecureConfigurationAssessmentKB table using ConfigurationId so you can, for example, view the text description of the configuration from the ConfigurationDescription column of the DeviceTvmSecureConfigurationAssessmentKB table, in the configuration assessment results.
 
@@ -979,7 +995,7 @@ DeviceTvmSecureConfigurationAssessment
 | project DeviceName, OSPlatform, ConfigurationId, ConfigurationName, ConfigurationCategory, ConfigurationSubcategory, ConfigurationDescription, RiskDescription, ConfigurationImpact, Tags
 ```
 
-## DeviceTvmSecureConfigurationAssessmentKB
+## Table: DeviceTvmSecureConfigurationAssessmentKB (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsecureconfigurationassessmentkb-table?view=o365-worldwide)
 **Description:** Knowledge base of various security configurations used by Threat & Vulnerability Management to assess devices; includes mappings to various standards and benchmarks. The DeviceTvmSecureConfigurationAssessmentKB table in the advanced hunting schema contains information about the various secure configurations checked by Threat & Vulnerability Management. It also includes risk information, related industry benchmarks, and applicable MITRE ATT&CK techniques and tactics. This table doesn't return events or records. We recommend joining this table to the DeviceTvmSecureConfigurationAssessment table using ConfigurationId to view text information about the security configurations in the returned assessments. For example, when you query the DeviceTvmSecureConfigurationAssessment table you might want to view the ConfigurationDescription for the security configurations that come up in the assessment results. You can see this information by joining this table to DeviceTvmSecureConfigurationAssessment using ConfigurationId and project ConfigurationDescription.
 
@@ -1010,7 +1026,45 @@ DeviceTvmSecureConfigurationAssessment
 | project DeviceName, OSPlatform, ConfigurationId, ConfigurationName, ConfigurationCategory, ConfigurationSubcategory, ConfigurationDescription, RiskDescription, ConfigurationImpact, Tags
 ```
 
-## DeviceTvmSoftwareInventory
+## Table: DeviceBaselineComplianceAssessment (TVM Add-on)
+officially undocumented (yet)
+**Description:** Baseline compliance assessment snapshot, indicating the status of various security configurations related to baseline profiles on devices
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **DeviceId** | Unique identifier for the device in the service
+| **DeviceName** | Fully qualified domain name (FQDN) of the device
+| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
+| **OSVersion** | Version of the operating system running on the machine
+| **ConfigurationId** | Unique identifier for a specific configuration
+| **ProfileId** | Unique identifier for the profile
+| **IsCompliant** | Indicates whether the device that initiated the event is compliant or not
+| **IsApplicable** | Indicates whether the configuration or policy is applicable
+| **Source** | The registry path or other location used to determine the current device setting
+| **RecommendedValue** | Set of expected values for the current device setting to be complaint
+| **CurrentValue** | Set of detected values found on the device
+
+## Table: DeviceBaselineComplianceAssessmentKB (TVM Add-on)
+officially undocumented (yet)
+**Description:** Knowledge base of various security configurations used by baseline compliance to assess devices
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **ConfigurationId** | Unique identifier for a specific configuration
+| **ConfigurationName** | Display name of the configuration
+| **ConfigurationDescription** | Description of the configuration
+| **ConfigurationRationale** | Description of any associated risks and rationale behind the configuration
+| **ConfigurationCategory** | Category or grouping to which the configuration belongs
+| **BenchmarkProfileLevels** | List of benchmark compliance levels for which the configuration is applicable
+| **CCEReference** | Unique Common Configuration Enumeration (CCE) identifier for the configuration
+| **RemediationOptions** | Recommended actions to reduce or address any associated risks
+| **ConfigurationBenchmark** | Industry benchmark recommending the configuration
+| **Source** | The registry path or other location used to determine the current device setting
+| **RecommendedValue** | Set of expected values for the current device setting to be complaint
+    
+## Table: DeviceTvmSoftwareInventory (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwareinventory-table?view=o365-worldwide)
 **Description:** Inventory of software installed on devices, including their version information and end-of-support status. The DeviceTvmSoftwareInventory table in the advanced hunting schema contains the Threat & Vulnerability Management inventory of software currently installed on devices in your network, including end of support information. You can, for instance, hunt for events involving devices that are installed with a currently vulnerable software version. Use this reference to construct queries that return information from the table.
 
@@ -1054,7 +1108,50 @@ DeviceWithCriticalCve
 | project DeviceId, DeviceName, NumOfVulnerabilities, HighSevAlerts
 ```
 
-## DeviceTvmInfoGathering
+## Table: DeviceTvmCertificateInfo (TVM Add-on)
+officially undocumented (yet)
+**Description:** Certificate information for devices in the organization
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **DeviceId** | Unique identifier for the device in the service
+| **Thumbprint** | Unique identifier for the certificate
+| **Path** | The location of the certificate
+| **SerialNumber** | Unique identifier for the certificate within a certificate authority's systems
+| **IssuedTo** | Entity that a certificate belongs to; can be a device, an individual, or an organization
+| **IssuedBy** | Entity that verified the information and signed the certificate
+| **FriendlyName** | Easy-to-understand version of a certificate's title
+| **SignatureAlgorithm** | Hashing algorithm and encryption algorithm used
+| **KeySize** | Size of the key used in the signature algorithm
+| **ExpirationDate** | The date and time beyond which the certificate is no longer valid
+| **IssueDate** | The earliest date and time when the certificate became valid
+| **SubjectType** | Indicates if the holder of the certificate is a CA or end entity
+| **KeyUsage** | The valid cryptographic uses of the certificate's public key
+| **ExtendedKeyUsage** | Other valid uses for the certificate
+
+## Table: DeviceBaselineComplianceProfiles (TVM Add-on)
+officially undocumented (yet)
+**Description:** Baseline profiles used for monitoring device baseline compliance
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **ProfileId** | Unique identifier for the profile
+| **ProfileName** | Display name of the profile
+| **ProfileDescription** | Optional description providing additional information related to the profile
+| **OSPlatform** | Platform of the operating system running on the device. This indicates specific operating systems, including variations within the same family, such as Windows 10 and Windows 7
+| **OSVersion** | Version of the operating system running on the machine
+| **BaseBenchmark** | Industry benchmark on top of which the profile was created
+| **BenchmarkVersion** | Version of the industry benchmark on top of which the profile was created
+| **BenchmarkProfileLevel** | Benchmark compliance level set for the profile
+| **Status** | Indicator of the profile status - can be Enabled or Disabled
+| **CreatedBy** | Identity of the user account who created the profile
+| **CreatedOn** | Date and time when the profile was created
+| **LastUpdatedBy** | Identity of the user account who last updated the profile
+| **LastUpdatedOn** | Date and time when the profile was last updated
+
+## Table: DeviceTvmInfoGathering (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvminfogathering-table?view=o365-worldwide)
 **Description:** The DeviceTvmInfoGathering table contains Threat & Vulnerability Management assessment events including the status of various configurations and attack surface area states of devices. The DeviceTvmInfoGathering table in the advanced hunting schema contains Microsoft Defender Vulnerability Management assessment events including the status of various configurations and attack surface area states of devices. You can use this table to hunt for assessment events related to mitigation for zero-days, posture assessment for emerging threats supporting threat analytics mitigation status reports, enabled TLS protocol versions on servers, and more. Use this reference to construct queries that return information from the table.
 
@@ -1081,7 +1178,7 @@ DeviceTvmInfoGathering
 | summarize any(DeviceName), any(AdditionalFields.Log4JEnvironmentVariableMitigation) by DeviceId
 ```
 
-## DeviceTvmInfoGatheringKB
+## Table: DeviceTvmInfoGatheringKB (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvminfogatheringkb-table?view=o365-worldwide)
 **Description:** The DeviceTvmInfoGatheringKB table contains the list of various configuration and attack surface area assessments used by Threat & Vulnerability Management information gathering to assess devices. The DeviceTvmInfoGatheringKB table in the advanced hunting schema contains metadata for Microsoft Defender Vulnerability Management assessment events data collected in the DeviceTvmInfoGathering table. The DeviceTvmInfoGatheringKB table contains the list of various configuration and attack surface area assessments used by Defender Vulnerability Management information gathering to assess devices. Use this reference to construct queries that return information from the table.
 
@@ -1103,7 +1200,7 @@ DeviceTvmInfoGatheringKB
 | where Categories contains "tls"
 ```
 
-## DeviceTvmSoftwareEvidenceBeta
+## Table: DeviceTvmSoftwareEvidenceBeta (TVM)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvmsoftwareevidencebeta-table?view=o365-worldwide)
 **Description:** Evidence indicating the existence of a software on a device based on registry paths, disk paths, or both. The DeviceTvmSoftwareEvidenceBeta table in the advanced hunting schema contains data from Threat & Vulnerability Management related to the software evidence section. This table allows you to view evidence of where a specific software was detected on a device. You can use this table, for example, to identify the file paths of specific software. Use this reference to construct queries that return information from the table.
 
@@ -1118,9 +1215,46 @@ DeviceTvmInfoGatheringKB
 | **DiskPaths** | Disk paths where file-level evidence indicating the existence of the software on a device was detected
 | **LastSeenTime** | Date and time when the device last seen by this service
 
+## Table: DeviceTvmBrowserExtensions (TVM Add-on)
+officially undocumented (yet)
+**Description:** Browser extension installations found on devices as shown in Threat & Vulnerability Management
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **DeviceId** | Unique identifier for the device in the service
+| **BrowserName** | Name of the web browser with the extension
+| **ExtensionId** | Unique identifier for the browser extension
+| **ExtensionName** | Name of the extension
+| **ExtensionDescription** | Description from the publisher about the extension
+| **ExtensionVersion** | Version number of the extension
+| **ExtensionRisk** | Risk level for the extension based on the permissions it has requested
+| **ExtensionVendor** | Name of the vendor offering the extension
+| **IsActivated** | Whether the extension is turned on or off on the devices
+| **InstallationTime** | Date and time when the browser extension was first installed
+
+## Table: DeviceTvmBrowserExtensionsKB (TVM Add-on)
+officially undocumented (yet)
+**Description:** Knowledge base of browser extension details and permission information used in the Threat & Vulnerability Management browser extensions page
+
+### Table Schema:
+| Field | Description |
+| :--- | :--- |
+| **BrowserName** | Name of the web browser with the extension
+| **ExtensionId** | Unique identifier for the browser extension
+| **ExtensionName** | Name of the extension
+| **ExtensionDescription** | Description from the publisher about the extension
+| **ExtensionVersion** | Version number of the extension
+| **ExtensionRisk** | Risk level for the extension based on the permissions it has requested
+| **PermissionId** | Unique identifier for the permission
+| **PermissionName** | Name given to each permission based on what the extension is asking for
+| **PermissionDescription** | Explanation of what the permission is supposed to do
+| **PermissionRisk** | Risk level for the permission based on the type of access it would allow
+| **IsPermissionRequired** | Whether the permission is required for the extension to run, or optional  
+    
 # Devices
 
-## DeviceInfo
+## Table: DeviceInfo (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-deviceinfo-table?view=o365-worldwide)
 **Description:** Machine information, including OS information. The DeviceInfo table in the advanced hunting schema contains information about devices in the organization, including OS version, active users, and computer name. Use this reference to construct queries that return information from this table.
 
@@ -1174,7 +1308,7 @@ DeviceInfo
 | summarize by LoggedOnUsers
 ```
 
-## DeviceNetworkInfo
+## Table: DeviceNetworkInfo (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicenetworkevents-table?view=o365-worldwide)
 **Description:** Network properties of machines, including adapters, IP and MAC addresses, as well as connected networks and domains. The DeviceNetworkEvents table in the advanced hunting schema contains information about network connections and related events. Use this reference to construct queries that return information from this table.
 
@@ -1242,7 +1376,7 @@ DeviceNetworkInfo
 | sort by TimeDifference asc
 ```
 
-## DeviceProcessEvents
+## Table: DeviceProcessEvents (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-deviceprocessevents-table?view=o365-worldwide)
 **Description:** Process creation and related events. The DeviceProcessEvents table in the advanced hunting schema contains information about process creation and related events. Use this reference to construct queries that return information from this table.
 
@@ -1343,7 +1477,7 @@ DeviceProcessEvents
 | where (ProcessCreateTime - EmailRecievedTime) between (0min .. 30min)
 ```
 
-## DeviceNetworkEvents
+## Table: DeviceNetworkEvents (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicenetworkevents-table?view=o365-worldwide)
 **Description:** Network connection and related events. The DeviceNetworkEvents table in the advanced hunting schema contains information about network connections and related events. Use this reference to construct queries that return information from this table.
 
@@ -1438,7 +1572,7 @@ DeviceNetworkEvents
 | order by DeviceCount desc
 ```
 
-## DeviceFileEvents
+## Table: DeviceFileEvents (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicefileevents-table?view=o365-worldwide)
 **Description:** File creation, modification, and other file system events. The DeviceFileEvents table in the advanced hunting schema contains information about file creation, modification, and other file system events. Use this reference to construct queries that return information from this table.
 
@@ -1531,7 +1665,7 @@ AccountObjectId , IPAddress, CountryCode , LastTimeSeenOnDevice, DeviceName, Dev
 | limit 100
 ```
 
-## DeviceRegistryEvents
+## Table: DeviceRegistryEvents (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-deviceregistryevents-table?view=o365-worldwide)
 **Description:** Creation and modification of registry entries. The DeviceRegistryEvents table in the advanced hunting schema contains information about the creation and modification of registry entries. Use this reference to construct queries that return information from this table.
 
@@ -1616,7 +1750,7 @@ and RegistryValueData has "1" and isnotempty(PreviousRegistryValueData) and Time
 | project Timestamp, ActionType, DeviceId , DeviceName, RegistryKey, RegistryValueName , RegistryValueData,  PreviousRegistryValueData
 ```
 
-## DeviceLogonEvents
+## Table: DeviceLogonEvents (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicelogonevents-table?view=o365-worldwide)
 **Description:** Sign-ins and other authentication events. The DeviceLogonEvents table in the advanced hunting schema contains information about user logons and other authentication events on devices. Use this reference to construct queries that return information from this table.
 
@@ -1701,7 +1835,7 @@ DeviceLogonEvents
 | take 10
 ```
 
-## DeviceImageLoadEvents
+## Table: DeviceImageLoadEvents (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-deviceimageloadevents-table?view=o365-worldwide)
 **Description:** DLL loading events. The DeviceImageLoadEvents table in the advanced hunting schema contains information about DLL loading events. Use this reference to construct queries that return information from this table.
 
@@ -1751,7 +1885,7 @@ DeviceLogonEvents
 | :--- | :--- |
 | **ImageLoaded** | A dynamic link library (DLL) was loaded.
 
-## DeviceEvents
+## Table: DeviceEvents (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-deviceevents-table?view=o365-worldwide)
 **Description:** Multiple event types, including events triggered by security controls such as Windows Defender Antivirus and exploit protection. The miscellaneous device events or DeviceEvents table in the advanced hunting schema contains information about various event types, including events triggered by security controls, such as Windows Defender Antivirus and exploit protection. Use this reference to construct queries that return information from this table.
 
@@ -2023,7 +2157,7 @@ Manufacturer = todynamic(AdditionalFields)["Manufacturer"], Volume = todynamic(A
 | summarize lastInsert = max(Timestamp) by tostring(ProductName), tostring(SerialNumber), tostring(Manufacturer), tostring(Volume)
 ```
 
-## DeviceFileCertificateInfo
+## Table: DeviceFileCertificateInfo (MDE)
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/mtp/advanced-hunting-devicefilecertificateinfo-table?view=o365-worldwide)
 **Description:** Certificate information of signed files obtained from certificate verification events on endpoints. The DeviceFileCertificateInfo table in the advanced hunting schema contains information about file signing certificates. This table uses data obtained from certificate verification activities regularly performed on files on endpoints.
 
@@ -2069,7 +2203,7 @@ DeviceFileCertificateInfo
 # All ActionTypes
 
 In Microsoft documentation all Advanced hunting tables except the table CloudAppEvents have ActionTypes documented. CloudAppEvents has over 600+ ActionTypes which are not part of this list. CloudAppEvents = Defender for Cloud Apps (MDA) table which has O365 Management API, Azure Sign-In/Audit-Logs, Teams, Slack, Github, AWS, etc. all connected Apps hence the number of ActionTypes for this table is enormous.
-Microsoft uses MDA as fusion-engine for their XDR approach, so it is likely that this table will be used centrally to contain data from several products (used for correlation). Depending on integration between MDE/MDI/MDO/MDA this table has redundant Action Types.
+Microsoft uses MDA as fusion-engine for their XDR approach, so it is likely that this table will be used centrally to contain data from several products (used for correlation). Depending on integration between MDE/MDI/MDO/MDA/AIP this table has redundant Action Types.
 
 | ActionType | Description |
 | :--- | :--- |
@@ -2229,9 +2363,7 @@ Microsoft uses MDA as fusion-engine for their XDR approach, so it is likely that
 | **ListeningConnectionCreated** | A process has started listening for connections on a certain port.
 | **LogonAttempted** | A user attempted to log on to the device.
 | **LogonFailed** | A user attempted to logon to the device but failed.
-| **LogonFailed** | A user attempted to logon to the device but failed.
 | **LogonRightsSettingEnabled** | Interactive logon rights on the machine were granted to a user.
-| **LogonSuccess** | A user successfully logged on to the device.
 | **LogonSuccess** | A user successfully logged on to the device.
 | **Malware ZAP** | Zero-hour auto purge (ZAP) took action on an email message found containing malware after delivery.
 | **Manual remediation** | An administrator manually took action on an email message after it was delivered to the user mailbox. This includes actions taken manually through Threat Explorer or approvals of automated investigation and response (AIR) actions.
