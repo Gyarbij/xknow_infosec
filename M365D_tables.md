@@ -1037,6 +1037,23 @@ DeviceTvmSoftwareInventory
 | summarize dcount(DeviceId ) by SoftwareName
 ```
 
+#### Search devices with High active alerts or Critical CVE public exploit
+```
+let DeviceWithHighAlerts = AlertInfo
+| where Severity == "High"
+| project Timestamp, AlertId, Title, ServiceSource, Severity
+| join kind=inner (AlertEvidence | where EntityType == "Machine" | project AlertId, DeviceId, DeviceName) on AlertId
+| summarize HighSevAlerts = dcount(AlertId) by DeviceId;
+let DeviceWithCriticalCve = DeviceTvmSoftwareVulnerabilities
+| join kind=inner(DeviceTvmSoftwareVulnerabilitiesKB) on CveId
+| where IsExploitAvailable == 1 and CvssScore >= 7
+| summarize NumOfVulnerabilities=dcount(CveId),
+DeviceName=any(DeviceName) by DeviceId;
+DeviceWithCriticalCve
+| join kind=inner DeviceWithHighAlerts on DeviceId
+| project DeviceId, DeviceName, NumOfVulnerabilities, HighSevAlerts
+```
+
 ## DeviceTvmInfoGathering
 [[Link to MS-Source]](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-devicetvminfogathering-table?view=o365-worldwide)
 **Description:** The DeviceTvmInfoGathering table contains Threat & Vulnerability Management assessment events including the status of various configurations and attack surface area states of devices. The DeviceTvmInfoGathering table in the advanced hunting schema contains Microsoft Defender Vulnerability Management assessment events including the status of various configurations and attack surface area states of devices. You can use this table to hunt for assessment events related to mitigation for zero-days, posture assessment for emerging threats supporting threat analytics mitigation status reports, enabled TLS protocol versions on servers, and more. Use this reference to construct queries that return information from the table.
