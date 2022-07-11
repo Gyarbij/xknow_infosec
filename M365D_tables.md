@@ -1,6 +1,8 @@
 # Microsoft Defender 365 Advanced hunting full schema reference
 
-Microsoft 365 Defender / Azure Sentinel Detections -> [Microsoft Sentinel and Microsoft 365 Defender](https://github.com/Azure/Azure-Sentinel)
+[MS 365 Advanced hunting schema tables reference](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-schema-tables?view=o365-worldwide)
+
+[MS 365 Defender/Azure Sentinel detections/custom KQL querries](https://github.com/Azure/Azure-Sentinel)
 
 ### Table Schema:
 | Acronym | Product |
