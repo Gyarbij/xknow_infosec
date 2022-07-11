@@ -1,4 +1,4 @@
-# Microsoft Defender 365 raw data schema - Overview
+# Microsoft Defender 365 Advanced hunting full schema reference
 
 Microsoft 365 Defender / Azure Sentinel Detections -> [Microsoft Sentinel and Microsoft 365 Defender](https://github.com/Azure/Azure-Sentinel)
 
