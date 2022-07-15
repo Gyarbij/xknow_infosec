@@ -14,7 +14,7 @@
 - Blog: [Detecting LDAPFragger — A newly released Cobalt Strike Beacon using LDAP for C2 communication (blueteamers approach)](https://medium.com/@ivecodoe/detecting-ldapfragger-a-newly-released-cobalt-strike-beacon-using-ldap-for-c2-communication-c274a7f00961)
 - Blog: [Windows Event ID 4649 “A replay attack was detected“ — Oh really? Are we under ATTACK? Should we do Incident Response?](https://medium.com/@ivecodoe/windows-event-id-4649-a-replay-attack-was-detected-ab02968d91ee)
 
-## Github recommendations
+# xknow_infosec - Github recommendations
 
 ![Total](https://img.shields.io/badge/Total-508-green.svg)
 ![Date](https://img.shields.io/badge/Date-2022--07--15-blue.svg)
