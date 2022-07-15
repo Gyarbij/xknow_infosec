@@ -1,4 +1,4 @@
-# Microsoft Defender 365 Advanced hunting full schema reference
+# Microsoft Defender 365 Advanced hunting full schema reference (Streaming API overview)
 
 [MS 365 Advanced hunting schema tables reference](https://docs.microsoft.com/en-US/microsoft-365/security/defender/advanced-hunting-schema-tables?view=o365-worldwide)
 
