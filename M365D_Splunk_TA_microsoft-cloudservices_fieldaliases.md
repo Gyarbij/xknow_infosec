@@ -1,15 +1,12 @@
 # Improved Field naming in Splunk_TA_microsoft-cloudservices for Azure Eventhub data containing Microsoft 365 Defender events
 
-When using the TA-App [**Splunk Add-on for Microsoft Cloud Services**](https://splunkbase.splunk.com/app/3110/) for ingesting Azure Event Hub data (for example Azure AuditLogs, Azure SignInLogs, Defender for Endpoint Streaming API events)
-JSON data will be correctly extracted using KV_MODE=json, but since data is nested JSON within body.records.properties the field naming will be ugly and inefficient.
+When using TA-App [**Splunk Add-on for Microsoft Cloud Services**](https://splunkbase.splunk.com/app/3110/) for ingesting Azure Event Hub data (for example Azure AuditLogs, Azure SignInLogs, Defender for Endpoint Streaming API events) JSON data will be correctly extracted using KV_MODE=json, but since data is nested JSON within body.records.properties the field naming will be ugly and inefficient.
 
-Please note: the TA-App [**Microsoft Azure Add-on for Splunk**](https://splunkbase.splunk.com/app/3757/) does not have this field naming issue, but is deprecated for Azure Event Hubs collection and therefore shouldn't be used anymore.
+Please note: TA-App [**Microsoft Azure Add-on for Splunk**](https://splunkbase.splunk.com/app/3757/) doesn't have this field naming issue, but is deprecated for Azure Event Hubs ingestion and therefore shouldn't be used anymore.
 
-There existing another TA-App called [**Splunk Add-on for Microsoft Defender for Endpoint Advanced Hunting**](https://github.com/splunk/TA-microsoft-365-defender-advanced-hunting-add-on/blob/master/default/props.conf) which adds CIM-support by Splunk officially for Microsoft 365 Defender for Endpoint streaming API raw data, but it's still work-in-progress. This App could later be officially used to normalize MDE raw data field names against Splunk's Common-Information-Model (CIM) - meanwhile use the temporary solution as shown here:
+TA-App [**Splunk Add-on for Microsoft Defender for Endpoint Advanced Hunting**](https://splunkbase.splunk.com/app/5518/) adds official CIM support by Splunk for Microsoft 365 Defender for Endpoint streaming API data via Splunk Add-on for Microsoft Cloud Services (which with version 4.3.3+ was changed to loop body.records but you still end up with body.properties). You may now use the CIM fields, it does not fix core issue of field namings caused by Event Hubs message format. Below suggestions further down can be used during search-time for renaming. But if you don't want to use the CIM and don't want to rename fields during search-time, a Splunk Add-on which re-formats the Azure Event hubs message body.properties during index-time can be found here: [**Microsoft Cloud Services Event Hub True Fashion Add-on for Splunk**](https://splunkbase.splunk.com/app/6508/#/details) - this can be used with Splunk Add-on for Microsoft Cloud Services and removes Event Hub embedded overhead without doing any CIM mapping or field extractions - giving you simply direct field access.
 
-## You want to have your fields readable again
 <img src="/screenshots/M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.png" width="700" height="700" />
-
 
 ## Alternative A) Rename during Search-Time with sucessful KV_MODE=json
 ```
