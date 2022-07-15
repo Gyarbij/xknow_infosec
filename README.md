@@ -1,7 +1,7 @@
 # xknow_infosec - my InfoSec stuff
 
 - Twitter: [@xknow_infosec](https://www.twitter.com/xknow_infosec)
-- Github/Knowledge: [Microsoft Defender 365 Advanced hunting full schema reference (Streaming-API overview)](M365D_tables.md)
+- Github/Knowledge: [Microsoft Defender 365 Advanced hunting full schema reference (Streaming API overview)](M365D_tables.md)
 - Github/Knowledge: [Splunk Add-on for Microsoft Cloud Services improved field aliases for Azure event hub containing Microsoft 365 Defender events](M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.md)
 - Splunk/App: [Microsoft Cloud Services Event Hub True Fashion Add-on for Splunk](https://splunkbase.splunk.com/app/6508/#/details)
 - Microsoft/Detection: [Detects malicious SMB Named Pipes (used by common C2 frameworks)](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries/blob/master/Command%20and%20Control/C2-NamedPipe.md)
