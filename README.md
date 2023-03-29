@@ -1,5 +1,3 @@
-# xknow_infosec - InfoSec stuff
-
 - Twitter: [@xknow_infosec](https://www.twitter.com/xknow_infosec)
 - Github/Knowledge: [Microsoft Defender 365 Advanced hunting full schema reference (Streaming API overview)](M365D_tables.md)
 - Github/Knowledge: [Splunk Add-on for Microsoft Cloud Services improved field aliases for Azure event hub containing Microsoft 365 Defender events](M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.md)
@@ -14,47 +12,7 @@
 - Blog: [Detecting LDAPFragger — A newly released Cobalt Strike Beacon using LDAP for C2 communication (blueteamers approach)](https://medium.com/@ivecodoe/detecting-ldapfragger-a-newly-released-cobalt-strike-beacon-using-ldap-for-c2-communication-c274a7f00961)
 - Blog: [Windows Event ID 4649 “A replay attack was detected“ — Oh really? Are we under ATTACK? Should we do Incident Response?](https://medium.com/@ivecodoe/windows-event-id-4649-a-replay-attack-was-detected-ab02968d91ee)
 
-# xknow_infosec - Github recommendations
-
-## Contents
-
-- [Assembly](#assembly)
-- [AutoIt](#autoit)
-- [Batchfile](#batchfile)
-- [Boo](#boo)
-- [C](#c)
-- [C#](#c-1)
-- [C++](#c-2)
-- [CSS](#css)
-- [Dockerfile](#dockerfile)
-- [Go](#go)
-- [HCL](#hcl)
-- [HTML](#html)
-- [Haskell](#haskell)
-- [Inno Setup](#inno-setup)
-- [Java](#java)
-- [JavaScript](#javascript)
-- [Jinja](#jinja)
-- [Jupyter Notebook](#jupyter-notebook)
-- [Lua](#lua)
-- [Makefile](#makefile)
-- [Others](#others)
-- [PHP](#php)
-- [Pascal](#pascal)
-- [Perl](#perl)
-- [PowerShell](#powershell)
-- [Python](#python)
-- [Rich Text Format](#rich-text-format)
-- [Roff](#roff)
-- [Ruby](#ruby)
-- [Rust](#rust)
-- [SCSS](#scss)
-- [Scala](#scala)
-- [Shell](#shell)
-- [TypeScript](#typescript)
-- [VBA](#vba)
-- [XSLT](#xslt)
-- [YARA](#yara)
+# Github recommendations
 
 ## Assembly 
 
@@ -81,11 +39,14 @@
 
 ## C 
 
-- [akamai/akamai-security-research](https://github.com/akamai/akamai-security-research) - This repository includes code and IoCs that are the product of research done in Akamai's various security research teams.
 - [deepinstinct/Dirty-Vanity](https://github.com/deepinstinct/Dirty-Vanity) - A POC for the new injection technique, abusing windows fork API to evade EDRs. https://www.blackhat.com/eu-22/briefings/schedule/index.html#dirty-vanity-a-new-approach-to-code-injection--edr-bypass-28
+- [xforcered/Windows_LPE_AFD_CVE-2023-21768](https://github.com/xforcered/Windows_LPE_AFD_CVE-2023-21768) - LPE exploit for CVE-2023-21768
+- [Wack0/CVE-2022-21894](https://github.com/Wack0/CVE-2022-21894) - baton drop (CVE-2022-21894): Secure Boot Security Feature Bypass Vulnerability
+- [iovisor/bcc](https://github.com/iovisor/bcc) - BCC - Tools for BPF-based Linux IO analysis, networking, monitoring, and more
+- [akamai/akamai-security-research](https://github.com/akamai/akamai-security-research) - This repository includes code and IoCs that are the product of research done in Akamai's various security research teams.
 - [cilium/tetragon](https://github.com/cilium/tetragon) - eBPF-based Security Observability and Runtime Enforcement
 - [Wh04m1001/SysmonEoP](https://github.com/Wh04m1001/SysmonEoP) - 
-- [CodeXTF2/WindowSpy](https://github.com/CodeXTF2/WindowSpy) - WindowSpy is a Cobalt Strike Beacon Object File meant for targetted user surveillance.
+- [CodeXTF2/WindowSpy](https://github.com/CodeXTF2/WindowSpy) - WindowSpy is a Cobalt Strike Beacon Object File meant for targeted user surveillance.
 - [memtest86plus/memtest86plus](https://github.com/memtest86plus/memtest86plus) - Official repo for Memtest86+ v6 (based on pcmemtest)
 - [Ascotbe/Kernelhub](https://github.com/Ascotbe/Kernelhub) - :palm_tree:Linux、macOS、Windows Kernel privilege escalation vulnerability collection, with compilation environment, demo GIF map, vulnerability details, executable file  (提权漏洞合集)
 - [Idov31/Cronos](https://github.com/Idov31/Cronos) - PoC for a new sleep obfuscation technique leveraging waitable timers to evade memory scanners.
@@ -98,7 +59,7 @@
 - [seahop/patchETW](https://github.com/seahop/patchETW) - Function to patch ETW with syscalls
 - [Cracked5pider/CoffeeLdr](https://github.com/Cracked5pider/CoffeeLdr) - Beacon Object File Loader
 - [Cracked5pider/ShellcodeTemplate](https://github.com/Cracked5pider/ShellcodeTemplate) - An easily modifiable shellcode template for Windows x64/x86
-- [helpsystems/CreateProcess](https://github.com/helpsystems/CreateProcess) - A small PoC that creates processes in Windows
+- [fortra/CreateProcess](https://github.com/fortra/CreateProcess) - A small PoC that creates processes in Windows
 - [zimnyaa/noWatch](https://github.com/zimnyaa/noWatch) - Implant drop-in for EDR testing
 - [tanakh/cmdline](https://github.com/tanakh/cmdline) - A Command Line Parser
 - [microsoft/Windows-driver-samples](https://github.com/microsoft/Windows-driver-samples) - This repo contains driver samples prepared for use with Microsoft Visual Studio and the Windows Driver Kit (WDK). It contains both Universal Windows Driver and desktop-only driver samples.
@@ -118,7 +79,7 @@
 - [kyleavery/AceLdr](https://github.com/kyleavery/AceLdr) - Cobalt Strike UDRL for memory scanner evasion.
 - [eladshamir/RPC-Backdoor](https://github.com/eladshamir/RPC-Backdoor) - A basic emulation of an "RPC Backdoor"
 - [endgameinc/ClrGuard](https://github.com/endgameinc/ClrGuard) - 
-- [ufrisk/MemProcFS](https://github.com/ufrisk/MemProcFS) - The Memory Process File System
+- [ufrisk/MemProcFS](https://github.com/ufrisk/MemProcFS) - MemProcFS
 - [cube0x0/SharpSystemTriggers](https://github.com/cube0x0/SharpSystemTriggers) - Collection of remote authentication triggers in C#
 - [antonioCoco/MalSeclogon](https://github.com/antonioCoco/MalSeclogon) - A little tool to play with the Seclogon service
 - [ScriptIdiot/SysmonQuiet](https://github.com/ScriptIdiot/SysmonQuiet) - RDLL for Cobalt Strike beacon to silence sysmon process
@@ -136,12 +97,12 @@
 - [synacktiv/Radmin3-Password-Cracker](https://github.com/synacktiv/Radmin3-Password-Cracker) - Radmin Server 3 credentials dumper/cracker
 - [outflanknl/C2-Tool-Collection](https://github.com/outflanknl/C2-Tool-Collection) - A collection of tools which integrate with Cobalt Strike (and possibly other C2 frameworks) through BOF and reflective DLL loading techniques.
 - [praetorian-inc/PortBender](https://github.com/praetorian-inc/PortBender) - TCP Port Redirection Utility
-- [helpsystems/nanodump](https://github.com/helpsystems/nanodump) - The swiss army knife of LSASS dumping
+- [fortra/nanodump](https://github.com/fortra/nanodump) - The swiss army knife of LSASS dumping
 - [dzzie/SCDBG](https://github.com/dzzie/SCDBG) - note: current build is VS_LIBEMU project. This cross platform gcc build is for Linux users but is no longer updated. modification of the libemu sctest project to add basic debugger capabilities and mo
 - [ScarredMonk/SysmonSimulator](https://github.com/ScarredMonk/SysmonSimulator) - Sysmon event simulation utility which can be used to simulate the attacks to generate the Sysmon Event logs for testing the EDR detections and correlation rules by Blue teams.
 - [Sysinternals/SysinternalsEBPF](https://github.com/Sysinternals/SysinternalsEBPF) - The Linux port of the Sysinternals Sysmon tool.
 - [Sysinternals/SysmonForLinux](https://github.com/Sysinternals/SysmonForLinux) - 
-- [boku7/BokuLoader](https://github.com/boku7/BokuLoader) - Cobalt Strike User-Defined Reflective Loader written in Assembly & C for advanced evasion capabilities. By: @0xBoku & @s4ntiago_p
+- [boku7/BokuLoader](https://github.com/boku7/BokuLoader) - A proof-of-concept Cobalt Strike Reflective Loader which aims to recreate, integrate, and enhance Cobalt Strike's evasion features!
 - [topotam/PetitPotam](https://github.com/topotam/PetitPotam) - PoC tool to coerce Windows hosts to authenticate to other machines via MS-EFSRPC EfsRpcOpenFileRaw or other functions.
 - [phra/PEzor](https://github.com/phra/PEzor) - Open-Source Shellcode & PE Packer
 - [antonioCoco/RoguePotato](https://github.com/antonioCoco/RoguePotato) - Another Windows Local Privilege Escalation from Service Account to System
@@ -169,10 +130,13 @@
 - [gentilkiwi/mimikatz](https://github.com/gentilkiwi/mimikatz) - A little tool to play with Windows security
 - [VirusTotal/yara](https://github.com/VirusTotal/yara) - The pattern matching swiss knife
 
-## C# # 
+## C#
 
+- [dr4k0nia/tooling-playground](https://github.com/dr4k0nia/tooling-playground) - A collection of small scripts and tools for deobfuscation and malware analysis.
+- [gh0x0st/wanderer](https://github.com/gh0x0st/wanderer) - An open-source process injection enumeration tool written in C#
+- [CCob/ThreadlessInject](https://github.com/CCob/ThreadlessInject) - Threadless Process Injection using remote function hooking.
 - [cyberark/PipeViewer](https://github.com/cyberark/PipeViewer) - A tool that shows detailed information about named pipes in Windows
-- [vullabs/Crassus](https://github.com/vullabs/Crassus) - 
+- [vu-ls/Crassus](https://github.com/vu-ls/Crassus) - 
 - [xpn/WAMBam](https://github.com/xpn/WAMBam) - Tooling related to the WAM Bam - Recovering Web Tokens From Office blog post
 - [FuzzySecurity/StandIn](https://github.com/FuzzySecurity/StandIn) - StandIn is a small .NET35/45 AD post-exploitation toolkit
 - [Dec0ne/ShadowSpray](https://github.com/Dec0ne/ShadowSpray) - A tool to spray Shadow Credentials across an entire domain in hopes of abusing long forgotten GenericWrite/GenericAll DACLs over other objects in the domain.
@@ -274,12 +238,17 @@
 - [mRemoteNG/mRemoteNG](https://github.com/mRemoteNG/mRemoteNG) - mRemoteNG is the next generation of mRemote, open source, tabbed, multi-protocol, remote connections manager.
 - [FuzzySecurity/Sharp-Suite](https://github.com/FuzzySecurity/Sharp-Suite) - Also known by Microsoft as Knifecoat :hot_pepper:
 
-## C++ 
+## C++
 
+- [itm4n/PPLmedic](https://github.com/itm4n/PPLmedic) - Dump the memory of any PPL with a Userland exploit chain
+- [br-sn/CheekyBlinder](https://github.com/br-sn/CheekyBlinder) - Enumerating and removing kernel callbacks using signed vulnerable drivers
+- [TheD1rkMtr/HeapCrypt](https://github.com/TheD1rkMtr/HeapCrypt) - Encypting the Heap while sleeping by hooking and modifying Sleep with our own sleep that encrypts the heap
+- [zesiar0/MyPsExec](https://github.com/zesiar0/MyPsExec) - demo PsExec
+- [ZeroMemoryEx/Amsi-Killer](https://github.com/ZeroMemoryEx/Amsi-Killer) - Lifetime AMSI bypass
+- [Processus-Thief/UnhookingDLL](https://github.com/Processus-Thief/UnhookingDLL) - This script is used to bypass DLL Hooking using a fresh mapped copy of ntdll file, patch the ETW and trigger a shellcode with process hollowing
+- [iovisor/bpftrace](https://github.com/iovisor/bpftrace) - High-level tracing language for Linux eBPF
 - [Dec0ne/HWSyscalls](https://github.com/Dec0ne/HWSyscalls) - HWSyscalls is a new method to execute indirect syscalls using HWBP, HalosGate and a synthetic trampoline on kernel32 with HWBP.
 - [Cobalt-Strike/CallStackMasker](https://github.com/Cobalt-Strike/CallStackMasker) - A PoC implementation for dynamically masking call stacks with timers.
-- [TheD1rkMtr/UnhookingPatch](https://github.com/TheD1rkMtr/UnhookingPatch) - Bypass EDR Hooks by patching NT API stub, and resolving SSNs and syscall instructions at runtime
-- [TheD1rkMtr/NTDLLReflection](https://github.com/TheD1rkMtr/NTDLLReflection) - Bypass Userland EDR hooks by Loading Reflective Ntdll in memory from a remote server based on Windows ReleaseID to avoid opening a handle to ntdll , and trigger exported APIs from the export table
 - [PI-Defender/pi-defender](https://github.com/PI-Defender/pi-defender) - Kernel Security driver used to block past, current and future process injection techniques on Windows Operating System.
 - [binderlabs/DirCreate2System](https://github.com/binderlabs/DirCreate2System) - Weaponizing to get NT SYSTEM for Privileged Directory Creation Bugs with Windows Error Reporting
 - [klezVirus/SilentMoonwalk](https://github.com/klezVirus/SilentMoonwalk) - PoC Implementation of a fully dynamic call stack spoofer
@@ -344,11 +313,17 @@
 
 ## Go 
 
+- [M00NLIG7/ChopChopGo](https://github.com/M00NLIG7/ChopChopGo) - Rapidly Search and Hunt through Linux Forensics Artifacts
+- [quarkslab/kdigger](https://github.com/quarkslab/kdigger) - Kubernetes focused container assessment and context discovery tool for penetration testing
+- [inguardians/peirates](https://github.com/inguardians/peirates) - Peirates - Kubernetes Penetration Testing tool
+- [anchore/grype](https://github.com/anchore/grype) - A vulnerability scanner for container images and filesystems
+- [aquasecurity/trivy](https://github.com/aquasecurity/trivy) - Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
+- [iovisor/kubectl-trace](https://github.com/iovisor/kubectl-trace) - Schedule bpftrace programs on your kubernetes cluster using the kubectl
 - [Rolix44/Kubestroyer](https://github.com/Rolix44/Kubestroyer) - Kubernetes  exploitation tool
 - [cilium/hubble](https://github.com/cilium/hubble) - Hubble - Network, Service & Security Observability for Kubernetes using eBPF
-- [kubeshark/kubeshark](https://github.com/kubeshark/kubeshark) - The API traffic viewer for Kubernetes providing real-time, protocol-aware visibility into Kubernetes’ internal network, capturing, dissecting and monitoring all traffic and payloads going in, out and 
+- [kubeshark/kubeshark](https://github.com/kubeshark/kubeshark) - The API traffic analyzer for Kubernetes providing real-time K8s protocol-level visibility, capturing and monitoring all traffic and payloads going in, out and across containers, pods, nodes and cluste
 - [BloodHoundAD/AzureHound](https://github.com/BloodHoundAD/AzureHound) - Azure Data Exporter for BloodHound
-- [OWASP/Amass](https://github.com/OWASP/Amass) - In-depth Attack Surface Mapping and Asset Discovery
+- [owasp-amass/amass](https://github.com/owasp-amass/amass) - In-depth Attack Surface Mapping and Asset Discovery
 - [optiv/Freeze](https://github.com/optiv/Freeze) - Freeze is a payload toolkit for bypassing EDRs using suspended processes, direct syscalls, and alternative execution methods
 - [HavocFramework/Havoc](https://github.com/HavocFramework/Havoc) - The Havoc Framework.
 - [lkarlslund/ldapnomnom](https://github.com/lkarlslund/ldapnomnom) - Anonymously bruteforce Active Directory usernames from Domain Controllers by abusing LDAP Ping requests (cLDAP)
@@ -376,6 +351,8 @@
 
 ## HTML 
 
+- [jiep/offensive-ai-compilation](https://github.com/jiep/offensive-ai-compilation) - A curated list of useful resources that cover Offensive AI.
+- [ninoseki/mihari](https://github.com/ninoseki/mihari) - A tool for OSINT based threat hunting
 - [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) - This repo includes ChatGPT prompt curation to use ChatGPT better.
 - [blueteamvillage/Project-Obsidian-DC30](https://github.com/blueteamvillage/Project-Obsidian-DC30) - 
 - [JPCERTCC/ToolAnalysisResultSheet](https://github.com/JPCERTCC/ToolAnalysisResultSheet) - Tool Analysis Result Sheet
@@ -401,6 +378,7 @@
 
 ## JavaScript 
 
+- [vogler/free-games-claimer](https://github.com/vogler/free-games-claimer) - Automatically claims free games on the Epic Games Store, Amazon Prime Gaming and GOG.
 - [StrangerealIntel/CyberThreatIntel](https://github.com/StrangerealIntel/CyberThreatIntel) - Analysis of malware and Cyber Threat Intel of APT and cybercriminals groups
 - [horsicq/Detect-It-Easy](https://github.com/horsicq/Detect-It-Easy) - Program for determining types of files for Windows, Linux and MacOS.
 - [center-for-threat-informed-defense/attack-powered-suit](https://github.com/center-for-threat-informed-defense/attack-powered-suit) - ATT&CK Powered Suit is a browser extension that puts the complete MITRE ATT&CK® knowledge base at your fingertips with text search, context menus, and ATT&CK Navigator integration.
@@ -418,6 +396,8 @@
 
 ## Jupyter Notebook 
 
+- [Azure/MDEASM-Solutions](https://github.com/Azure/MDEASM-Solutions) - Solutions developed by the MDEASM Customer Experience Engineering (CxE) Go-To Production (GTP) team for Azure MDEASM
+- [Azure/Azure-Sentinel-Notebooks](https://github.com/Azure/Azure-Sentinel-Notebooks) - Interactive Azure Sentinel Notebooks provides security insights and actions to investigate anomalies and hunt for malicious behaviors.
 - [ageron/handson-ml3](https://github.com/ageron/handson-ml3) - A series of Jupyter notebooks that walk you through the fundamentals of Machine Learning and Deep Learning in Python using Scikit-Learn, Keras and TensorFlow 2.
 - [GhostPack/Invoke-Evasion](https://github.com/GhostPack/Invoke-Evasion) - PowerShell Obfuscation and Data Science
 - [fox-it/cobaltstrike-beacon-data](https://github.com/fox-it/cobaltstrike-beacon-data) - Open Dataset of Cobalt Strike Beacon metadata (2018-2022)
@@ -435,8 +415,17 @@
 
 - [frida/frida](https://github.com/frida/frida) - Clone this repo to build Frida
 
+## Nim 
+
+- [chvancooten/NimPlant](https://github.com/chvancooten/NimPlant) - A light-weight first-stage C2 implant written in Nim.
+
 ## Others 
 
+- [nmantani/archiver-MOTW-support-comparison](https://github.com/nmantani/archiver-MOTW-support-comparison) - 
+- [dracula/notepad-plus-plus](https://github.com/dracula/notepad-plus-plus) - 🧛🏻‍♂️ Dark theme for Notepad++
+- [Klimdy/Splunk-tiered-deployment-server](https://github.com/Klimdy/Splunk-tiered-deployment-server) - Configuration files for create a tiered deployment server
+- [LOLDrivers-Project/LOLDrivers](https://github.com/LOLDrivers-Project/LOLDrivers) - 
+- [tsale/Sigma_rules](https://github.com/tsale/Sigma_rules) - Random sigma rules to share with the community
 - [jsecurity101/TelemetrySource](https://github.com/jsecurity101/TelemetrySource) - 
 - [CMEPW/BypassAV](https://github.com/CMEPW/BypassAV) - This map lists the essential techniques to bypass anti-virus and EDR
 - [mdecrevoisier/Splunk-input-windows-baseline](https://github.com/mdecrevoisier/Splunk-input-windows-baseline) - Provides an advanced input.conf file for Windows and 3rd party related software with more than 70 different event log mapped to the MITRE Att&CK
@@ -451,9 +440,9 @@
 - [olafhartong/Presentations](https://github.com/olafhartong/Presentations) - My conference presentations
 - [super0xbad1dea/SysmonVersions](https://github.com/super0xbad1dea/SysmonVersions) - 
 - [edoardottt/awesome-hacker-search-engines](https://github.com/edoardottt/awesome-hacker-search-engines) - A curated list of awesome search engines useful during Penetration testing, Vulnerability assessments, Red/Blue Team operations, Bug Bounty and more
-- [NextronSystems/evtx-baseline](https://github.com/NextronSystems/evtx-baseline) - A repository hosting example goodware evtx logs containing sample software installation and basic user interaction
 - [specterops/presentations](https://github.com/specterops/presentations) - SpecterOps Presentations
 - [0xsyr0/OSCP](https://github.com/0xsyr0/OSCP) - OSCP Cheat Sheet
+- [fox-it/dissect](https://github.com/fox-it/dissect) - Dissect is a digital forensics & incident response framework and toolset that allows you to quickly access and analyse forensic artefacts from various disk and file formats, developed by Fox-IT (part 
 - [huntandhackett/sysmon-indepth](https://github.com/huntandhackett/sysmon-indepth) - Understanding the operation and limitations of Sysmon's events
 - [mdecrevoisier/SIGMA-detection-rules](https://github.com/mdecrevoisier/SIGMA-detection-rules) - Set of SIGMA rules (&gt;320) mapped to MITRE Att@k tactic and techniques
 - [inodee/threathunting-spl](https://github.com/inodee/threathunting-spl) - Splunk code (SPL) for serious threat hunters and detection engineers.
@@ -465,7 +454,6 @@
 - [rod-trent/SentinelPlaybooks](https://github.com/rod-trent/SentinelPlaybooks) - 
 - [pe3zx/my-infosec-awesome](https://github.com/pe3zx/my-infosec-awesome) - My curated list of awesome links, resources and tools on infosec related topics
 - [rod-trent/MustLearnKQL](https://github.com/rod-trent/MustLearnKQL) - Code included as part of the MustLearnKQL blog series
-- [AndrewRathbun/VanillaWindowsRegistryHives](https://github.com/AndrewRathbun/VanillaWindowsRegistryHives) - A repo that contains a recursive dump from the ROOT key of every Windows Registry hive (using KAPE) from a vanilla (clean) install of every Windows OS version to compare and see what's been added with
 - [persistence-info/persistence-info.github.io](https://github.com/persistence-info/persistence-info.github.io) - 
 - [olafhartong/ThreatHunting](https://github.com/olafhartong/ThreatHunting) - A Splunk app mapped to MITRE ATT&CK to guide your threat hunts
 - [OlivierLaflamme/Cheatsheet-God](https://github.com/OlivierLaflamme/Cheatsheet-God) - Penetration Testing Reference Bank - OSCP / PTP & PTX  Cheatsheet
@@ -473,7 +461,6 @@
 - [InQuest/awesome-yara](https://github.com/InQuest/awesome-yara) - A curated list of awesome YARA rules, tools, and people.
 - [hasherezade/pe-bear-releases](https://github.com/hasherezade/pe-bear-releases) - PE-bear (builds only)
 - [Purp1eW0lf/Blue-Team-Notes](https://github.com/Purp1eW0lf/Blue-Team-Notes) - You didn't think I'd go and leave the blue team out, right?
-- [AndrewRathbun/VanillaWindowsReference](https://github.com/AndrewRathbun/VanillaWindowsReference) - A repo that contains recursive directory listings (using PowerShell) of a vanilla (clean) install of every Windows OS version to compare and see what's been added with each update.  Use these CSVs to 
 - [AndrewRathbun/DFIRMindMaps](https://github.com/AndrewRathbun/DFIRMindMaps) - A repository of DFIR-related Mind Maps geared towards the visual learners!
 - [ch33r10/EnterprisePurpleTeaming](https://github.com/ch33r10/EnterprisePurpleTeaming) - Purple Team Resources for Enterprise Purple Teaming: An Exploratory Qualitative Study by Xena Olsen.
 - [HackingLZ/ExtractedDefender](https://github.com/HackingLZ/ExtractedDefender) - 
@@ -484,7 +471,7 @@
 - [scythe-io/purple-team-exercise-framework](https://github.com/scythe-io/purple-team-exercise-framework) - Purple Team Exercise Framework
 - [reprise99/kql-for-dfir](https://github.com/reprise99/kql-for-dfir) - A guide to using Azure Data Explorer and KQL for DFIR
 - [jsa2/kql](https://github.com/jsa2/kql) - KQL for Azure Resource Manager and AppID search
-- [0x4D31/awesome-threat-detection](https://github.com/0x4D31/awesome-threat-detection) - A curated list of awesome threat detection and hunting resources
+- [0x4D31/awesome-threat-detection](https://github.com/0x4D31/awesome-threat-detection) - ✨ A curated list of awesome threat detection and hunting resources 🕵️‍♂️
 - [wsummerhill/CobaltStrike_RedTeam_CheatSheet](https://github.com/wsummerhill/CobaltStrike_RedTeam_CheatSheet) - Useful Cobalt Strike techniques learned from engagements
 - [Sh0ckFR/DLLirant](https://github.com/Sh0ckFR/DLLirant) - DLLirant is a tool to automatize the DLL Hijacking researches on a specified binary.
 - [bohops/UltimateWDACBypassList](https://github.com/bohops/UltimateWDACBypassList) - A centralized resource for previously documented WDAC bypass techniques
@@ -527,7 +514,7 @@
 - [marcusbakker/KQL](https://github.com/marcusbakker/KQL) - Kusto Query Language
 - [Flangvik/SharpCollection](https://github.com/Flangvik/SharpCollection) - Nightly builds of common C# offensive tools, fresh from their respective master branches built and released in a CDI fashion using Azure DevOps release pipelines.
 - [EricZimmerman/KapeFiles](https://github.com/EricZimmerman/KapeFiles) - This repository serves as a place for community created Targets and Modules for use with KAPE.
-- [zer0yu/Awesome-CobaltStrike](https://github.com/zer0yu/Awesome-CobaltStrike) - cobaltstrike的相关资源汇总 / List of Awesome CobaltStrike Resources
+- [zer0yu/Awesome-CobaltStrike](https://github.com/zer0yu/Awesome-CobaltStrike) - CobaltStrike的相关资源汇总 / List of Awesome CobaltStrike Resources
 - [FalconForceTeam/FalconFriday](https://github.com/FalconForceTeam/FalconFriday) - Hunting queries and detections
 - [S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet](https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet) - A cheat sheet that contains common enumeration and attack methods for Windows Active Directory.
 - [imthenachoman/How-To-Secure-A-Linux-Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) - An evolving how-to guide for securing a Linux server.
@@ -535,7 +522,7 @@
 - [teoseller/osquery-attck](https://github.com/teoseller/osquery-attck) - Mapping the MITRE ATT&CK Matrix with Osquery
 - [RedDrip7/APT_Digital_Weapon](https://github.com/RedDrip7/APT_Digital_Weapon) - Indicators of compromise (IOCs) collected from public resources and categorized by Qi-AnXin.
 - [sbousseaden/Slides](https://github.com/sbousseaden/Slides) - Misc Threat Hunting Resources
-- [blaCCkHatHacEEkr/PENTESTING-BIBLE](https://github.com/blaCCkHatHacEEkr/PENTESTING-BIBLE) - Learn ethical hacking.Learn about reconnaissance,windows/linux hacking,attacking web technologies,and pen testing wireless networks.Resources for learning malware analysis and reverse engineering.
+- [blaCCkHatHacEEkr/PENTESTING-BIBLE](https://github.com/blaCCkHatHacEEkr/PENTESTING-BIBLE) - articles
 - [S3cur3Th1sSh1t/Pentest-Tools](https://github.com/S3cur3Th1sSh1t/Pentest-Tools) - 
 - [tanprathan/MobileApp-Pentest-Cheatsheet](https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet) - The Mobile App Pentest cheat sheet was created to provide concise collection of high value information on specific mobile application penetration testing topics.
 - [wsargent/docker-cheat-sheet](https://github.com/wsargent/docker-cheat-sheet) - Docker Cheat Sheet
@@ -583,6 +570,7 @@
 
 ## PowerShell 
 
+- [vectra-ai-research/MAAD-AF](https://github.com/vectra-ai-research/MAAD-AF) - MAAD Attack Framework - An attack tool for simple, fast & effective security testing of M365 & Azure AD.
 - [TrimarcJake/Locksmith](https://github.com/TrimarcJake/Locksmith) - A tiny tool to identify and remediate common misconfigurations in Active Directory Certificate Services
 - [microsoft/mde-api-gui](https://github.com/microsoft/mde-api-gui) - Simple GUI for Microsoft Defender for Endpoint API machine actions in PowerShell.
 - [thalpius/Microsoft-Defender-for-Identity-Auditing-Checker-using-Sentinel](https://github.com/thalpius/Microsoft-Defender-for-Identity-Auditing-Checker-using-Sentinel) - 
@@ -592,6 +580,7 @@
 - [olafhartong/sysmon-parser](https://github.com/olafhartong/sysmon-parser) - Automatically generated Sysmon parser for Azure Sentinel
 - [olafhartong/MDE-AuditCheck](https://github.com/olafhartong/MDE-AuditCheck) - MDE relies on some of the Audit settings to be enabled
 - [Cyberlorians/MDE](https://github.com/Cyberlorians/MDE) - 
+- [NextronSystems/evtx-baseline](https://github.com/NextronSystems/evtx-baseline) - A repository hosting example goodware evtx logs containing sample software installation and basic user interaction
 - [ANSSI-FR/ADTimeline](https://github.com/ANSSI-FR/ADTimeline) - Timeline of Active Directory changes with replication metadata
 - [eshlomo1/MS-Defender-4-xOPS](https://github.com/eshlomo1/MS-Defender-4-xOPS) - 
 - [rvrsh3ll/Misc-Powershell-Scripts](https://github.com/rvrsh3ll/Misc-Powershell-Scripts) - Random Tools
@@ -623,7 +612,7 @@
 - [mamun-sec/dfirt](https://github.com/mamun-sec/dfirt) - Collect information of Windows PC when doing incident response
 - [nsacyber/Event-Forwarding-Guidance](https://github.com/nsacyber/Event-Forwarding-Guidance) - Configuration guidance for implementing collection of security relevant Windows Event Log events by using Windows Event Forwarding. #nsacyber
 - [rvrsh3ll/TokenTactics](https://github.com/rvrsh3ll/TokenTactics) - Azure JWT Token Manipulation Toolset
-- [eshlomo1/Microsoft-365-IT-Security](https://github.com/eshlomo1/Microsoft-365-IT-Security) - Microsoft 365 Stuff and scripts for IT and Security
+- [eshlomo1/Microsoft-365](https://github.com/eshlomo1/Microsoft-365) - Microsoft 365 Stuff and scripts for IT and Security
 - [blackhillsinfosec/EventLogging](https://github.com/blackhillsinfosec/EventLogging) - Automation scripts to deploy Windows Event Forwarding, Sysmon, and custom audit policies in an Active Directory environment.
 - [airbus-cert/Invoke-Bof](https://github.com/airbus-cert/Invoke-Bof) - Load any Beacon Object File using Powershell!
 - [mgeeky/cobalt-arsenal](https://github.com/mgeeky/cobalt-arsenal) - My collection of battle-tested Aggressor Scripts for Cobalt Strike 4.0+
@@ -675,6 +664,14 @@
 
 ## Python 
 
+- [wealthsimple/odef](https://github.com/wealthsimple/odef) - This is a public template repository for the Open Detection Engineering Framework
+- [cisagov/untitledgoosetool](https://github.com/cisagov/untitledgoosetool) - Untitled Goose Tool is a robust and flexible hunt and incident response tool that adds novel authentication and data gathering methods in order to run a full investigation against a customer’s Azure A
+- [krdmnbrk/play-with-splunk](https://github.com/krdmnbrk/play-with-splunk) - 
+- [MzHmO/psexec_noinstall](https://github.com/MzHmO/psexec_noinstall) - Repository contains psexec, which will help to exploit the forgotten pipe
+- [aquasecurity/kube-hunter](https://github.com/aquasecurity/kube-hunter) - Hunt for security weaknesses in Kubernetes clusters
+- [cyberark/KubiScan](https://github.com/cyberark/KubiScan) - A tool to scan Kubernetes cluster for risky permissions
+- [mgreen27/DetectRaptor](https://github.com/mgreen27/DetectRaptor) - A repository to share publicly available Velociraptor detection content
+- [tothi/serviceDetector](https://github.com/tothi/serviceDetector) - Detect whether a service is installed (blindly) and/or running (if exposing named pipes) on a remote machine without using local admin privileges.
 - [Neo23x0/yaraQA](https://github.com/Neo23x0/yaraQA) - YARA rule analyzer to improve rule quality and performance
 - [mxrch/GHunt](https://github.com/mxrch/GHunt) - 🕵️‍♂️ Offensive Google framework.
 - [secureworks/family-of-client-ids-research](https://github.com/secureworks/family-of-client-ids-research) - Research into Undocumented Behavior of Azure AD Refresh Tokens
@@ -689,7 +686,6 @@
 - [Qianlitp/WatchAD](https://github.com/Qianlitp/WatchAD) - AD Security Intrusion Detection System
 - [MWR-CyberSec/PXEThief](https://github.com/MWR-CyberSec/PXEThief) - PXEThief is a set of tooling that can extract passwords from the Operating System Deployment functionality in Microsoft Endpoint Configuration Manager
 - [Oros42/IMSI-catcher](https://github.com/Oros42/IMSI-catcher) - This program show you IMSI numbers of cellphones around you.
-- [fox-it/dissect](https://github.com/fox-it/dissect) - This project is a meta package, it will install all other Dissect modules with the right combination of versions.
 - [antonioCoco/SharPyShell](https://github.com/antonioCoco/SharPyShell) - SharPyShell - tiny and obfuscated ASP.NET webshell for C# web applications
 - [Ge0rg3/requests-ip-rotator](https://github.com/Ge0rg3/requests-ip-rotator) - A Python library to utilize AWS API Gateway's large IP pool as a proxy to generate pseudo-infinite IPs for web scraping and brute forcing.
 - [xRET2pwn/Teamsniper](https://github.com/xRET2pwn/Teamsniper) - Teamsniper is a tool for fetching keywords in a Microsoft Teams such as (passwords, emails, database, etc.).
@@ -796,7 +792,7 @@
 - [bitsadmin/wesng](https://github.com/bitsadmin/wesng) - Windows Exploit Suggester - Next Generation
 - [marcurdy/dfir-toolset](https://github.com/marcurdy/dfir-toolset) - Dump of organized knowledge on DFIR
 - [OWASP/CheatSheetSeries](https://github.com/OWASP/CheatSheetSeries) - The OWASP Cheat Sheet Series was created to provide a concise collection of high value information on specific application security topics.
-- [JonathanSalwan/ROPgadget](https://github.com/JonathanSalwan/ROPgadget) - This tool lets you search your gadgets on your binaries to facilitate your ROP exploitation. ROPgadget supports ELF, PE and Mach-O format on x86, x64, ARM, ARM64, PowerPC, SPARC and MIPS architectures
+- [JonathanSalwan/ROPgadget](https://github.com/JonathanSalwan/ROPgadget) - This tool lets you search your gadgets on your binaries to facilitate your ROP exploitation. ROPgadget supports ELF, PE and Mach-O format on x86, x64, ARM, ARM64, PowerPC, SPARC, MIPS, RISC-V 64, and 
 - [OTRF/OSSEM](https://github.com/OTRF/OSSEM) - Open Source Security Events Metadata (OSSEM)
 - [dirkjanm/PrivExchange](https://github.com/dirkjanm/PrivExchange) - Exchange your privileges for Domain Admin privs by abusing Exchange
 - [lgandx/Responder](https://github.com/lgandx/Responder) - Responder is a LLMNR, NBT-NS and MDNS poisoner, with built-in HTTP/SMB/MSSQL/FTP/LDAP rogue authentication server supporting NTLMv1/NTLMv2/LMv2, Extended Security NTLMSSP and Basic HTTP authentication
@@ -895,4 +891,3 @@
 - [Neo23x0/signature-base](https://github.com/Neo23x0/signature-base) - YARA signature and IOC database for my scanners and tools
 - [nsacyber/Mitigating-Web-Shells](https://github.com/nsacyber/Mitigating-Web-Shells) - Guidance for mitigation web shells. #nsacyber
 - [Yara-Rules/rules](https://github.com/Yara-Rules/rules) - Repository of yara rules
-- [CyberMonitor/APT_CyberCriminal_Campagin_Collections](https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections) - APT & CyberCriminal Campaign Collection
