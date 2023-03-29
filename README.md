@@ -5,7 +5,7 @@
 - Github/Knowledge: [Splunk Add-on for Microsoft Cloud Services improved field aliases for Azure event hub containing Microsoft 365 Defender events](M365D_Splunk_TA_microsoft-cloudservices_fieldaliases.md)
 - Splunk/App: [Microsoft Cloud Services Event Hub True Fashion Add-on for Splunk](https://splunkbase.splunk.com/app/6508/#/details)
 - Microsoft/Detection: [Detects malicious SMB Named Pipes (used by common C2 frameworks)](https://github.com/microsoft/Microsoft-365-Defender-Hunting-Queries/blob/master/Command%20and%20Control/C2-NamedPipe.md)
-- SIGMA/Detection: [Cmd.exe CommandLine Path Traversal](https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_commandline_path_traversal.yml)
+- SIGMA/Detection: [Cmd.exe CommandLine Path Traversal](https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_susp_commandline_path_traversal_evasion.yml)
 - SIGMA/Detection: [Suspicious LDAP-Attributes Used](https://github.com/SigmaHQ/sigma/blob/master/rules/windows/builtin/security/win_security_susp_ldap_dataexchange.yml)
 - SIGMA/Detection: [Suspicious PROCEXP152.sys File Created In TMP](https://github.com/SigmaHQ/sigma/blob/master/rules/windows/file/file_event/file_event_win_susp_procexplorer_driver_created_in_tmp_folder.yml)
 - SIGMA/Detection: [Suspicious ADSI-Cache Usage By Unknown Tool](https://github.com/SigmaHQ/sigma/blob/master/rules/windows/file/file_event/file_event_win_susp_adsi_cache_usage.yml)
